@@ -18,84 +18,87 @@
     <link rel="icon" type="image/png"
         href="{{ isset(getSetting()['favicon']) ? getSetting()['favicon'] : '01-fav.png' }}">
 
+    <!-- Preconnect for Performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://use.fontawesome.com">
+
+    <!-- Modern Font - Cairo for Arabic -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+
     <!-- Fontawesome CSS Files -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css"
         integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+
+    <!-- Modern Design System - Load First -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/modern-design-system.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/modern-components.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/front/css/modern-overrides.css') }}">
 
     <!-- Core CSS Files -->
     {{-- <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}"> --}}
     <link rel="stylesheet" type="text/css"
         href="{{ isset(getSetting()['color']) ? asset('assets/front/css/' . getSetting()['color'] . '.css') : asset('assets/front/css/style.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/front/css/modern-overrides.css') }}">
+
+    <!-- Toastr Notifications -->
     <link rel="stylesheet" type="text/css"
         href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" />
+
+    <!-- AOS Animation Library -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
 
 <style>
+    /* Modern Root Variables */
+    :root {
+        --font-primary: 'Cairo', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
 
-#installAppButton{
+    body {
+        font-family: var(--font-primary) !important;
+    }
 
-position:fixed;
+    /* Install App Button - Modern Style */
+    #installAppButton {
+        position: fixed;
+        left: 20px;
+        bottom: 95px;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        padding: 14px 22px;
+        background: linear-gradient(135deg, var(--color-primary, #C19A49) 0%, var(--color-primary-dark, #9d7a35) 100%);
+        color: #fff;
+        font-size: 15px;
+        font-weight: 600;
+        border: none;
+        border-radius: 50px;
+        cursor: pointer;
+        z-index: 999999;
+        box-shadow: 0 10px 30px rgba(193, 154, 73, 0.4);
+        transition: all 0.3s ease;
+    }
 
-left:20px;
+    #installAppButton:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 12px 30px rgba(193, 154, 73, 0.5);
+    }
 
-bottom:95px;
+    #installAppButton i {
+        margin-left: 8px;
+    }
 
-display:none;
-
-align-items:center;
-
-justify-content:center;
-
-padding:14px 22px;
-
-background:#C19A49;
-
-color:#fff;
-
-font-size:15px;
-
-font-weight:600;
-
-border:none;
-
-border-radius:50px;
-
-cursor:pointer;
-
-z-index:999999;
-
-box-shadow:0 10px 30px rgba(0,0,0,.35);
-
-transition:.3s;
-
-}
-
-#installAppButton:hover{
-
-transform:translateY(-3px);
-
-background:#d7aa54;
-
-}
-
-@media(max-width:768px){
-
-#installAppButton{
-
-left:15px;
-
-bottom:90px;
-
-padding:12px 18px;
-
-font-size:14px;
-
-}
-
-}
-
+    @media(max-width:768px) {
+        #installAppButton {
+            left: 15px;
+            bottom: 90px;
+            padding: 12px 18px;
+            font-size: 14px;
+        }
+    }
 </style>
 
 </head>
@@ -135,7 +138,21 @@ font-size:14px;
     <script src="{{ asset('assets/front/js/scripts.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 
+    <!-- AOS Animation -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <!-- Modern Enhancements -->
+    <script src="{{ asset('assets/front/js/modern-enhancements.js') }}"></script>
+
     <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true,
+            offset: 100
+        });
+
         // Optional API content must never leave a blocking loader on screen.
         (function () {
             function hidePreloader() {
