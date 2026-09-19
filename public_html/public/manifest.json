@@ -1,0 +1,23 @@
+{
+    "name": "SNUS EGYPT",
+    "short_name": "SNUS EGYPT",
+    "description": "Premium Tobacco-Free Nicotine Pouches Store",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#080808",
+    "theme_color": "#C19A49",
+    "orientation": "portrait",
+
+    "icons": [
+        {
+            "src": "/assets/snus/icons/icon-192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "/assets/snus/icons/icon-512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}

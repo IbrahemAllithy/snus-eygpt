@@ -1,0 +1,130 @@
+// Modern CSS Variables System
+// بدل 25 ملف CSS منفصل، هنستخدم CSS Variables
+
+:root {
+  // Primary Colors
+  --color-primary: #ae69f5;
+  --color-primary-dark: rgba(174, 105, 245, 0.85);
+  --color-primary-light: rgba(174, 105, 245, 0.4);
+
+  // Secondary Colors
+  --color-secondary: #f49d2a;
+  --color-secondary-dark: rgba(244, 157, 42, 0.85);
+
+  // Background Colors
+  --bg-page: #f8f9fa;
+  --bg-panel: #fff;
+  --bg-module: #f8f9fa;
+  --bg-element: #e9ecef;
+
+  // Text Colors
+  --text-body: #1a3353;
+  --text-dark: #264164;
+  --text-secondary: #6c757d;
+  --text-light: #f8f9fa;
+
+  // Border
+  --border-color: #e9ecef;
+
+  // Shadows
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.15);
+  --shadow-xl: 0 20px 40px rgba(0, 0, 0, 0.2);
+
+  // Border Radius
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-full: 9999px;
+
+  // Transitions
+  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-base: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 500ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+// Dark Mode
+body.dark {
+  --bg-page: #1b1026;
+  --bg-panel: #20132d;
+  --bg-module: #2a193b;
+  --bg-element: #301d43;
+  --text-body: #BDD1F8;
+  --text-dark: #8A99B5;
+  --text-light: #1a3353;
+  --border-color: #301d43;
+}
+
+// Color Themes (25 themes in one file!)
+[data-theme="default"] {
+  --color-primary: #ae69f5;
+  --color-secondary: #f49d2a;
+}
+
+[data-theme="red"] {
+  --color-primary: #ff0000;
+  --color-secondary: #000000;
+  --color-primary-dark: rgba(255, 0, 0, 0.85);
+  --color-secondary-dark: rgba(0, 0, 0, 0.85);
+}
+
+[data-theme="blue"] {
+  --color-primary: #0000ff;
+  --color-secondary: #ffc0cb;
+  --color-primary-dark: rgba(0, 0, 255, 0.85);
+  --color-secondary-dark: rgba(255, 192, 203, 0.85);
+}
+
+[data-theme="green"] {
+  --color-primary: #008000;
+  --color-secondary: #ff0000;
+  --color-primary-dark: rgba(0, 128, 0, 0.85);
+  --color-secondary-dark: rgba(255, 0, 0, 0.85);
+}
+
+[data-theme="yellow"] {
+  --color-primary: #ffc107;
+  --color-secondary: #ff0000;
+  --color-primary-dark: rgba(255, 193, 7, 0.85);
+  --color-secondary-dark: rgba(255, 0, 0, 0.85);
+}
+
+[data-theme="purple"] {
+  --color-primary: #6f42c1;
+  --color-secondary: #e83e8c;
+  --color-primary-dark: rgba(111, 66, 193, 0.85);
+  --color-secondary-dark: rgba(232, 62, 140, 0.85);
+}
+
+[data-theme="orange"] {
+  --color-primary: #fd7e14;
+  --color-secondary: #343a40;
+  --color-primary-dark: rgba(253, 126, 20, 0.85);
+  --color-secondary-dark: rgba(52, 58, 64, 0.85);
+}
+
+[data-theme="pink"] {
+  --color-primary: #e83e8c;
+  --color-secondary: #6f42c1;
+  --color-primary-dark: rgba(232, 62, 140, 0.85);
+  --color-secondary-dark: rgba(111, 66, 193, 0.85);
+}
+
+[data-theme="black"] {
+  --color-primary: #000000;
+  --color-secondary: #ffffff;
+  --color-primary-dark: rgba(0, 0, 0, 0.85);
+  --color-secondary-dark: rgba(255, 255, 255, 0.85);
+}
+
+[data-theme="brown"] {
+  --color-primary: #8b4513;
+  --color-secondary: #daa520;
+  --color-primary-dark: rgba(139, 69, 19, 0.85);
+  --color-secondary-dark: rgba(218, 165, 32, 0.85);
+}
+
+// Add rest of themes...
+// This replaces 25 separate CSS files!

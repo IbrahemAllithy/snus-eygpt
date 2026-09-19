@@ -1,0 +1,20 @@
+<?php
+
+namespace App\Contract\Admin;
+
+interface DeliveryBoyInterface
+{
+    public function all();
+
+    public function show($account);
+
+    public function store(array $parms);
+
+    public function update(array $parms, $account);
+
+    public function destroy($account);
+
+    public function validatePin(array $parms);
+
+    public function UpdateStatus(array $parms);
+}

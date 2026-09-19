@@ -1,0 +1,1545 @@
+/* SNUS Egypt visual refresh. Keeps the existing storefront behavior intact. */
+:root {
+    --snus-ink: #101111;
+    --snus-muted: #69706c;
+    --snus-paper: #f5f6f1;
+    --snus-panel: #ffffff;
+    --snus-line: #e2e6df;
+    --snus-accent: #c8f238;
+    --snus-accent-dark: #91b900;
+    --snus-radius: 18px;
+    --snus-shadow: 0 18px 45px rgba(16, 17, 17, 0.09);
+}
+
+body.snus-modern {
+    background: var(--snus-paper);
+    color: var(--snus-ink);
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    letter-spacing: 0;
+}
+
+body.snus-modern a,
+body.snus-modern button,
+body.snus-modern input,
+body.snus-modern select {
+    letter-spacing: 0;
+}
+
+body.snus-modern .container {
+    max-width: 1240px;
+}
+
+body.snus-modern .alert.alert-warning {
+    margin: 0;
+    padding: 11px 0;
+    border: 0;
+    border-radius: 0;
+    background: var(--snus-ink);
+    color: #fff;
+}
+
+body.snus-modern .alert.alert-warning .pro-description {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+    min-height: 24px;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+body.snus-modern .alert.alert-warning .pro-info strong,
+body.snus-modern .alert.alert-warning .pro-info b {
+    color: var(--snus-accent);
+}
+
+body.snus-modern .alert.alert-warning .close {
+    position: static;
+    margin: 0;
+    padding: 0;
+    color: #fff;
+    opacity: .75;
+    text-shadow: none;
+}
+
+body.snus-modern .header-one .header-mini {
+    min-height: 38px;
+    background: var(--snus-ink);
+    border-bottom: 1px solid var(--snus-line);
+}
+
+body.snus-modern .header-one .header-mini .container,
+body.snus-modern .header-one .header-maxi .container,
+body.snus-modern .header-one .header-navbar .container {
+    padding-right: 20px;
+    padding-left: 20px;
+}
+
+body.snus-modern .header-one .header-mini .row {
+    align-items: center;
+}
+
+body.snus-modern .header-one .header-mini .navbar-lang,
+body.snus-modern .header-one .header-mini .pro-header-options {
+    min-height: 38px;
+    align-items: center;
+}
+
+body.snus-modern .header-one .header-mini .navbar-lang {
+    gap: 2px;
+    color: #fff;
+}
+
+body.snus-modern .header-one .header-mini .navbar-lang .dropdown .btn {
+    color: #fff !important;
+    background: transparent;
+}
+
+body.snus-modern .header-one .header-mini .navbar-lang .dropdown .btn:hover,
+body.snus-modern .header-one .header-mini .navbar-lang .dropdown .btn:focus {
+    color: var(--snus-accent) !important;
+}
+
+body.snus-modern .header-one .header-mini .dropdown .btn,
+body.snus-modern .header-one .header-mini .pro-header-options,
+body.snus-modern .header-one .header-mini .pro-header-options p {
+    color: var(--snus-ink);
+    font-size: 12px;
+}
+
+body.snus-modern .header-one .header-mini .dropdown .btn {
+    padding: 7px 12px;
+}
+
+body.snus-modern .header-one .header-mini .navbar-lang .dropdown .btn::after {
+    color: currentColor;
+}
+
+body.snus-modern .header-one .header-mini .without-auth-login .link-item {
+    color: rgba(255, 255, 255, .72);
+}
+
+body.snus-modern .header-one .header-mini .without-auth-login .nav-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    min-height: 32px;
+    padding: 6px 13px !important;
+    border-radius: 999px;
+    background: var(--snus-accent);
+    color: var(--snus-ink) !important;
+    font-size: 11px;
+    font-weight: 900;
+    line-height: 1;
+    text-decoration: none;
+}
+
+body.snus-modern .header-one .header-mini .without-auth-login .nav-link:hover,
+body.snus-modern .header-one .header-mini .without-auth-login .nav-link:focus {
+    background: #fff;
+    color: var(--snus-ink) !important;
+}
+
+body.snus-modern .header-one .header-maxi {
+    padding: 22px 0;
+    background: var(--snus-panel);
+}
+
+body.snus-modern .header-one .header-maxi .logo,
+body.snus-modern .header-one .header-maxi .logo img,
+body.snus-modern .header-one .header-sticky-inner .logo img {
+    max-height: 58px;
+    width: 72px;
+}
+
+body.snus-modern .header-one .header-maxi .logo {
+    display: inline-flex;
+    align-items: center;
+    max-width: 230px;
+}
+
+body.snus-modern .header-one .header-maxi .logo img {
+    width: auto;
+    max-width: 100%;
+    object-fit: contain;
+}
+
+body.snus-modern .header-one .search-field-module {
+    display: flex;
+    min-height: 48px;
+    overflow: visible;
+    position: relative;
+    z-index: 20;
+    border: 1px solid var(--snus-line);
+    border-radius: 12px;
+    background: #fafbf8;
+    box-shadow: none;
+}
+
+body.snus-modern .header-one .search-field-module .selected_category,
+body.snus-modern .header-one .search-field-module .search-field-wrap input,
+body.snus-modern .header-one .search-field-module .search-field-wrap .btn-secondary {
+    min-height: 48px;
+    border: 0;
+    border-radius: 0;
+}
+
+body.snus-modern .header-one .search-field-module .selected_category {
+    min-width: 126px;
+    padding: 0 18px;
+    background: #eef1eb;
+    color: var(--snus-ink);
+    font-size: 12px;
+    font-weight: 700;
+}
+
+body.snus-modern .header-one .search-field-module .search-field-wrap input {
+    padding: 0 18px;
+    background: transparent;
+    color: var(--snus-ink);
+    font-size: 14px;
+}
+
+body.snus-modern .header-one .search-field-module .search-field-wrap input::placeholder {
+    color: #939b95;
+}
+
+body.snus-modern .header-one .search-field-module .search-field-wrap .btn-secondary {
+    width: 54px;
+    background: var(--snus-accent);
+    color: var(--snus-ink);
+}
+
+body.snus-modern .header-one .search-field-module .search-field-wrap .btn-secondary:hover {
+    background: var(--snus-accent-dark);
+}
+
+body.snus-modern .header-one .search-field-module .dropdown-menu {
+    z-index: 1055;
+    min-width: 220px;
+    margin-top: 2px;
+    border: 1px solid var(--snus-line);
+    border-radius: 10px;
+    box-shadow: 0 14px 32px rgba(16, 17, 17, .14);
+}
+
+body.snus-modern .header-one .search-field-module .dropdown-item {
+    padding: 11px 16px;
+    color: var(--snus-ink);
+    font-size: 13px;
+    font-weight: 700;
+}
+
+body.snus-modern .header-one .search-field-module .dropdown-item:hover,
+body.snus-modern .header-one .search-field-module .dropdown-item:focus {
+    background: #eef1eb;
+    color: var(--snus-ink);
+}
+
+body.snus-modern .header-one .pro-header-right-options {
+    gap: 12px;
+    justify-content: flex-end;
+}
+
+body.snus-modern .header-one .pro-header-right-options > li > a,
+body.snus-modern .header-one .pro-header-right-options > li > button {
+    min-height: 44px;
+    border: 1px solid var(--snus-line);
+    border-radius: 12px;
+    background: #fff;
+    color: var(--snus-ink);
+}
+
+body.snus-modern .header-one .pro-header-right-options > li > a:hover,
+body.snus-modern .header-one .pro-header-right-options > li > button:hover {
+    border-color: var(--snus-ink);
+    background: var(--snus-ink);
+    color: #fff;
+}
+
+body.snus-modern .header-one .pro-header-right-options .badge,
+body.snus-modern .header-one .pro-header-right-options .wishlist-count,
+body.snus-modern .header-one .pro-header-right-options .total-menu-cart-product-count {
+    background: var(--snus-accent);
+    color: var(--snus-ink);
+}
+
+body.snus-modern .header-one .header-navbar {
+    border-top: 1px solid var(--snus-line);
+    border-bottom: 1px solid var(--snus-line);
+    background: var(--snus-panel);
+}
+
+body.snus-modern .header-one .header-navbar nav,
+body.snus-modern .header-one .header-navbar .bg-nav-bar {
+    background: transparent;
+}
+
+body.snus-modern .header-one .header-navbar nav .navbar-collapse > ul {
+    justify-content: center;
+    gap: 8px;
+}
+
+body.snus-modern .header-one .header-navbar nav .navbar-collapse ul .nav-item .nav-link {
+    padding: 17px 15px;
+    color: var(--snus-ink);
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: .07em;
+    text-transform: uppercase;
+}
+
+body.snus-modern .header-one .header-navbar nav .navbar-collapse ul .nav-item .nav-link:hover,
+body.snus-modern .header-one .header-navbar nav .navbar-collapse ul .nav-item.active .nav-link {
+    color: var(--snus-accent-dark);
+}
+
+body.snus-modern .header-mobile {
+    display: block;
+    border-bottom: 1px solid var(--snus-line);
+    background: var(--snus-panel);
+}
+
+body.snus-modern .header-mobile .header-mini {
+    min-height: 38px;
+    background: var(--snus-ink);
+}
+
+body.snus-modern .header-mobile .header-maxi {
+    padding: 14px 0;
+    background: var(--snus-panel);
+}
+
+body.snus-modern .header-mobile .logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 44px;
+}
+
+body.snus-modern .header-mobile .logo img {
+    width: 56px;
+    max-width: 56px;
+    max-height: 42px;
+    object-fit: contain;
+}
+
+body.snus-modern .header-mobile .navigation-mobile-toggler,
+body.snus-modern .header-mobile .pro-header-right-options > li > button {
+    display: grid;
+    width: 42px;
+    height: 42px;
+    place-items: center;
+    border: 1px solid var(--snus-line);
+    border-radius: 10px;
+    background: #fff;
+    color: var(--snus-ink);
+}
+
+body.snus-modern .header-mobile .header-navbar {
+    padding: 10px 0;
+    border-top: 1px solid var(--snus-line);
+    background: #fafbf8;
+}
+
+body.snus-modern .header-mobile .search {
+    display: flex;
+    min-height: 42px;
+    overflow: hidden;
+    border: 1px solid var(--snus-line);
+    border-radius: 10px;
+    background: #fff;
+}
+
+body.snus-modern .header-mobile .search .select-control,
+body.snus-modern .header-mobile .search input,
+body.snus-modern .header-mobile .search button {
+    min-height: 42px;
+    border: 0;
+    border-radius: 0;
+}
+
+body.snus-modern .header-mobile .search .select-control {
+    display: none;
+}
+
+body.snus-modern .header-mobile .search input {
+    min-width: 0;
+    flex: 1;
+    padding: 0 14px;
+    background: transparent;
+}
+
+body.snus-modern .header-mobile .search button {
+    width: 46px;
+    background: var(--snus-accent);
+    color: var(--snus-ink);
+}
+
+body.snus-modern .header-mobile .navbar-lang {
+    display: flex;
+    gap: 8px;
+}
+
+body.snus-modern .header-mobile .navbar-lang .select-control {
+    min-width: 96px;
+}
+
+body.snus-modern .header-mobile .navbar-lang .form-control {
+    min-height: 30px;
+    height: 30px;
+    padding: 3px 8px;
+    border: 0;
+    border-radius: 6px;
+    background: transparent;
+    color: #fff;
+    font-size: 11px;
+}
+
+body.snus-modern .header-mobile .navbar-lang .form-control option {
+    background: #fff;
+    color: var(--snus-ink);
+}
+
+body.snus-modern .header-mobile .header-mini .navbar-lang .select-control .form-control {
+    color: #fff !important;
+}
+
+body.snus-modern .header-mobile .header-mini .navbar-lang .select-control::before {
+    color: #fff !important;
+}
+
+body.snus-modern #navigation-mobile .logout-main.without-auth-login .welcome,
+body.snus-modern #navigation-mobile .logout-main.without-auth-login .logout {
+    color: var(--snus-ink);
+}
+
+body.snus-modern #navigation-mobile .logout-main.without-auth-login .logout a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 34px;
+    padding: 7px 14px;
+    border-radius: 999px;
+    background: var(--snus-accent);
+    color: var(--snus-ink);
+    font-size: 12px;
+    font-weight: 900;
+    text-decoration: none;
+}
+
+body.snus-modern #navigation-mobile .logout-main.without-auth-login .logout a:hover,
+body.snus-modern #navigation-mobile .logout-main.without-auth-login .logout a:focus {
+    background: var(--snus-ink);
+    color: #fff;
+}
+
+body.snus-modern .header-mobile .header-maxi .navigation-mobile-container #navigation-mobile .logout-main.without-auth-login .logout a {
+    background: var(--snus-accent) !important;
+    color: var(--snus-ink) !important;
+}
+
+body.snus-modern .carousel-content {
+    position: relative;
+    overflow: hidden;
+    background: var(--snus-ink);
+}
+
+body.snus-modern .carousel-content .carousel,
+body.snus-modern .carousel-content .carousel-inner,
+body.snus-modern .carousel-content .carousel-item {
+    min-height: 520px;
+}
+
+body.snus-modern .carousel-content .carousel-item {
+    display: none;
+    position: relative;
+    background: #191c1a;
+}
+
+body.snus-modern .carousel-content .carousel-item.active {
+    display: block;
+}
+
+body.snus-modern .carousel-content .carousel-item::after {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: linear-gradient(90deg, rgba(16, 17, 17, .82), rgba(16, 17, 17, .12) 68%, rgba(16, 17, 17, .3));
+    content: "";
+}
+
+body.snus-modern .carousel-content .carousel-item img {
+    width: 100%;
+    height: 520px;
+    object-fit: cover;
+    opacity: .82;
+}
+
+body.snus-modern .carousel-content .carousel-item.media-missing::before {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    display: grid;
+    place-items: center;
+    color: rgba(255, 255, 255, .14);
+    content: "SNUS EGYPT";
+    font-size: clamp(42px, 8vw, 120px);
+    font-weight: 900;
+    letter-spacing: .08em;
+}
+
+body.snus-modern .carousel-content .carousel-caption {
+    right: auto;
+    bottom: 0;
+    left: 0;
+    z-index: 2;
+    display: flex !important;
+    align-items: center;
+    width: 100%;
+    max-width: 1240px;
+    height: 100%;
+    padding: 72px 20px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+body.snus-modern .carousel-content .carousel-caption .text-deco1 {
+    max-width: 560px;
+}
+
+body.snus-modern .carousel-content .carousel-caption h2 {
+    margin-bottom: 18px;
+    color: #fff;
+    font-size: clamp(34px, 5vw, 70px);
+    font-weight: 900;
+    line-height: 1.02;
+}
+
+body.snus-modern .carousel-content .carousel-caption p {
+    max-width: 440px;
+    margin-bottom: 28px;
+    color: rgba(255, 255, 255, .8);
+    font-size: 16px;
+    line-height: 1.7;
+}
+
+body.snus-modern .carousel-content .carousel-caption .btn,
+body.snus-modern .btn-secondary,
+body.snus-modern .btn-primary {
+    min-height: 46px;
+    padding: 13px 23px;
+    border: 0;
+    border-radius: 999px;
+    background: var(--snus-accent);
+    color: var(--snus-ink);
+    font-size: 12px;
+    font-weight: 900;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    box-shadow: 0 10px 24px rgba(200, 242, 56, .18);
+}
+
+body.snus-modern .carousel-content .carousel-caption .btn:hover,
+body.snus-modern .btn-secondary:hover,
+body.snus-modern .btn-primary:hover {
+    background: var(--snus-accent-dark);
+    color: #fff;
+    transform: translateY(-2px);
+}
+
+body.snus-modern .carousel-content .carousel-indicators {
+    bottom: 26px;
+    z-index: 3;
+    justify-content: flex-start;
+    max-width: 1240px;
+    padding: 0 20px;
+    margin: 0 auto;
+}
+
+body.snus-modern .carousel-content .carousel-indicators li {
+    width: 32px;
+    height: 3px;
+    margin: 0 4px;
+    border: 0;
+    border-radius: 0;
+    background: rgba(255, 255, 255, .45);
+}
+
+body.snus-modern .carousel-content .carousel-indicators li.active {
+    background: var(--snus-accent);
+}
+
+body.snus-modern .pro-content,
+body.snus-modern .boxes-content {
+    padding: 92px 0;
+}
+
+body.snus-modern .pro-content:nth-of-type(even) {
+    background: #fff;
+}
+
+body.snus-modern .pro-heading-title {
+    margin-bottom: 38px;
+    text-align: left;
+}
+
+body.snus-modern .pro-heading-title::before {
+    display: block;
+    width: 40px;
+    height: 4px;
+    margin-bottom: 16px;
+    border-radius: 4px;
+    background: var(--snus-accent);
+    content: "";
+}
+
+body.snus-modern .pro-heading-title h2 {
+    margin-bottom: 10px;
+    color: var(--snus-ink);
+    font-size: clamp(25px, 3vw, 38px);
+    font-weight: 900;
+    letter-spacing: -.02em;
+    line-height: 1.1;
+}
+
+body.snus-modern .pro-heading-title p {
+    max-width: 560px;
+    margin: 0;
+    color: var(--snus-muted);
+    font-size: 15px;
+    line-height: 1.7;
+}
+
+body.snus-modern .tabs-content .tabs-main {
+    padding-top: 0;
+}
+
+body.snus-modern #tabCarousel {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 32px;
+    border-bottom: 1px solid var(--snus-line);
+}
+
+body.snus-modern #tabCarousel .nav-link {
+    position: relative;
+    min-width: 130px;
+    width: auto !important;
+    height: auto !important;
+    margin: 0 !important;
+    padding: 13px 18px;
+    border: 0;
+    border-radius: 0;
+    background: transparent !important;
+    color: var(--snus-muted);
+    font-size: 12px;
+    font-weight: 900;
+    letter-spacing: .07em;
+    text-transform: uppercase;
+}
+
+body.snus-modern #tabCarousel .nav-link.active,
+body.snus-modern #tabCarousel .nav-link:hover {
+    background: transparent !important;
+    color: var(--snus-ink) !important;
+    box-shadow: none !important;
+}
+
+body.snus-modern #tabCarousel .nav-link.active::after {
+    position: absolute;
+    right: 18px;
+    bottom: -1px;
+    left: 18px;
+    height: 3px;
+    background: var(--snus-accent);
+    content: "";
+}
+
+body.snus-modern #tabCarousel .nav-link.active::before,
+body.snus-modern #tabCarousel .nav-link:hover::before {
+    display: none !important;
+}
+
+body.snus-modern .new-arrival,
+body.snus-modern .tab_top_sales,
+body.snus-modern .tab_special_products,
+body.snus-modern .tab_most_liked,
+body.snus-modern .weekly-sale {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 22px;
+    margin: 0;
+}
+
+body.snus-modern .new-arrival > .div-class,
+body.snus-modern .tab_top_sales > .div-class,
+body.snus-modern .tab_special_products > .div-class,
+body.snus-modern .tab_most_liked > .div-class,
+body.snus-modern .weekly-sale > .div-class {
+    flex: none;
+    width: auto;
+    max-width: none;
+    min-width: 0;
+    padding: 0;
+}
+
+body.snus-modern .product.product3,
+body.snus-modern .product.product3 article {
+    height: 100%;
+}
+
+body.snus-modern .product.product3 article {
+    overflow: hidden;
+    border: 1px solid var(--snus-line);
+    border-radius: var(--snus-radius);
+    background: var(--snus-panel);
+    box-shadow: none;
+    transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+}
+
+body.snus-modern .product.product3 article:hover {
+    border-color: #ccd5c5;
+    box-shadow: var(--snus-shadow);
+    transform: translateY(-6px);
+}
+
+body.snus-modern .product.product3 .thumb {
+    position: relative;
+    height: auto;
+    min-height: 250px;
+    overflow: hidden;
+    background: #eef1eb;
+}
+
+body.snus-modern .product.product3 .thumb img {
+    width: 100%;
+    height: 250px;
+    object-fit: contain;
+    mix-blend-mode: multiply;
+    transition: transform .4s ease;
+}
+
+body.snus-modern .product.product3 article:hover .thumb img {
+    transform: scale(1.06);
+}
+
+body.snus-modern .product.product3 .badges {
+    top: 14px;
+    left: 14px;
+    z-index: 2;
+    display: flex;
+    gap: 6px;
+}
+
+body.snus-modern .product.product3 .badges .badge {
+    padding: 6px 9px;
+    border-radius: 999px;
+    background: var(--snus-accent);
+    color: var(--snus-ink);
+    font-size: 10px;
+    font-weight: 900;
+}
+
+body.snus-modern .product.product3 .product-hover {
+    top: 14px;
+    right: 14px;
+    left: auto;
+    z-index: 2;
+    display: block;
+    width: auto;
+    opacity: 0;
+    transform: translateX(8px);
+    transition: opacity .25s ease, transform .25s ease;
+}
+
+body.snus-modern .product.product3 article:hover .product-hover {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+body.snus-modern .product.product3 .product-hover .icons {
+    display: grid;
+    gap: 7px;
+}
+
+body.snus-modern .product.product3 .product-hover .icon,
+body.snus-modern .product.product3 .mobile-icons .icon {
+    display: grid;
+    width: 36px;
+    height: 36px;
+    place-items: center;
+    border: 0;
+    border-radius: 50%;
+    background: #fff;
+    color: var(--snus-ink);
+    box-shadow: 0 8px 18px rgba(16, 17, 17, .12);
+}
+
+body.snus-modern .product.product3 .content {
+    padding: 20px 20px 22px;
+}
+
+body.snus-modern .product.product3 .content .tag {
+    color: var(--snus-muted);
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+}
+
+body.snus-modern .product.product3 .content .title {
+    min-height: 42px;
+    margin: 8px 0 10px;
+    text-align: left !important;
+}
+
+body.snus-modern .product.product3 .content .title a {
+    color: var(--snus-ink);
+    font-size: 16px;
+    font-weight: 850;
+    line-height: 1.3;
+}
+
+body.snus-modern .product.product3 .content .para {
+    min-height: 38px;
+    margin-bottom: 13px;
+    color: var(--snus-muted);
+    font-size: 12px;
+    line-height: 1.55;
+}
+
+body.snus-modern .product.product3 .content .price {
+    margin-bottom: 17px;
+    color: var(--snus-ink);
+    font-size: 18px;
+    font-weight: 900;
+}
+
+body.snus-modern .product.product3 .content .price span {
+    margin-left: 6px;
+    color: #9aa29b;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+body.snus-modern .product.product3 .btn-hover {
+    position: static;
+    opacity: 1;
+    transform: none;
+}
+
+body.snus-modern .product.product3 .btn-hover .btn {
+    width: 100%;
+    background: var(--snus-ink);
+    color: #fff;
+    box-shadow: none;
+}
+
+body.snus-modern .product.product3 .btn-hover .btn:hover {
+    background: var(--snus-accent);
+    color: var(--snus-ink);
+}
+
+body.snus-modern .categories-content .category-slider-show {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 18px;
+}
+
+body.snus-modern .categories-content .category-slider-show > div {
+    min-width: 0;
+}
+
+body.snus-modern .categories-content .cat-banner,
+body.snus-modern .categories-content .categories-image {
+    height: 100%;
+}
+
+body.snus-modern .categories-content .categories-image {
+    position: relative;
+    min-height: 220px;
+    overflow: hidden;
+    border-radius: var(--snus-radius);
+    background: #1c211e;
+}
+
+body.snus-modern .categories-content .categories-image img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    opacity: .76;
+    transition: transform .35s ease, opacity .35s ease;
+}
+
+body.snus-modern .categories-content .categories-image:hover img {
+    opacity: .95;
+    transform: scale(1.06);
+}
+
+body.snus-modern .categories-content .categories-title {
+    position: absolute;
+    right: 20px;
+    bottom: 17px;
+    left: 20px;
+    z-index: 2;
+}
+
+body.snus-modern .categories-content .categories-title h3 {
+    margin: 0;
+    color: #fff;
+    font-size: 19px;
+    font-weight: 900;
+    text-transform: uppercase;
+}
+
+body.snus-modern .boxes-content {
+    background: var(--snus-ink);
+}
+
+body.snus-modern .boxes-content .info-boxes-content .row {
+    row-gap: 20px;
+}
+
+body.snus-modern .boxes-content .info-box {
+    height: 100%;
+    padding: 10px 0;
+}
+
+body.snus-modern .boxes-content .info-box .panel {
+    display: flex;
+    align-items: center;
+    gap: 17px;
+    min-height: 82px;
+    padding: 20px;
+    border: 1px solid rgba(255, 255, 255, .14);
+    border-radius: 14px;
+    background: rgba(255, 255, 255, .04);
+}
+
+body.snus-modern .boxes-content .info-box h3 {
+    display: grid;
+    width: 42px;
+    height: 42px;
+    place-items: center;
+    margin: 0;
+    border-radius: 50%;
+    background: var(--snus-accent);
+    color: var(--snus-ink);
+    font-size: 17px;
+}
+
+body.snus-modern .boxes-content .info-box .title {
+    margin: 0 0 4px;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 800;
+}
+
+body.snus-modern .boxes-content .info-box p {
+    margin: 0;
+    color: #aab3ad;
+    font-size: 12px;
+}
+
+body.snus-modern .blog-content .blog-news-data {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 22px;
+}
+
+body.snus-modern .blog-content .blog-news-data > div {
+    min-width: 0;
+}
+
+body.snus-modern .blog-content .news {
+    overflow: hidden;
+    border: 1px solid var(--snus-line);
+    border-radius: var(--snus-radius);
+    background: #fff;
+}
+
+body.snus-modern .blog-content .news .content {
+    padding: 24px;
+}
+
+body.snus-modern .footer-one {
+    background: #0b0d0c;
+    color: #aab3ad;
+}
+
+body.snus-modern .footer-one .single-footer h5,
+body.snus-modern .footer-one h5 {
+    color: #fff;
+    font-size: 12px;
+    font-weight: 900;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+}
+
+body.snus-modern .footer-one a,
+body.snus-modern .footer-one p,
+body.snus-modern .footer-one li {
+    color: #aab3ad;
+    font-size: 13px;
+    line-height: 1.8;
+}
+
+body.snus-modern .footer-one a:hover {
+    color: var(--snus-accent);
+}
+
+body.snus-modern .footer-one .form-control {
+    height: 44px;
+    border: 1px solid rgba(255, 255, 255, .13);
+    border-radius: 10px;
+    background: rgba(255, 255, 255, .06);
+    color: #fff;
+}
+
+body.snus-modern .footer-one .copyright-content {
+    border-top: 1px solid rgba(255, 255, 255, .1);
+    background: transparent;
+}
+
+body.snus-modern .footer-one .footer-info {
+    padding: 18px 0;
+    color: #7e8981;
+    font-size: 12px;
+}
+
+body.snus-modern .media-failed {
+    display: none !important;
+}
+
+body.snus-modern .media-missing {
+    position: relative;
+}
+
+body.snus-modern #back-to-top {
+    right: 24px;
+    bottom: 24px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--snus-accent);
+    color: var(--snus-ink);
+}
+
+body.snus-modern .whatsapp-float {
+    right: 24px;
+    bottom: 82px;
+    width: 56px;
+    height: 56px;
+}
+
+@media (max-width: 991.98px) {
+    body.snus-modern .header-one .header-maxi {
+        padding: 15px 0;
+    }
+
+    body.snus-modern .header-one .header-maxi .logo {
+        max-width: 190px;
+    }
+
+    body.snus-modern .carousel-content .carousel,
+    body.snus-modern .carousel-content .carousel-inner,
+    body.snus-modern .carousel-content .carousel-item,
+    body.snus-modern .carousel-content .carousel-item img {
+        min-height: 430px;
+        height: 430px;
+    }
+
+    body.snus-modern .new-arrival,
+    body.snus-modern .tab_top_sales,
+    body.snus-modern .tab_special_products,
+    body.snus-modern .tab_most_liked,
+    body.snus-modern .weekly-sale,
+    body.snus-modern .categories-content .category-slider-show {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 767.98px) {
+    body.snus-modern .alert.alert-warning .pro-description {
+        padding: 0 16px;
+        gap: 8px;
+        font-size: 11px;
+    }
+
+    body.snus-modern .header-one .header-maxi .logo {
+        max-width: 170px;
+    }
+
+    body.snus-modern .carousel-content .carousel,
+    body.snus-modern .carousel-content .carousel-inner,
+    body.snus-modern .carousel-content .carousel-item,
+    body.snus-modern .carousel-content .carousel-item img {
+        min-height: 390px;
+        height: 390px;
+    }
+
+    body.snus-modern .carousel-content .carousel-caption {
+        padding: 46px 20px 62px;
+    }
+
+    body.snus-modern .carousel-content .carousel .carousel-inner .carousel-item .carousel-caption h2 {
+        max-width: 330px;
+        font-size: clamp(30px, 9vw, 38px) !important;
+        line-height: 1.15 !important;
+    }
+
+    body.snus-modern .carousel-content .carousel .carousel-inner .carousel-item .carousel-caption p {
+        max-width: 300px;
+        font-size: 13px !important;
+    }
+
+    body.snus-modern .fallback-slide .carousel-caption {
+        padding-right: 20px;
+        padding-left: 20px;
+    }
+
+    body.snus-modern .pro-content,
+    body.snus-modern .boxes-content {
+        padding: 60px 0;
+    }
+
+    body.snus-modern .pro-heading-title {
+        margin-bottom: 28px;
+    }
+
+    body.snus-modern .new-arrival,
+    body.snus-modern .tab_top_sales,
+    body.snus-modern .tab_special_products,
+    body.snus-modern .tab_most_liked,
+    body.snus-modern .weekly-sale,
+    body.snus-modern .categories-content .category-slider-show,
+    body.snus-modern .blog-content .blog-news-data {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+    }
+
+    body.snus-modern .product.product3 .thumb,
+    body.snus-modern .product.product3 .thumb img {
+        min-height: 170px;
+        height: 170px;
+    }
+
+    body.snus-modern .product.product3 .content {
+        padding: 14px;
+    }
+
+    body.snus-modern .product.product3 .content .title {
+        min-height: 38px;
+        margin-top: 7px;
+    }
+
+    body.snus-modern .product.product3 .content .title a {
+        font-size: 13px;
+    }
+
+    body.snus-modern .product.product3 .content .para {
+        display: none;
+    }
+
+    body.snus-modern .product.product3 .content .price {
+        margin-bottom: 12px;
+        font-size: 15px;
+    }
+
+    body.snus-modern .product.product3 .btn-hover .btn {
+        min-height: 40px;
+        padding: 9px 8px;
+        font-size: 10px;
+    }
+
+    body.snus-modern .categories-content .categories-image,
+    body.snus-modern .categories-content .categories-image img {
+        min-height: 160px;
+        height: 160px;
+    }
+
+    body.snus-modern .categories-content .categories-title {
+        right: 12px;
+        bottom: 12px;
+        left: 12px;
+    }
+
+    body.snus-modern .categories-content .categories-title h3 {
+        font-size: 14px;
+    }
+
+    body.snus-modern #tabCarousel {
+        overflow-x: auto;
+    }
+
+    body.snus-modern #tabCarousel .nav-link {
+        min-width: 112px;
+        padding-right: 9px;
+        padding-left: 9px;
+        font-size: 10px;
+    }
+}
+
+@media (max-width: 420px) {
+    body.snus-modern .new-arrival,
+    body.snus-modern .tab_top_sales,
+    body.snus-modern .tab_special_products,
+    body.snus-modern .tab_most_liked,
+    body.snus-modern .weekly-sale,
+    body.snus-modern .categories-content .category-slider-show {
+        gap: 9px;
+    }
+
+    body.snus-modern .product.product3 .thumb,
+    body.snus-modern .product.product3 .thumb img {
+        min-height: 145px;
+        height: 145px;
+    }
+}
+
+html body.snus-modern.bodyrtl .carousel-content .carousel-caption {
+    right: 0;
+    left: auto;
+    text-align: right;
+}
+
+html body.snus-modern.bodyrtl .pro-heading-title {
+    text-align: right;
+}
+
+/* Shared internal-page treatment. The existing views keep their behavior,
+   while this layer gives forms, tables, and account panels one visual system. */
+body.snus-modern .breadcrumb-area,
+body.snus-modern .container-fuild {
+    background: transparent;
+}
+
+body.snus-modern .breadcrumb {
+    display: flex;
+    align-items: center;
+    min-height: 52px;
+    margin: 0;
+    padding: 16px 0;
+    border-radius: 0;
+    background: transparent;
+    color: var(--snus-muted);
+    font-size: 12px;
+}
+
+body.snus-modern .breadcrumb a {
+    color: var(--snus-muted);
+}
+
+body.snus-modern .breadcrumb-item.active {
+    color: var(--snus-ink);
+    font-weight: 800;
+}
+
+body.snus-modern .heading {
+    margin-bottom: 24px;
+}
+
+body.snus-modern .heading h2,
+body.snus-modern .profile-content h2,
+body.snus-modern .order-one-content h2,
+body.snus-modern .wishlist-content h2,
+body.snus-modern .shipping-content h2 {
+    margin: 0 0 12px;
+    color: var(--snus-ink);
+    font-size: 24px;
+    font-weight: 900;
+    line-height: 1.2;
+}
+
+body.snus-modern .heading hr {
+    width: 42px;
+    height: 4px;
+    margin: 0;
+    border: 0;
+    border-radius: 4px;
+    background: var(--snus-accent);
+}
+
+body.snus-modern .profile-content .media-main,
+body.snus-modern .profile-content .media,
+body.snus-modern .profile-content form,
+body.snus-modern .order-one-content .table,
+body.snus-modern .wishlist-content .media,
+body.snus-modern .shipping-content .main-form,
+body.snus-modern .contact-content .contact-main,
+body.snus-modern .registration-process,
+body.snus-modern .checkout-area .checkout-module,
+body.snus-modern .cart-content .cart-area,
+body.snus-modern .compare-content .compare-area {
+    border: 1px solid var(--snus-line);
+    border-radius: 16px;
+    background: var(--snus-panel);
+    box-shadow: 0 12px 32px rgba(16, 17, 17, .05);
+}
+
+body.snus-modern .profile-content .media-main {
+    margin-bottom: 34px;
+    padding: 22px 24px;
+}
+
+body.snus-modern .profile-content .media {
+    width: 100% !important;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    box-shadow: none;
+}
+
+body.snus-modern .profile-content form,
+body.snus-modern .shipping-content .main-form,
+body.snus-modern .checkout-area .checkout-module,
+body.snus-modern .registration-process {
+    padding: 26px;
+}
+
+body.snus-modern .profile-content form .form-group,
+body.snus-modern .shipping-content form .form-group,
+body.snus-modern .checkout-area form .form-group {
+    margin-bottom: 18px;
+}
+
+body.snus-modern .form-control,
+body.snus-modern .custom-select,
+body.snus-modern select.form-control {
+    min-height: 46px;
+    border: 1px solid var(--snus-line);
+    border-radius: 10px;
+    background: #fafbf8;
+    color: var(--snus-ink);
+    box-shadow: none;
+}
+
+body.snus-modern .form-control:focus,
+body.snus-modern .custom-select:focus {
+    border-color: var(--snus-accent-dark);
+    box-shadow: 0 0 0 3px rgba(200, 242, 56, .18);
+}
+
+body.snus-modern label,
+body.snus-modern .form-label {
+    color: var(--snus-ink);
+    font-size: 12px;
+    font-weight: 800;
+}
+
+body.snus-modern .list-group {
+    overflow: hidden;
+    border: 1px solid var(--snus-line);
+    border-radius: 14px;
+    background: var(--snus-panel);
+}
+
+body.snus-modern .list-group .list-group-item,
+body.snus-modern .list-group .nav-link {
+    border-color: var(--snus-line);
+    color: var(--snus-ink);
+    font-size: 13px;
+    font-weight: 700;
+}
+
+body.snus-modern .list-group .nav-link:hover,
+body.snus-modern .list-group .nav-link.active {
+    background: var(--snus-ink);
+    color: #fff;
+}
+
+body.snus-modern .order-one-content .table {
+    overflow: hidden;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+body.snus-modern .order-one-content .table thead {
+    background: #eef1eb;
+}
+
+body.snus-modern .order-one-content .table th,
+body.snus-modern .order-one-content .table td {
+    padding: 16px 14px;
+    border-color: var(--snus-line);
+    color: var(--snus-ink);
+    font-size: 12px;
+    vertical-align: middle;
+}
+
+body.snus-modern .shop-content .listing,
+body.snus-modern .cart-content,
+body.snus-modern .wishlist-content,
+body.snus-modern .compare-content,
+body.snus-modern .order-one-content,
+body.snus-modern .profile-content,
+body.snus-modern .shipping-content,
+body.snus-modern .contact-content,
+body.snus-modern .aboutus-content,
+body.snus-modern .blog-content,
+body.snus-modern .product-page,
+body.snus-modern .checkout-area,
+body.snus-modern .registration-process {
+    padding-top: 18px;
+    padding-bottom: 78px;
+}
+
+body.snus-modern .shop-content .right-menu,
+body.snus-modern .shop-content .shop-sidebar {
+    border: 1px solid var(--snus-line);
+    border-radius: 16px;
+    background: var(--snus-panel);
+}
+
+body.snus-modern .shop-content .listing .product,
+body.snus-modern .wishlist-content .product,
+body.snus-modern .compare-content .product {
+    height: 100%;
+}
+
+body.snus-modern .login-content,
+body.snus-modern .contact-content .form-start,
+body.snus-modern .aboutus-content .about-main,
+body.snus-modern .blog-content .blog-area,
+body.snus-modern .product-page .product-main {
+    border-radius: 16px;
+}
+
+body.snus-modern .registration-process .btn,
+body.snus-modern form .btn,
+body.snus-modern .pagination .btn {
+    min-height: 44px;
+}
+
+body.snus-modern .fallback-slide .carousel-caption {
+    display: flex !important;
+    direction: rtl;
+    align-items: flex-start;
+    justify-content: center;
+    text-align: right;
+}
+
+body.snus-modern .fallback-slide .fallback-kicker {
+    display: inline-block;
+    margin-bottom: 16px;
+    color: var(--snus-accent);
+    font-size: 12px;
+    font-weight: 900;
+    letter-spacing: .18em;
+}
+
+body.snus-modern .fallback-slide img {
+    object-position: center;
+    filter: saturate(.8);
+}
+
+body.snus-modern .fallback-slide .carousel-caption .text-deco1 {
+    width: min(100%, 560px);
+}
+
+/* Repair product carousels after Slick adds its wrapper elements. */
+body.snus-modern .tabs-content .tab-content {
+    overflow: hidden;
+}
+
+body.snus-modern .tab_top_sales.slick-initialized,
+body.snus-modern .tab_special_products.slick-initialized,
+body.snus-modern .tab_most_liked.slick-initialized,
+body.snus-modern .weekly-sale.slick-initialized,
+body.snus-modern .category-slider-show.slick-initialized {
+    display: block;
+    width: 100%;
+    min-width: 0;
+}
+
+body.snus-modern .tab_top_sales.slick-initialized .slick-list,
+body.snus-modern .tab_special_products.slick-initialized .slick-list,
+body.snus-modern .tab_most_liked.slick-initialized .slick-list,
+body.snus-modern .weekly-sale.slick-initialized .slick-list,
+body.snus-modern .category-slider-show.slick-initialized .slick-list {
+    width: 100%;
+    margin: 0;
+    overflow: hidden;
+}
+
+body.snus-modern .tab_top_sales.slick-initialized .slick-track,
+body.snus-modern .tab_special_products.slick-initialized .slick-track,
+body.snus-modern .tab_most_liked.slick-initialized .slick-track,
+body.snus-modern .weekly-sale.slick-initialized .slick-track,
+body.snus-modern .category-slider-show.slick-initialized .slick-track {
+    display: flex;
+    align-items: stretch;
+    margin: 0;
+}
+
+body.snus-modern .tab_top_sales.slick-initialized .slick-slide,
+body.snus-modern .tab_special_products.slick-initialized .slick-slide,
+body.snus-modern .tab_most_liked.slick-initialized .slick-slide,
+body.snus-modern .weekly-sale.slick-initialized .slick-slide,
+body.snus-modern .category-slider-show.slick-initialized .slick-slide {
+    float: none;
+    height: auto;
+    padding: 0 11px;
+    box-sizing: border-box;
+}
+
+body.snus-modern .tab_top_sales.slick-initialized .slick-slide > .div-class,
+body.snus-modern .tab_special_products.slick-initialized .slick-slide > .div-class,
+body.snus-modern .tab_most_liked.slick-initialized .slick-slide > .div-class,
+body.snus-modern .weekly-sale.slick-initialized .slick-slide > .div-class,
+body.snus-modern .category-slider-show.slick-initialized .slick-slide > div {
+    max-width: none;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+}
+
+body.snus-modern .tab_top_sales.slick-initialized .slick-arrow,
+body.snus-modern .tab_special_products.slick-initialized .slick-arrow,
+body.snus-modern .tab_most_liked.slick-initialized .slick-arrow {
+    z-index: 3;
+    width: 42px;
+    height: 42px;
+    border: 1px solid var(--snus-line);
+    border-radius: 0;
+    background: #fff;
+    color: var(--snus-ink);
+}
+
+body.snus-modern .tab_top_sales.slick-initialized .slick-prev,
+body.snus-modern .tab_special_products.slick-initialized .slick-prev,
+body.snus-modern .tab_most_liked.slick-initialized .slick-prev {
+    left: -8px;
+}
+
+body.snus-modern .tab_top_sales.slick-initialized .slick-next,
+body.snus-modern .tab_special_products.slick-initialized .slick-next,
+body.snus-modern .tab_most_liked.slick-initialized .slick-next {
+    right: -8px;
+}
+
+@media (max-width: 767.98px) {
+    body.snus-modern .breadcrumb {
+        padding-right: 15px;
+        padding-left: 15px;
+    }
+
+    body.snus-modern .profile-content .media-main,
+    body.snus-modern .profile-content form,
+    body.snus-modern .shipping-content .main-form,
+    body.snus-modern .checkout-area .checkout-module,
+    body.snus-modern .registration-process {
+        padding: 18px;
+    }
+
+    body.snus-modern .profile-content form label {
+        margin-bottom: 7px;
+        text-align: right;
+    }
+
+    body.snus-modern .order-one-content .table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+}

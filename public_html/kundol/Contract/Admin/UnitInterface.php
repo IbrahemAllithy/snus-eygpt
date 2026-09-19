@@ -1,0 +1,16 @@
+<?php
+
+namespace App\Contract\Admin;
+
+interface UnitInterface
+{
+    public function all();
+
+    public function show($unit);
+
+    public function store(array $parms);
+
+    public function update(array $parms, $unit);
+
+    public function destroy($unit);
+}

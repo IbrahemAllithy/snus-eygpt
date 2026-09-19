@@ -1,0 +1,224 @@
+// Modern Style Entry Point
+// استيراد كل الـ Modern Components
+
+// Modern Variables (بدل 25 ملف منفصل!)
+@import "modern/variables-modern";
+
+// Bootstrap 5 (سيتم تحديثه بعد npm install)
+@import "~bootstrap/scss/bootstrap";
+
+// Font Awesome 6
+@import "@fortawesome/fontawesome-free/css/all.min.css";
+
+// Modern Components
+@import "modern/animations";
+@import "modern/buttons";
+@import "modern/cards";
+@import "modern/utilities";
+
+// Original Components (للتوافق مع الموجود)
+@import "private/variables";
+@import "private/mixins";
+@import "private/base";
+
+@import "components/categories-panel";
+@import "components/popup";
+@import "components/modal";
+@import "components/banners";
+@import "components/products";
+@import "components/product";
+@import "components/product-card";
+@import "components/pagination";
+
+@import "layouts/shimmer-background";
+@import "layouts/header/header-one";
+@import "layouts/header/header-mobile";
+@import "layouts/header/header-sticky";
+
+@import "layouts/footer/footer-one";
+@import "layouts/footer/footer-mobile";
+
+@import "layouts/sidebar/shop-right-bar";
+@import "layouts/sidebar/shop-top-bar";
+
+@import "pages/index";
+@import "pages/shop-one";
+@import "pages/product-one";
+@import "pages/cart-page-one";
+@import "pages/profile";
+@import "pages/checkout";
+
+@import "utilities/responsive";
+@import "utilities/rtl";
+
+// Modern Global Styles
+body {
+  background: var(--bg-page);
+  color: var(--text-body);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+// Smooth transitions for theme switching
+* {
+  transition-property: background-color, color, border-color;
+  transition-duration: 0.3s;
+  transition-timing-function: ease;
+}
+
+// Modern Container
+.container-modern {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+// Modern Grid
+.grid-modern {
+  display: grid;
+  gap: 24px;
+
+  &.grid-2 {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
+
+  &.grid-3 {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
+
+  &.grid-4 {
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  }
+}
+
+// Search Results Dropdown
+.search-results {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: var(--bg-panel);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-xl);
+  max-height: 400px;
+  overflow-y: auto;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: all var(--transition-base);
+
+  &.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  .search-result-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px;
+    border-bottom: 1px solid var(--border-color);
+    text-decoration: none;
+    color: var(--text-body);
+    transition: background var(--transition-base);
+
+    &:hover {
+      background: var(--bg-module);
+    }
+
+    img {
+      width: 60px;
+      height: 60px;
+      object-fit: cover;
+      border-radius: var(--radius-md);
+    }
+
+    .result-info {
+      flex: 1;
+
+      h6 {
+        margin: 0 0 4px 0;
+        font-size: 14px;
+        font-weight: 600;
+      }
+
+      .result-price {
+        color: var(--color-primary);
+        font-weight: 600;
+        font-size: 14px;
+      }
+    }
+  }
+
+  .search-loading,
+  .search-no-results {
+    padding: 20px;
+    text-align: center;
+    color: var(--text-secondary);
+  }
+}
+
+// Back to Top Button
+#back-to-top {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 50px;
+  height: 50px;
+  border-radius: var(--radius-full);
+  background: var(--color-primary);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-lg);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px);
+  transition: all var(--transition-base);
+  z-index: 999;
+  cursor: pointer;
+
+  &.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-xl);
+  }
+}
+
+// Loading States
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--bg-element) 0%,
+    var(--bg-module) 50%,
+    var(--bg-element) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: var(--radius-md);
+}
+
+// Image Lazy Loading
+img[data-src] {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+
+  &.loaded {
+    opacity: 1;
+  }
+}
+
+// Print Styles
+@media print {
+  .no-print {
+    display: none !important;
+  }
+}

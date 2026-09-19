@@ -1,0 +1,24 @@
+# Backups
+*.zip
+*.rar
+*.tar.gz
+
+# Laravel
+storage/logs/*.log
+storage/framework/cache/*
+storage/framework/sessions/*
+storage/framework/views/*
+bootstrap/cache/*
+
+# Dependencies
+node_modules/
+vendor/
+
+# Build files
+*.map
+public/js/app.js
+public/css/app.css
+
+# Database
+*.sql
+db_sql_versions_for_updates/

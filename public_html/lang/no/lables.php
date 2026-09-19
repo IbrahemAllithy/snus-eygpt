@@ -1,0 +1,327 @@
+<?php
+
+return [
+
+    /*
+    |--------------------------------------------------------------------------
+    | Authentication Language Lines
+    |--------------------------------------------------------------------------
+    |
+    | The following language lines are used during authentication for various
+    | messages that we need to display to the user. You are free to modify
+    | these language lines according to your application's requirements.
+    |
+    */
+
+    'general-backtotop' => 'Til toppen',
+
+    'header-top-offer' => 'Få<strong> OPPTIL 10% RABATT </strong>På din 1. bestilling
+    <div class="pro-link-dropdown js-toppanel-link-dropdown">
+      <a href="/shop" class="pro-dropdown-toggle" style="cursor:pointer">
+        Mer informasjon
+      </a>
+    </div>',
+    'header-welcome-text' => 'Velkommen',
+    'header-welcome-user' => 'Velkommen Bruker!',
+    'header-login-register' => 'Logg inn/Registrer',
+    'header-login' => 'Logg inn',
+    'header-register' => 'Registrer',
+    'header-my-account' => 'Min konto',
+    'header-profile' => 'Profil',
+    'header-wishlist' => 'Ønskeliste',
+    'header-compare' => 'Sammenlign',
+    'header-order' => 'Bestillinger',
+    'header-shipping-address' => 'Leveringsadresse',
+    'header-change-password' => 'Endre passord',
+    'header-logout' => 'Logg ut',
+    'header-points' => 'Poeng',
+    'total-points' => 'Totalt poeng',
+    'per-point' => 'Per poeng lik',
+    'header-wallet' => 'Lommebok',
+    'wallet-total' => 'Total',
+    'dr-amount' => 'Dr beløp',
+    'cr-amount' => 'Cr beløp',
+    'redeem-now' => 'Løs inn nå',
+    'redeem-points' => 'Du kan løse inn poengene dine når det',
+    'table-description' => 'Beskrivelse',
+    'table-info' => 'Info',
+    'header-all-categories' => 'ALLE KATEGORIER',
+    'header-cart' => 'Handlekurv',
+    'header-emptycart' => 'Du har ingen varer i handlekurven.',
+    'header-item' => 'Varer',
+    'header-total' => 'Total',
+    'header-checkout' => 'Kasse',
+    'header-view-cart' => 'Vis handlekurv',
+    'header-search-products' => 'Søk produkter',
+    'header-call-us-now' => 'Ring oss nå',
+    'header-free-shipping' => 'Gratis frakt',
+    'header-over-order' => 'Ved bestilling over $99',
+    'header-header2-phone' => 'Hotline',
+
+    'home-slider-button-title' => 'Handle nå',
+
+    'home-product-categories-title' => 'PRODUKTKATEGORIER',
+    'home-product-categories-description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi venenatis felis tempus feugiat maximus.',
+    'home-banner-title' => 'SNEAKERS',
+    'home-banner-sub-title' => 'Par sko',
+    'home-button-text' => 'Vis hele sortimentet',
+
+    'home-new-arrival-title' => 'NYE ANKOMSTER',
+    'home-new-arrival-description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi venenatis felis tempus feugiat maximus.',
+
+    'home-news-title' => 'NYHETER & ARRANGEMENTER',
+    'home-news-description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+    Morbi venenatis felis tempus feugiat maximus.',
+
+    'home-tab-title' => 'VELKOMMEN TIL BUTIKK',
+    'home-tab-description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    Morbi venenatis felis tempus feugiat maximus.',
+    'home-tab-topsales' => 'Toppsalg',
+    'home-tab-featured' => 'Fremhevet',
+
+    'home-tab-special' => 'Spesiell',
+    'home-tab-most-liked' => 'Mest likt',
+
+    'home-tab-top-title' => 'TOPPSELGER AV UKEN ',
+    'home-tab-top-description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+    Morbi venenatis felis tempus feugiat maximus.',
+
+    'home-servics-free-shipping' => 'Gratis frakt',
+    'home-servics-on-ordr' => 'Ved bestilling over $99',
+    'home-servics-money-return' => 'Penger tilbake',
+    'home-servics-return-days' => '30 dager penger tilbake',
+    'home-servics-support' => 'Support 24/7',
+    'home-servics-hotline' => 'Hotline',
+    'home-servics-safe-payment' => 'Sikker betaling',
+    'home-servics-protect-payment' => 'Beskytt online betaling',
+
+    'home-weekly-sale-heading' => 'TOPPSELGER AV UKEN',
+    'home-weekly-sale-description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi venenatis felis tempus feugiat maximus.',
+
+    'footer-quick-links' => 'Rask lenker',
+    'footer-home' => 'Hjem',
+    'footer-shop' => 'Butikk',
+    'footer-orders' => 'Bestillinger',
+    'footer-shopping-cart' => 'Handlekurv',
+    'footer-wishlist' => 'Ønskeliste',
+    'footer-personalization' => 'Personalisering',
+    'footer-instagram-feed' => 'Instagram Feed',
+    'footer-company' => 'Nettsted 2023, Alle rettigheter forbeholdt.',
+    'footer-privacy' => 'Personvern',
+    'footer-term' => 'Vilkår',
+    'footer-about-store' => 'Om butikken',
+    'footer-our-services' => 'Våre tjenester',
+    'footer-information' => 'Informasjon',
+    'footer-newsletter' => 'Nyhetsbrev',
+    'footer-follow-us' => 'Følg oss',
+    'footer-download-our-app' => 'LAST NED VÅR APP',
+    'footer-category' => 'kategorier',
+    'footer-payments' => 'Vi bruker sikre betalinger',
+    'footer-contact-us' => 'Kontakt oss',
+    'footer-latest-subscribe' => 'ABONNER FOR DE SISTE OPPDATERINGENE',
+    'footer-subscribe' => 'Abonner',
+    'footer-safe-payment' => 'Vi bruker sikre betalinger',
+    'footer-facebook' => 'Facebook',
+    'footer-twitter' => 'Twitter',
+    'footer-google' => 'Google',
+    'footer-linkedin' => 'LinkedIn',
+    'footer-instagram' => 'Instagram',
+
+    'shop-shop' => 'Butikk',
+    'shop-display' => 'Visning',
+    'shop-category' => 'Kategori',
+    'shop-price' => 'Pris',
+    'shop-sort-by' => 'Sorter etter',
+    'shop-brands' => 'Merke',
+    'shop-apply' => 'Bruk',
+    'shop-reset' => 'nullstill',
+
+    'cart-page-shopping-cart' => 'Handlekurv',
+    'cart-page-apply' => 'Bruk',
+    'cart-page-continue-shopping' => 'FORTSETT HANDLE',
+    'cart-page-update-cart' => 'OPPDATER HANDLEKURV',
+    'cart-page-proceed-to-checkout' => 'GÅ TIL KASSE',
+    'cart-page-order-summary' => 'Bestillingsoppsummering',
+    'cart-page-subtotal' => 'Delsum',
+    'cart-page-discount' => 'Rabatt(Kupong)',
+    'cart-page-total' => 'Total',
+    'cart-coupon-applied' => 'Kupong brukt',
+
+    'product-detail-product' => 'Produkt',
+    'product-detail-related-product-title' => 'Relaterte produkter',
+    'product-detail-related-product-description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    Morbi venenatis felis tempus feugiat maximus.',
+
+    'checkout-checkout' => 'KASSE',
+    'checkout-shipping-address' => 'Leveringsadresse',
+    'checkout-billing-address' => 'Faktureringsadresse',
+    'checkout-shipping-method' => 'Fraktmetoder',
+    'checkout-order-detail' => 'Bestillingsdetaljer',
+
+
+    'checkout-first-name' => 'Fornavn',
+    'checkout-last-name' => 'Etternavn',
+    'checkout-address' => 'Adresse',
+    'checkout-country-name' => 'Land',
+    'checkout-state-name' => 'Fylke',
+    'checkout-city-name' => 'By',
+    'checkout-postal-code' => 'Postnummer',
+    'checkout-phone' => 'Telefon',
+
+    'checkout-billing-first-name' => 'Fornavn',
+    'checkout-billing-last-name' => 'Etternavn',
+    'checkout-billing-country-name' => 'Land',
+    'checkout-billing-state-name' => 'Fylke',
+    'checkout-billing-city-name' => 'By',
+    'checkout-billing-postal-code' => 'Postnummer',
+    'checkout-billing-phone' => 'Telefon',
+    'shipping-address-latlong' => 'Bredde/Lengde',
+    'checkout-continue' => 'Fortsett',
+    'checkout-back' => 'Tilbake',
+    'checkout-minimum-order' => 'For vellykket utsjekking, minimum bestillingsgrense er ',
+    'checkout-free-shipping-order-price' => 'Kjøp ',
+    'checkout-free-shipping-order-price2' => ' mer for gratis frakt',
+
+    'checkout-order-notes-title' => 'Ordrenotater & Sammendrag',
+    'checkout-order-notes-description' => 'Vennligst skriv notater om din
+    bestilling',
+    'checkout-payment-method-title' => 'Betalingsmetoder',
+    'checkout-payment-method-description' => 'Fraktmetoder',
+
+    'checkout-order-summary' => 'Ordre Sammendrag',
+    'checkout-subtotal' => 'Delsum',
+    'checkout-discount' => 'Rabatt (Kupong)',
+    'checkout-total' => 'Totalt',
+    'checkout-shipping' => 'Frakt',
+    'checkout-tax' => 'Skatt',
+    'checkout-same-ship-bill-address-text' => 'Samme frakt- og fakturaadresse.',
+    'checkout-location' => 'Plassering',
+    'checkout-location-placeholder' => 'Vennligst skriv inn din plassering eller klikk her for å åpne kart',
+
+    'login-sign-up' => 'Registrer deg',
+    'login-login' => 'Logg inn',
+    'phone-number' => 'Telefonnummer',
+    'login-email' => 'E-postadresse',
+    'login-password' => 'Passord',
+    'login-new-customer' => 'Ny kunde',
+    'login-first-name' => 'Fornavn',
+    'login-last-name' => 'Etternavn',
+    'login-confirm-password' => 'Bekreft passord',
+    'login-create-account' => 'Opprett en konto',
+    'login-access-account' => 'Få tilgang til kontoen din gjennom sosiale nettverk',
+    'login-forget-password' => 'Glemt passord',
+
+    'profile-side-menue-profile' => 'Profil',
+    'profile-side-menue-wishlist' => 'Ønskeliste',
+    'profile-side-menue-compare' => 'Sammenlign',
+    'profile-side-menue-orders' => 'Bestillinger',
+    'profile-side-menue-shipping-address' => 'Fraktadresse',
+    'profile-side-menue-change-password' => 'Endre passord',
+    'profile-side-menue-logout' => 'Logg ut',
+
+    'profile-email' => 'E-post',
+    'profile-name' => 'Navn',
+    'profile-my-account' => 'Min konto',
+    'profile-prsonal-info' => 'Personlig informasjon',
+    'profile-first-name' => 'Fornavn',
+    'profile-last-name' => 'Etternavn',
+    'profile-gender' => 'Kjønn',
+    'profile-dob' => 'Fødselsdato',
+    'profile-phone' => 'Telefon',
+    'profile-update' => 'Oppdater',
+    'profile-date-check' => 'Beklager! Mindreårige trenger foreldres veiledning for å bruke denne nettsiden',
+
+    'orders-my-account' => 'Min konto',
+    'orders-my-order' => 'Mine bestillinger',
+    'orders-date' => 'Bestillingsdato',
+    'orders-description' => 'Beskrivelse',
+    'orders-order-id' => 'Bestillings-ID',
+    'orders-status' => 'Bestillingsstatus',
+    'orders-detail' => 'Ordredetaljer',
+    'orders-delete' => 'Vil du kansellere bestillingen?',
+    'orders-cancel' => 'Kanseller bestilling',
+    'orders-view-detail' => 'Vis detaljer',
+
+    'order-detail' => 'Ordredetaljer',
+    'order-detail-heading' => 'Bestillingsinformasjon',
+    'order-detail-my-account' => 'Min konto',
+    'order-detail-order-id' => 'Bestillings-ID',
+    'order-detail-order-status' => 'Bestillingsstatus',
+    'order-detail-order-date' => 'Bestillingsdato',
+    'order-detail-shipping-detail' => 'Fraktdetaljer',
+    'order-detail-billing-detail' => 'Faktureringsdetaljer',
+    'order-detail-payment-shipping-method' => 'Betaling',
+    'order-detail-transaction-id' => 'Transaksjons-ID',
+    'order-detail-order-amount' => 'Bestillingsbeløp',
+
+    'order-detail-item' => 'VARE(R)',
+    'order-detail-price' => 'PRIS',
+    'order-detail-discountprice' => 'RABATTPRIS',
+    'order-detail-qty' => 'ANTALL',
+    'order-detail-subtotal' => 'DELSUM',
+    'order-detail-comments' => 'Kommentarer',
+    'order-detail-comment' => 'Kommentar',
+
+    'order-detail-discount' => 'RABATT',
+    'order-detail-tax' => 'SKATT',
+    'order-detail-shipping' => 'FRAGT',
+    'order-detail-coupon-discount' => 'KUPONGRABATT',
+    'order-detail-total' => 'TOTAL',
+
+    'thank-you-title' => 'Takk',
+    'thank-you-message' => 'Du har vellykket lagt inn bestillingen din.
+    Gå til',
+    'thank-you-order-page' => 'Ordresiden',
+
+    'shipping-address' => 'Fraktadresse',
+    'shipping-address-my-account' => 'Min konto',
+    'shipping-address-default' => 'STANDARD',
+    'shipping-address-first-name' => 'Fornavn',
+    'shipping-address-last-name' => 'Etternavn',
+    'shipping-address-country-state-city' => 'Land Fylke By',
+    'shipping-address-action' => 'HANDLING',
+    'shipping-address-add' => 'Administrer fraktadresse',
+    'shipping-address-stret-address' => 'Gateadresse',
+    'shipping-address-country' => 'Velg land',
+    'shipping-address-state' => 'Velg fylke',
+    'shipping-address-city' => 'By',
+    'shipping-address-postal-code' => 'Postnummer',
+    'shipping-address-add-address' => 'Send inn',
+
+    'change-password' => 'Endre passord',
+    'change-password-current-password' => 'Nåværende passord',
+    'change-password-new-password' => 'Nytt passord',
+    'change-password-confirm-password' => 'Bekreft passord',
+    'change-password-access-text' => 'Få tilgang til kontoen din gjennom sosiale nettverk',
+
+    'forget-password' => 'Glemt passord',
+    'forget-password-email' => 'E-post',
+    'forget-password-verify' => 'verifiser e-post',
+
+    'bread-crumb-home' => 'Hjem',
+    'bread-crumb-shop' => 'Butikk',
+    'bread-shopping-cart' => 'HANDLEKURV',
+    'bread-product-page' => 'Produkt side',
+    'bread-blog' => 'Blogg',
+    'bread-checkout' => 'Utsjekking',
+    'bread-login' => 'logg inn',
+    'bread-compare' => 'Sammenlign',
+    'bread-profile' => 'Profil',
+    'bread-order' => 'Bestilling',
+    'bread-contact' => 'Kontakt oss',
+
+    'wishlist-add-success' => 'Produkt lagt til i ønskelisten!',
+    'wishlist-remove' => 'Produkt fjernet fra ønskelisten!',
+
+    'contact-fname' => 'Fornavn',
+    'contact-lname' => 'Etternavn',
+    'contact-email' => 'E-post',
+    'contact-phone' => 'Telefon',
+    'contact-message' => 'Beskjed',
+
+    'add-to-cart' => 'Legg i kurv',
+    'load-more' => 'Last mer',
+    'featured' => 'Utvalgte',
+
+
+];

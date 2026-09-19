@@ -1,0 +1,37 @@
+<?php
+
+namespace App\Models\Admin;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\SoftDeletes;
+
+class Biller extends Model
+{
+    use HasFactory, SoftDeletes;
+
+    protected $fillable = [
+        'name', 'gallary_id', 'company_name', 'vat_number', 'email', 'phone_number', 'address', 'country_id', 'state_id', 'city', 'created_by', 'updated_by',
+    ];
+
+    public function scopeSearchParameter($query, $parameter)
+    {
+        return $query->where('name', 'like', '%'.$parameter.'%')->orWhere('company_name', 'like', '%'.$parameter.'%');
+    }
+
+    public function country(): BelongsTo
+    {
+        return $this->belongsTo('App\Models\Admin\Country', 'country_id');
+    }
+
+    public function state(): BelongsTo
+    {
+        return $this->belongsTo('App\Models\Admin\State', 'state_id');
+    }
+
+    public function gallary(): BelongsTo
+    {
+        return $this->belongsTo('App\Models\Admin\Gallary', 'gallary_id');
+    }
+}

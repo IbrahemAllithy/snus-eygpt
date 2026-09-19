@@ -1,0 +1,326 @@
+<?php
+
+return [
+
+    /*
+    |--------------------------------------------------------------------------
+    | Authentication Language Lines
+    |--------------------------------------------------------------------------
+    |
+    | The following language lines are used during authentication for various
+    | messages that we need to display to the user. You are free to modify
+    | these language lines according to your application's requirements.
+    |
+    */
+
+    'general-backtotop' => 'Kembali Ke Atas',
+
+'header-top-offer' => 'Dapatkan<strong> DISKAUN HINGGA 10% </strong>pada Pesanan Pertama Anda
+<div class="pro-link-dropdown js-toppanel-link-dropdown">
+  <a href="/shop" class="pro-dropdown-toggle" style="cursor:pointer">
+    Maklumat Lanjut
+  </a>
+</div>',
+'header-welcome-text' => 'Selamat Datang',
+'header-welcome-user' => 'Selamat Datang Pengguna!',
+'header-login-register' => 'Log Masuk/Daftar',
+'header-login' => 'Log Masuk',
+'header-register' => 'Daftar',
+'header-my-account' => 'Akaun Saya',
+'header-profile' => 'Profil',
+'header-wishlist' => 'Senarai Hajat',
+'header-compare' => 'Bandingkan',
+'header-order' => 'Pesanan',
+'header-shipping-address' => 'Alamat Penghantaran',
+'header-change-password' => 'Tukar Kata Laluan',
+'header-logout' => 'Log Keluar',
+'header-points' => 'Mata',
+'total-points' => 'Jumlah Mata',
+'per-point' => 'Setiap Mata Sama Dengan',
+'header-wallet' => 'Dompet',
+'wallet-total' => 'Jumlah',
+'dr-amount' => 'Jumlah Dr',
+'cr-amount' => 'Jumlah Cr',
+'redeem-now' => 'Tebus Sekarang',
+'redeem-points' => 'Anda boleh menebus mata anda apabila ia',
+'table-description' => 'Penerangan',
+'table-info' => 'Maklumat',
+'header-all-categories' => 'SEMUA KATEGORI',
+'header-cart' => 'Troli',
+'header-emptycart' => 'Tiada item dalam troli beli-belah anda.',
+'header-item' => 'Item',
+'header-total' => 'Jumlah',
+'header-checkout' => 'Daftar Keluar',
+'header-view-cart' => 'Lihat Troli',
+'header-search-products' => 'Cari Produk',
+'header-call-us-now' => 'Hubungi Kami Sekarang',
+'header-free-shipping' => 'Penghantaran Percuma',
+'header-over-order' => 'Untuk pesanan melebihi $99',
+'header-header2-phone' => 'Talian Panas',
+
+'home-slider-button-title' => 'Beli Sekarang',
+
+'home-product-categories-title' => 'KATEGORI PRODUK',
+'home-product-categories-description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi venenatis felis tempus feugiat maximus.',
+'home-banner-title' => 'SNEAKER',
+'home-banner-sub-title' => 'Kasut Pasangan',
+'home-button-text' => 'Lihat Semua Koleksi',
+
+'home-new-arrival-title' => 'KEDATANGAN BARU',
+'home-new-arrival-description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi venenatis felis tempus feugiat maximus.',
+
+'home-news-title' => 'BERITA & ACARA',
+'home-news-description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+Morbi venenatis felis tempus feugiat maximus.',
+
+'home-tab-title' => 'SELAMAT DATANG KE KEDAI',
+'home-tab-description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+Morbi venenatis felis tempus feugiat maximus.',
+'home-tab-topsales' => 'Jualan Terbaik',
+'home-tab-featured' => 'Pilihan Terbaik',
+
+'home-tab-special' => 'Istimewa',
+'home-tab-most-liked' => 'Paling Disukai',
+
+'home-tab-top-title' => 'JUALAN TERBAIK MINGGU INI',
+'home-tab-top-description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+Morbi venenatis felis tempus feugiat maximus.',
+
+'home-servics-free-shipping' => 'Penghantaran Percuma',
+'home-servics-on-ordr' => 'Untuk pesanan melebihi $99',
+'home-servics-money-return' => 'Pengembalian Wang',
+'home-servics-return-days' => 'Pengembalian wang selama 30 hari',
+'home-servics-support' => 'Sokongan 24/7',
+'home-servics-hotline' => 'Talian Panas',
+'home-servics-safe-payment' => 'Pembayaran Selamat',
+'home-servics-protect-payment' => 'Melindungi pembayaran dalam talian',
+
+'home-weekly-sale-heading' => 'JUALAN TERBAIK MINGGU INI',
+'home-weekly-sale-description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi venenatis felis tempus feugiat maximus.',
+
+'footer-quick-links' => 'Pautan Pantas',
+'footer-home' => 'Laman Utama',
+'footer-shop' => 'Kedai',
+'footer-orders' => 'Pesanan',
+'footer-shopping-cart' => 'Troli Beli-belah',
+'footer-wishlist' => 'Senarai Hajat',
+'footer-personalization' => 'Penyesuaian',
+'footer-instagram-feed' => 'Instagram Feed',
+'footer-company' => 'Website 2023, Semua Hak Terpelihara.',
+'footer-privacy' => 'Privasi',
+'footer-term' => 'Terma',
+'footer-about-store' => 'Tentang Kedai',
+'footer-our-services' => 'Perkhidmatan Kami',
+'footer-information' => 'Maklumat',
+'footer-newsletter' => 'Surat Berita',
+'footer-follow-us' => 'Ikuti Kami',
+'footer-download-our-app' => 'MUAT TURUN APLIKASI KAMI',
+'footer-category' => 'kategori',
+'footer-payments' => 'Kami Menggunakan pembayaran selamat',
+'footer-contact-us' => 'Hubungi Kami',
+'footer-latest-subscribe' => 'LANGGAN UNTUK KEMAS KINI TERKINI',
+'footer-subscribe' => 'Langgan',
+'footer-safe-payment' => 'Kami Menggunakan pembayaran selamat',
+'footer-facebook' => 'Facebook',
+'footer-twitter' => 'Twitter',
+'footer-google' => 'Google',
+'footer-linkedin' => 'LinkedIn',
+'footer-instagram' => 'Instagram',
+
+'shop-shop' => 'Kedai',
+'shop-display' => 'Paparkan',
+'shop-category' => 'Kategori',
+'shop-price' => 'Harga',
+'shop-sort-by' => 'Susun mengikut',
+'shop-brands' => 'Jenama',
+'shop-apply' => 'Guna',
+'shop-reset' => 'Reset',
+
+'cart-page-shopping-cart' => 'Troli Beli-belah',
+'cart-page-apply' => 'Guna',
+'cart-page-continue-shopping' => 'TERUSKAN BELI-BELAH',
+'cart-page-update-cart' => 'KEMASKINI TROLI',
+'cart-page-proceed-to-checkout' => 'TERUSKAN KE DAFTAR KELUAR',
+'cart-page-order-summary' => 'Ringkasan Pesanan',
+'cart-page-subtotal' => 'Jumlah Keseluruhan',
+'cart-page-discount' => 'Diskaun(Kupon)',
+'cart-page-total' => 'Jumlah',
+'cart-coupon-applied' => 'Kupon Digunakan',
+
+'product-detail-product' => 'Produk',
+'product-detail-related-product-title' => 'Produk Berkaitan',
+'product-detail-related-product-description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+Morbi venenatis felis tempus feugiat maximus.',
+
+'checkout-checkout' => 'DAFTAR KELUAR',
+'checkout-shipping-address' => 'Alamat Penghantaran',
+'checkout-billing-address' => 'Alamat Bil',
+'checkout-shipping-method' => 'Kaedah Penghantaran',
+'checkout-order-detail' => 'Butiran Pesanan',
+
+'checkout-first-name' => 'Nama Pertama',
+'checkout-last-name' => 'Nama Akhir',
+'checkout-address' => 'Alamat',
+'checkout-country-name' => 'Nama Negara',
+'checkout-state-name' => 'Nama Negeri',
+'checkout-city-name' => 'Nama Bandar',
+'checkout-postal-code' => 'Poskod',
+'checkout-phone' => 'Telefon',
+
+
+    'checkout-billing-first-name' => 'Nama Pertama',
+    'checkout-billing-last-name' => 'Nama Akhir',
+    'checkout-billing-country-name' => 'Nama Negara',
+    'checkout-billing-state-name' => 'Nama Negeri',
+    'checkout-billing-city-name' => 'Nama Bandar',
+    'checkout-billing-postal-code' => 'Poskod',
+    'checkout-billing-phone' => 'Telefon',
+    'shipping-address-latlong' => 'Latitud/Longitud',
+    'checkout-continue' => 'Teruskan',
+    'checkout-back' => 'Kembali',
+    'checkout-minimum-order' => 'Untuk daftar keluar berjaya, had pesanan minimum ialah ',
+    'checkout-free-shipping-order-price' => 'Beli ',
+    'checkout-free-shipping-order-price2' => ' lagi untuk penghantaran percuma',
+
+    'checkout-order-notes-title' => 'Nota & Ringkasan Pesanan',
+    'checkout-order-notes-description' => 'Sila tulis nota untuk pesanan anda',
+    'checkout-payment-method-title' => 'Kaedah Pembayaran',
+    'checkout-payment-method-description' => 'Kaedah Penghantaran',
+
+    'checkout-order-summary' => 'Ringkasan Pesanan',
+    'checkout-subtotal' => 'Jumlah Kecil',
+    'checkout-discount' => 'Diskaun (Kupon)',
+    'checkout-total' => 'Jumlah',
+    'checkout-shipping' => 'Penghantaran',
+    'checkout-tax' => 'Cukai',
+    'checkout-same-ship-bill-address-text' => 'Alamat penghantaran dan pengebilan yang sama.',
+    'checkout-location' => 'Lokasi',
+    'checkout-location-placeholder' => 'Sila masukkan lokasi anda atau klik di sini untuk membuka peta',
+
+    'login-sign-up' => 'Daftar',
+    'login-login' => 'Log Masuk',
+    'phone-number' => 'Nombor Telefon',
+    'login-email' => 'Alamat Emel',
+    'login-password' => 'Kata Laluan',
+    'login-new-customer' => 'Pelanggan Baru',
+    'login-first-name' => 'Nama Pertama',
+    'login-last-name' => 'Nama Akhir',
+    'login-confirm-password' => 'Sahkan Kata Laluan',
+    'login-create-account' => 'Cipta Akaun',
+    'login-access-account' => 'Akses Akaun Anda Melalui Rangkaian Sosial Anda',
+    'login-forget-password' => 'Lupa Kata Laluan',
+
+    'profile-side-menue-profile' => 'Profil',
+    'profile-side-menue-wishlist' => 'Senarai Hajat',
+    'profile-side-menue-compare' => 'Bandingkan',
+    'profile-side-menue-orders' => 'Pesanan',
+    'profile-side-menue-shipping-address' => 'Alamat Penghantaran',
+    'profile-side-menue-change-password' => 'Tukar Kata Laluan',
+    'profile-side-menue-logout' => 'Log Keluar',
+
+    'profile-email' => 'Emel',
+    'profile-name' => 'Nama',
+    'profile-my-account' => 'Akaun Saya',
+    'profile-prsonal-info' => 'Maklumat Peribadi',
+    'profile-first-name' => 'Nama Pertama',
+    'profile-last-name' => 'Nama Akhir',
+    'profile-gender' => 'Jantina',
+    'profile-dob' => 'Tarikh Lahir',
+    'profile-phone' => 'Telefon',
+    'profile-update' => 'Kemaskini',
+    'profile-date-check' => 'Maaf! Pengguna di bawah umur memerlukan pengawasan ibu bapa untuk menggunakan laman web ini',
+
+    'orders-my-account' => 'Akaun Saya',
+    'orders-my-order' => 'Pesanan Saya',
+    'orders-date' => 'Tarikh Pesanan',
+    'orders-description' => 'Penerangan',
+    'orders-order-id' => 'ID Pesanan',
+    'orders-status' => 'Status Pesanan',
+    'orders-detail' => 'Butiran Pesanan',
+    'orders-delete' => 'Adakah anda ingin batalkan pesanan?',
+    'orders-cancel' => 'Batalkan Pesanan',
+    'orders-view-detail' => 'Lihat Butiran',
+
+    'order-detail' => 'Butiran Pesanan',
+    'order-detail-heading' => 'Maklumat Pesanan',
+    'order-detail-my-account' => 'Akaun Saya',
+    'order-detail-order-id' => 'ID Pesanan',
+    'order-detail-order-status' => 'Status Pesanan',
+    'order-detail-order-date' => 'Tarikh Pesanan',
+    'order-detail-shipping-detail' => 'Butiran Penghantaran',
+    'order-detail-billing-detail' => 'Butiran Penagihan',
+    'order-detail-payment-shipping-method' => 'Pembayaran',
+    'order-detail-transaction-id' => 'ID Transaksi',
+    'order-detail-order-amount' => 'Jumlah Pesanan',
+
+    'order-detail-item' => 'ITEM',
+    'order-detail-price' => 'HARGA',
+    'order-detail-discountprice' => 'HARGA DISKAUN',
+    'order-detail-qty' => 'KUANTITI',
+    'order-detail-subtotal' => 'JUMLAH KECIL',
+    'order-detail-comments' => 'Komen',
+    'order-detail-comment' => 'Komen',
+
+    'order-detail-discount' => 'DISKAUN',
+    'order-detail-tax' => 'CUKAI',
+    'order-detail-shipping' => 'PENGHANTARAN',
+    'order-detail-coupon-discount' => 'DISKAUN KUPON',
+    'order-detail-total' => 'JUMLAH',
+
+    'thank-you-title' => 'Terima Kasih',
+    'thank-you-message' => 'Anda telah berjaya membuat pesanan anda.
+    Pergi ke',
+    'thank-you-order-page' => 'Halaman Pesanan',
+
+    'shipping-address' => 'Alamat Penghantaran',
+    'shipping-address-my-account' => 'Akaun Saya',
+    'shipping-address-default' => 'DEFAULT',
+    'shipping-address-first-name' => 'Nama Pertama',
+    'shipping-address-last-name' => 'Nama Akhir',
+    'shipping-address-country-state-city' => 'Negara Negeri Bandar',
+    'shipping-address-action' => 'TINDAKAN',
+    'shipping-address-add' => 'Urus Alamat Penghantaran',
+    'shipping-address-stret-address' => 'Alamat Jalan',
+    'shipping-address-country' => 'Pilih Negara',
+    'shipping-address-state' => 'Pilih Negeri',
+    'shipping-address-city' => 'Bandar',
+    'shipping-address-postal-code' => 'Poskod',
+    'shipping-address-add-address' => 'Hantar',
+
+    'change-password' => 'Tukar Kata Laluan',
+    'change-password-current-password' => 'Kata Laluan Semasa',
+    'change-password-new-password' => 'Kata Laluan Baru',
+    'change-password-confirm-password' => 'Sahkan Kata Laluan',
+    'change-password-access-text' => 'Akses Akaun Anda Melalui Rangkaian Sosial Anda',
+
+    'forget-password' => 'Lupa Kata Laluan',
+    'forget-password-email' => 'Emel',
+    'forget-password-verify' => 'sahkan emel',
+
+    'bread-crumb-home' => 'Laman Utama',
+    'bread-crumb-shop' => 'Kedai',
+    'bread-shopping-cart' => 'TROLI BELI-BELAH',
+    'bread-product-page' => 'Halaman Produk',
+    'bread-blog' => 'Blog',
+    'bread-checkout' => 'Daftar Keluar',
+    'bread-login' => 'Log Masuk',
+    'bread-compare' => 'Bandingkan',
+    'bread-profile' => 'Profil',
+    'bread-order' => 'Pesanan',
+    'bread-contact' => 'Hubungi Kami',
+
+    'wishlist-add-success' => 'Produk Ditambah Ke Senarai Hajat!',
+    'wishlist-remove' => 'Produk Dihapus Dari Senarai Hajat!',
+
+    'contact-fname' => 'Nama Pertama',
+    'contact-lname' => 'Nama Akhir',
+    'contact-email' => 'Emel',
+    'contact-phone' => 'Telefon',
+    'contact-message' => 'Mesej',
+
+    'add-to-cart' => 'Tambah Ke Troli',
+    'load-more' => 'Muatkan Lagi',
+    'featured' => 'Pilihan Utama'
+
+
+];

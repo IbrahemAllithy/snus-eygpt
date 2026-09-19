@@ -1,0 +1,36 @@
+{
+  "_animations-C1U5VdC4.js": {
+    "file": "assets/animations-C1U5VdC4.js",
+    "name": "animations",
+    "imports": [
+      "_vendor-Cpj98o6Y.js"
+    ]
+  },
+  "_bootstrap-l0sNRNKZ.js": {
+    "file": "assets/bootstrap-l0sNRNKZ.js",
+    "name": "bootstrap"
+  },
+  "_vendor-Cpj98o6Y.js": {
+    "file": "assets/vendor-Cpj98o6Y.js",
+    "name": "vendor"
+  },
+  "resources/css/app.css": {
+    "file": "assets/app-l0sNRNKZ.js",
+    "name": "app",
+    "src": "resources/css/app.css",
+    "isEntry": true
+  },
+  "resources/js/app.js": {
+    "file": "assets/app-DHherrRc.js",
+    "name": "app",
+    "src": "resources/js/app.js",
+    "isEntry": true,
+    "imports": [
+      "_animations-C1U5VdC4.js",
+      "_vendor-Cpj98o6Y.js"
+    ],
+    "css": [
+      "assets/app-DvB2Xm2x.css"
+    ]
+  }
+}
