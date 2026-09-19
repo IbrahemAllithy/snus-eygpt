@@ -32,7 +32,7 @@ class PaymentMethodSettingSeeder extends Seeder
             [
                 'payment_method_id' => 2,
                 'key' => 'STRIPE_API_KEY',
-                'value' => 'sk_test_EdlHXXNPrUkesCURiqVqrneU00kKeCNpor',
+                'value' => env('STRIPE_SECRET_KEY', 'your-stripe-key-here'),
             ],
             [
                 'payment_method_id' => 3,
