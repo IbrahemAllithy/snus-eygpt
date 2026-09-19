@@ -7,7 +7,12 @@ use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
 
+// Load environment file based on ENV_FILE variable set in public/index.php
+$envFile = $_ENV['ENV_FILE'] ?? $_SERVER['ENV_FILE'] ?? '.env';
+
 return Application::configure(basePath: dirname(__DIR__))
+    ->useEnvironmentPath(dirname(__DIR__))
+    ->loadEnvironmentFrom($envFile)
     ->withRouting(
         web: __DIR__ . '/../routes/web.php',
         api: __DIR__ . '/../routes/api.php',

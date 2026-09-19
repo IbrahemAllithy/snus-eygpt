@@ -40,6 +40,12 @@ Route::get('clear', function () {
 
 });
 
+// Tester admin route (temporary solution until subdomain is ready)
+Route::any('tester-admin/{all}', function () {
+    return view('layouts.admin-master');
+})
+    ->where(['all' => '.*']);
+
 Route::any('admin/{all}', function () {
     return view('layouts.admin-master');
 })
