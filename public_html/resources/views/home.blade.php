@@ -1,26 +1,94 @@
 @extends('layouts.master')
 @section('content')
 
-    @include(isset(getSetting()['slider_style']) ? 'includes.sliders.slider-'.getSetting()['slider_style'] :
-    'includes.sliders.slider-style1')
+<section class="hero-section-modern" data-aos="fade-in">
+    <div class="hero-pattern"></div>
+    <div class="container" style="position: relative; z-index: 2;">
+        <div class="row align-items-center">
+            <div class="col-lg-6 mb-5 mb-lg-0" data-aos="fade-right">
+                <h1>اكتشف أفضل منتجات <span style="color: rgba(255,255,255,0.9);">السنس</span> في مصر</h1>
+                <p>منتجات أصلية، أسعار منافسة، وتوصيل سريع لجميع المحافظات</p>
+                <div class="hero-buttons">
+                    <a href="/shop" class="btn btn-light btn-lg">
+                        <i class="fas fa-shopping-bag"></i> تسوق الآن
+                    </a>
+                    <a href="#categories" class="btn btn-outline-light btn-lg">
+                        <i class="fas fa-th-large"></i> التصنيفات
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-6" data-aos="fade-left" data-aos-delay="200">
+                <div class="hero-image-wrapper">
+                    <div class="hero-glow"></div>
+                    <img src="https://via.placeholder.com/600x400/C19A49/ffffff?text=Snus+Egypt" alt="Snus Products" loading="lazy">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
+<section class="features-section" data-aos="fade-up">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="100">
+                <div class="feature-card hover-lift">
+                    <div class="feature-icon" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%);">
+                        <i class="fas fa-shipping-fast"></i>
+                    </div>
+                    <h4>شحن سريع</h4>
+                    <p>توصيل لجميع المحافظات في أقل من 48 ساعة</p>
+                </div>
+            </div>
 
-    @php($homeTemplates = homePageBuilderJson())
-    @if (count($homeTemplates))
-        @foreach ($homeTemplates as $template)
-            @if (!empty($template['template_postfix']) && empty($template['skip']) && !empty($template['display']))
-                @include('sections.home-'.$template['template_postfix'].'-section')
-            @endif
-        @endforeach
-    @else
-        {{-- A usable storefront is still rendered when the optional theme builder is empty. --}}
-        @include('sections.home-category-section')
-        @include('sections.home-new-arrival-section')
-        @include('sections.home-tabs-section')
-        @include('sections.home-week-sale-section')
-        @include('sections.home-services-section')
-    @endif
+            <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="200">
+                <div class="feature-card hover-lift">
+                    <div class="feature-icon" style="background: linear-gradient(135deg, #C19A49 0%, #9d7a35 100%);">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h4>منتجات أصلية</h4>
+                    <p>جميع المنتجات أصلية 100% ومضمونة</p>
+                </div>
+            </div>
 
+            <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="300">
+                <div class="feature-card hover-lift">
+                    <div class="feature-icon" style="background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h4>دعم 24/7</h4>
+                    <p>خدمة عملاء متاحة على مدار الساعة</p>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="400">
+                <div class="feature-card hover-lift">
+                    <div class="feature-icon" style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);">
+                        <i class="fas fa-wallet"></i>
+                    </div>
+                    <h4>دفع آمن</h4>
+                    <p>طرق دفع متعددة وآمنة تمامًا</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@include(isset(getSetting()['slider_style']) ? 'includes.sliders.slider-'.getSetting()['slider_style'] : 'includes.sliders.slider-style1')
+
+@php($homeTemplates = homePageBuilderJson())
+@if (count($homeTemplates))
+    @foreach ($homeTemplates as $template)
+        @if (!empty($template['template_postfix']) && empty($template['skip']) && !empty($template['display']))
+            @include('sections.home-'.$template['template_postfix'].'-section')
+        @endif
+    @endforeach
+@else
+    @include('sections.home-category-section')
+    @include('sections.home-new-arrival-section')
+    @include('sections.home-tabs-section')
+    @include('sections.home-week-sale-section')
+    @include('sections.home-services-section')
+@endif
 
 @endsection
 @section('script')
@@ -84,22 +152,21 @@
 
                         for (i = 0; i < data.data.length; i++) {
                             const clone = templ.content.cloneNode(true);
-                            // clone.querySelector(".single-text-chat-li").classList.add("bg-blue-100");
-                            
+
                             clone.querySelector(".wishlist-icon").setAttribute('data-id', data.data[i]
                                 .product_id);
                             clone.querySelector(".wishlist-icon").setAttribute('onclick', 'addWishlist(this)');
-                            
+
                             clone.querySelector(".wishlist-icon").setAttribute('data-type', data.data[i]
                                 .product_type);
 
                             clone.querySelector(".wishlist-icon-2").setAttribute('data-id', data.data[i]
                                 .product_id);
                             clone.querySelector(".wishlist-icon-2").setAttribute('onclick', 'addWishlist(this)');
-                            
+
                             clone.querySelector(".wishlist-icon-2").setAttribute('data-type', data.data[i]
                                 .product_type);
-                                
+
                             clone.querySelector(".compare-icon").setAttribute('data-id', data.data[i]
                                 .product_id);
                             clone.querySelector(".compare-icon").setAttribute('data-type', data.data[i]
@@ -118,8 +185,6 @@
                             clone.querySelector(".qty-input").setAttribute('id', 'quantity'+i);
                             clone.querySelector(".item-quantity").classList.add('itemqty'+i);
 
-                            
-
                             var bages = '';
                             if(data.data[i].discount_percentage > 0)
                                 bages +='<span class="badge badge-danger">'+data.data[i].discount_percentage+'%</span>';
@@ -127,10 +192,9 @@
                                 bages +='<span class="badge badge-success">Featured</span>';
                             if(data.data[i].new != "0")
                                 bages +='<span class="badge badge-info ">New</span>';
-                            
+
                             clone.querySelector(".badges").innerHTML = bages;
 
-                            
                             rating = '';
                             if(data.data[i].product_rating == 1){
                                 rating = '<label class="full fa " for="star1" title="Awesome - 1 stars"></label><label class="full fa " for="star_2" title="Awesome - 2 stars"></label><label class="full fa " for="star_3" title="Awesome - 3 stars"></label><label class="full fa " for="star_4" title="Awesome - 4 stars"></label><label class="full fa active" for="star_5" title="Awesome - 5 stars"></label>'
@@ -150,7 +214,7 @@
                             else{
                                 rating = '<label class="full fa " for="star1" title="Awesome - 1 stars"></label><label class="full fa " for="star_2" title="Awesome - 2 stars"></label><label class="full fa " for="star_3" title="Awesome - 3 stars"></label><label class="full fa " for="star_4" title="Awesome - 4 stars"></label><label class="full fa " for="star_5" title="Awesome - 5 stars"></label>'
                             }
-                            
+
                             clone.querySelector(".display-rating").innerHTML = rating;
                             clone.querySelector(".display-rating1").innerHTML = rating;
 
@@ -206,11 +270,8 @@
                                         .product_discount_price_symbol + '<span>' +data.data[i].product_price_symbol + '</span>';
                                 }
                             } else {
-                                //console.log(data.data[i].product_variable_price_symbol,"variable price");
-                                    clone.querySelector(".product-card-price").innerHTML = data.data[i].product_variable_price_symbol;
+                                clone.querySelector(".product-card-price").innerHTML = data.data[i].product_variable_price_symbol;
                             }
-
-
 
                             if (data.data[i].product_type == 'simple') {
                                 clone.querySelector(".product-card-link").setAttribute('onclick',
@@ -228,7 +289,6 @@
                                 clone.querySelector(".add-to-card-bag").setAttribute('data-field', i);
 
                             } else {
-                                // $().addClass();
                                 clone.querySelector('.itemqty'+i).classList.add('d-none');
                                 clone.querySelector(".add-to-card-bag").classList.add('d-none');
                                 clone.querySelector(".product-card-link").classList.remove('d-g-none');
@@ -241,12 +301,11 @@
                             }
 
                             $("." + appendTo).append(clone);
-                            
+
                             if (appendTo == 'new-arrival' || appendTo == 'weekly-sale') {
                                 $(".div-class").addClass('col-12 col-sm-6 col-lg-3');
                             }
                         }
-
 
                         if (appendTo != 'new-arrival' && appendTo != 'weekly-sale')
                             getSliderSettings(appendTo);
@@ -255,7 +314,6 @@
                 error: function(data) {},
             });
         }
-
 
         function fetchFeaturedWeeklyProduct(url, appendTo) {
             $.ajax({
@@ -269,22 +327,17 @@
                 beforeSend: function() {},
                 success: function(data) {
                     if (data.status == 'Success' && Array.isArray(data.data) && data.data.length) {
-                        //console.log(data,"final data");
                         var htmlToRender ="<article><div class='badges'><span class='badge badge-success'>Featured</span></div><div class='detail'>";
-                        
-                            htmlToRender +='<h5 class="title"><a  href="/product/'+data
-                                    .data[0].product_id +'/'+data
-                                    .data[0].product_slug+'">'+data.data[0].detail[0]
-                                    .title+'</a></h5>';
 
+                        htmlToRender +='<h5 class="title"><a  href="/product/'+data
+                                .data[0].product_id +'/'+data
+                                .data[0].product_slug+'">'+data.data[0].detail[0]
+                                .title+'</a></h5>';
 
-                            htmlToRender +='<p class="discription">'+data.data[0].detail[0]
-                                    .desc+'</p>';
-                            
-                            
-                            
+                        htmlToRender +='<p class="discription">'+data.data[0].detail[0]
+                                .desc+'</p>';
 
-                            var featuredDetails = Array.isArray(data.data[0].detail) && data.data[0].detail.length ? data.data[0].detail[0] : null;
+                        var featuredDetails = Array.isArray(data.data[0].detail) && data.data[0].detail.length ? data.data[0].detail[0] : null;
                             if (!featuredDetails) return;
                             if (data.data[0].product_type == 'simple') {
                                 if (data.data[0].product_discount_price == '' || data.data[0]
@@ -307,7 +360,7 @@
                             htmlToRender +='<div class="pro-sub-buttons"><div class="buttons"><button type="button" class="btn  btn-link " data-id='+data.data[0]
                                 .product_id+' onclick="addWishlist(this)" data-type='+data.data[0]
                                 .product_type+'><i class="fas fa-heart"></i>Add to Wishlist</button>';
-                                
+
                             htmlToRender +='<button type="button" class="btn btn-link" data-id='+data.data[0]
                                 .product_id+' data-type='+data.data[0]
                                 .product_type+' onclick="addCompare(this)" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Add to Compare"><i class="fas fa-align-right"></i>Add to Compare</button></div></div></div>';
@@ -316,13 +369,13 @@
                                 htmlToRender +='<button type="button" data-id="'+data.data[0].product_id+'" data-field="'+0+'" data-type="'+data.data[0].product_type+'" onclick="addToCart(this)" class="btn btn-block btn-secondary cart swipe-to-top" >Add to Cart</button>';
 
                             } else {
-                                
+
                                 htmlToRender +='<a href="/product/'+data
                                     .data[0].product_id +'/'+data
                                     .data[0].product_slug+'" onclick="addToCart(this)" class="btn btn-block btn-secondary cart swipe-to-top" >View Detail</a>';
-        
+
                             }
-                            
+
                             htmlToRender +='</div>';
 
                              if (data.data[0].product_gallary != null && data.data[0].product_gallary !=
@@ -337,12 +390,11 @@
                                 }
                             }
                             htmlToRender +='</picture></article>';
-                           
 
                         $('#weekly-sale-first-div').html(htmlToRender);
                     }
                 },
-                error: function(data) {},
+                error: function(data) ,
             });
         }
 
@@ -363,10 +415,8 @@
                         $(".blog-news-data").html('');
                         const templ = document.getElementById("news-blog-template");
                         if (!templ) return;
-                        // clone.querySelector(".single-text-chat-li").classList.add("bg-blue-100");
                         for (i = 0; i < data.data.length; i++) {
                             const clone = templ.content.cloneNode(true);
-                            // clone.querySelector(".single-text-chat-li").classList.add("bg-blue-100");
                             clone.querySelector(".news-blog-date").innerHTML = data.data[i].date;
                             clone.querySelector(".news-blog-date").setAttribute('data-id', data.data[i]
                                 .product_id);
@@ -418,8 +468,6 @@
             });
         }
 
-
-
         function sliderMedia() {
             var sliderType = "{{ getSetting()['slider_style'] ? getSetting()['slider_style'] : '' }}";
             if (sliderType == "style1") {
@@ -454,15 +502,12 @@
                         $(".slider-navigation-show").html('');
                         const templ = document.getElementById("slider-navigation-template");
                         if (!templ) return;
-                        // clone.querySelector(".single-text-chat-li").classList.add("bg-blue-100");
                         for (i = 0; i < data.data.length; i++) {
-
 
                             $("#slider-bullets-" + i).addClass("d-block");
                             $("#slider-bullets-" + i).removeClass('d-none')
 
                             const clone = templ.content.cloneNode(true);
-                            // clone.querySelector(".single-text-chat-li").classList.add("bg-blue-100");
                             clone.querySelector(".slider-navigation-title").innerHTML = data.data[i]
                                 .slider_title;
                             clone.querySelector(".slider-navigation-desc").innerHTML = data.data[i]
@@ -476,7 +521,7 @@
                                 .slider_textcontent);
                             clone.querySelector(".carousel-caption").classList.add(data.data[i]
                                 .slider_text);
-                                
+
                             if (i == 0) {
                                 clone.querySelector(".slider-navigation-active").classList.add("active");
                             }
@@ -520,21 +565,16 @@
                             $('.banner-slider-link1').attr('href', "{{ url('') }}" + (data.data[0].banner_url || '#'));
                             $('.banner-slider-image1').attr('src', "/gallary/" + data.data[0].gallary.gallary_name);
                         }
-
-
-
                         if (data.data[1] && data.data[1].gallary) {
                             $('.banner-slider-link2').attr('href', "{{ url('') }}" + (data.data[1].banner_url || '#'));
                             $('.banner-slider-image2').attr('src', "/gallary/" + data.data[1].gallary.gallary_name);
                         }
-
 
                     }
                 },
                 error: function(data) {},
             });
         }
-
 
         function categorySlider() {
             $.ajax({
@@ -553,10 +593,8 @@
                         $(".category-slider-show").html('');
                         const templ = document.getElementById("category-slider-template");
                         if (!templ) return;
-                        // clone.querySelector(".single-text-chat-li").classList.add("bg-blue-100");
                         for (i = 0; i < data.data.length; i++) {
                             const clone = templ.content.cloneNode(true);
-                            // clone.querySelector(".single-text-chat-li").classList.add("bg-blue-100");
                             clone.querySelector(".category-slider-url").setAttribute('href', '/shop?category=' +
                                 data.data[i].id);
                             clone.querySelector(".category-slider-image").setAttribute('src', data.data[i].icon && data.data[i].icon != 'placeholder'
@@ -570,8 +608,6 @@
                 error: function(data) {},
             });
         }
-
-
 
         function bannerMedia() {
             var bannerType = "{{ getSetting()['banner_style'] ? getSetting()['banner_style'] : 'style1' }}";
@@ -628,8 +664,6 @@
                             }
                         }
 
-
-
                         if (typeof data.data[1] !== 'undefined') {
                             $('.banner-link2').attr('href', data.data[1]
                                 .banner_url);
@@ -638,9 +672,6 @@
                                 $('.banner-image2').attr('src', "/gallary/" + data.data[1].gallary.gallary_name);
                             }
                         }
-
-
-
 
                         if (typeof data.data[2] !== 'undefined') {
                             $('.banner-link3').attr('href', data.data[2]
@@ -677,18 +708,14 @@
             });
         }
 
-
         $(document).on('click', '.quantity-right-plus', function() {
-            
             var row_id = $(this).attr('data-field');
-            //console.log(row_id)
             var quantity = $('#quantity' + row_id).val();
             $('#quantity' + row_id).val(parseInt(quantity) + 1);
         })
 
         $(document).on('click', '.quantity-left-minus', function() {
             var row_id = $(this).attr('data-field');
-            //console.log(row_id)
             var quantity = $('#quantity' + row_id).val();
             if (quantity > 1)
                 $('#quantity' + row_id).val(parseInt(quantity) - 1);
