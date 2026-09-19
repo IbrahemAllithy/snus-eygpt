@@ -1,5 +1,6 @@
 ---
 deployment:
   tasks:
-    - export DEPLOYPATH=/home/snusegypt/public_html
+    - export DEPLOYPATH=/home/snusegypt/laravel-app
     - /bin/cp -R * $DEPLOYPATH
+    - /bin/cp -R public/* /home/snusegypt/public_html/
