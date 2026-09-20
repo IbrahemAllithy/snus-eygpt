@@ -2,15 +2,14 @@
 deployment:
   tasks:
     # Set paths
-    - export REPO_PATH=/home/snusegypt/repositories/snusegypt2026
-    - export LARAVEL_ROOT=$REPO_PATH/public_html
+    - export LARAVEL_PATH=/home/snusegypt/laravel-app/public_html
     - export SUBDOMAIN_PATH=/home/snusegypt/public_html/tester
 
-    # Copy ALL Laravel files to subdomain (index.php, .htaccess, css, js, images, etc.)
-    - /bin/cp -R $LARAVEL_ROOT/* $SUBDOMAIN_PATH/
-    - /bin/cp $LARAVEL_ROOT/.htaccess $SUBDOMAIN_PATH/ 2>/dev/null || true
+    # Copy ALL Laravel public files to subdomain
+    - /bin/cp -R $LARAVEL_PATH/* $SUBDOMAIN_PATH/
+    - /bin/cp $LARAVEL_PATH/.htaccess $SUBDOMAIN_PATH/ 2>/dev/null || true
 
     # Set permissions
     - chmod -R 755 $SUBDOMAIN_PATH
-    - chmod -R 755 $LARAVEL_ROOT/storage
-    - chmod -R 755 $LARAVEL_ROOT/bootstrap/cache
+    - chmod -R 755 $LARAVEL_PATH/storage 2>/dev/null || true
+    - chmod -R 755 $LARAVEL_PATH/bootstrap/cache 2>/dev/null || true
