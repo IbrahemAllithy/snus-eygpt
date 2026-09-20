@@ -1,15 +1,37 @@
 ---
 deployment:
   tasks:
-    # Set paths
-    - export LARAVEL_PATH=/home/snusegypt/laravel-app/public_html
+    # Set deployment paths
+    - export LARAVEL_ROOT=/home/snusegypt/laravel-app
     - export SUBDOMAIN_PATH=/home/snusegypt/public_html/tester
 
-    # Copy ALL Laravel public files to subdomain
-    - /bin/cp -R $LARAVEL_PATH/* $SUBDOMAIN_PATH/
-    - /bin/cp $LARAVEL_PATH/.htaccess $SUBDOMAIN_PATH/ 2>/dev/null || true
+    # Copy Laravel application files (everything in public_html folder)
+    - /bin/cp -R public_html/* $LARAVEL_ROOT/
+    - /bin/cp public_html/.htaccess $LARAVEL_ROOT/ 2>/dev/null || true
+    - /bin/cp public_html/.env.example $LARAVEL_ROOT/ 2>/dev/null || true
 
-    # Set permissions
-    - chmod -R 755 $SUBDOMAIN_PATH
-    - chmod -R 755 $LARAVEL_PATH/storage 2>/dev/null || true
-    - chmod -R 755 $LARAVEL_PATH/bootstrap/cache 2>/dev/null || true
+    # Copy public files to subdomain
+    - /bin/cp -R public_html/public/* $SUBDOMAIN_PATH/
+    - /bin/cp public_html/public/.htaccess $SUBDOMAIN_PATH/ 2>/dev/null || true
+
+    # Navigate to Laravel directory
+    - cd $LARAVEL_ROOT
+
+    # Install/Update Composer dependencies
+    - /usr/local/bin/ea-php82 /opt/cpanel/composer/bin/composer install --no-dev --optimize-autoloader --no-interaction 2>/dev/null || true
+
+    # Clear Laravel caches
+    - /usr/local/bin/ea-php82 artisan config:clear 2>/dev/null || true
+    - /usr/local/bin/ea-php82 artisan cache:clear 2>/dev/null || true
+    - /usr/local/bin/ea-php82 artisan route:clear 2>/dev/null || true
+    - /usr/local/bin/ea-php82 artisan view:clear 2>/dev/null || true
+
+    # Optimize Laravel (cache configs)
+    - /usr/local/bin/ea-php82 artisan config:cache 2>/dev/null || true
+    - /usr/local/bin/ea-php82 artisan route:cache 2>/dev/null || true
+    - /usr/local/bin/ea-php82 artisan view:cache 2>/dev/null || true
+
+    # Set correct permissions
+    - chmod -R 755 $LARAVEL_ROOT/storage 2>/dev/null || true
+    - chmod -R 755 $LARAVEL_ROOT/bootstrap/cache 2>/dev/null || true
+    - chmod -R 755 $SUBDOMAIN_PATH 2>/dev/null || true
