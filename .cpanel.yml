@@ -1,6 +1,36 @@
 ---
 deployment:
   tasks:
-    - export DEPLOYPATH=/home/snusegypt/laravel-app
+    # Set deployment paths for tester.snusegypt.com subdomain
+    - export DEPLOYPATH=/home/snusegypt/repositories/snusegypt2026
+    - export PUBLICPATH=/home/snusegypt/repositories/snusegypt2026/public_html/public
+
+    # Copy application files
     - /bin/cp -R * $DEPLOYPATH
-    - /bin/cp -R public/* /home/snusegypt/public_html/
+
+    # Copy public files
+    - /bin/cp -R public/* $PUBLICPATH/
+
+    # Navigate to Laravel directory
+    - cd $DEPLOYPATH
+
+    # Install/Update Composer dependencies (production only)
+    - /usr/local/bin/ea-php82 /opt/cpanel/composer/bin/composer install --no-dev --optimize-autoloader --no-interaction
+
+    # Clear and cache Laravel configurations
+    - /usr/local/bin/ea-php82 artisan config:clear
+    - /usr/local/bin/ea-php82 artisan cache:clear
+    - /usr/local/bin/ea-php82 artisan route:clear
+    - /usr/local/bin/ea-php82 artisan view:clear
+
+    # Optimize Laravel
+    - /usr/local/bin/ea-php82 artisan config:cache
+    - /usr/local/bin/ea-php82 artisan route:cache
+    - /usr/local/bin/ea-php82 artisan view:cache
+
+    # Run database migrations (if needed - uncomment the line below)
+    # - /usr/local/bin/ea-php82 artisan migrate --force
+
+    # Set correct permissions
+    - chmod -R 755 $DEPLOYPATH/storage
+    - chmod -R 755 $DEPLOYPATH/bootstrap/cache
