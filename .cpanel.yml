@@ -2,10 +2,10 @@
 deployment:
   tasks:
     # Set deployment paths
-    - export LARAVEL_ROOT=/home/snusegypt/laravel-app
-    - export SUBDOMAIN_PATH=/home/snusegypt/public_html/tester
+    - export LARAVEL_ROOT=/home/snusegypt/repositories/snus-egypt
+    - export SUBDOMAIN_PATH=/home/snusegypt/public_html/test.snusegypt.com
 
-    # Copy Laravel application files (everything in public_html folder)
+    # Copy Laravel application files (everything in public_html folder to Laravel root)
     - /bin/cp -R public_html/* $LARAVEL_ROOT/
     - /bin/cp public_html/.htaccess $LARAVEL_ROOT/ 2>/dev/null || true
     - /bin/cp public_html/.env.example $LARAVEL_ROOT/ 2>/dev/null || true
