@@ -1,8 +1,22 @@
 ---
 deployment:
   tasks:
-    # Git pulls files to /home/snusegypt/repositories/snusegypt2026
-    # Set correct permissions only
-    - chmod -R 755 /home/snusegypt/repositories/snusegypt2026/storage
-    - chmod -R 755 /home/snusegypt/repositories/snusegypt2026/bootstrap/cache
-    - chmod -R 755 /home/snusegypt/repositories/snusegypt2026/public
+    # Set paths
+    - export REPO_PATH=/home/snusegypt/repositories/snusegypt2026
+    - export LARAVEL_PATH=$REPO_PATH/public_html
+    - export SUBDOMAIN_PATH=/home/snusegypt/public_html/tester
+
+    # Copy Laravel public folder to subdomain
+    - /bin/cp -R $LARAVEL_PATH/public/* $SUBDOMAIN_PATH/
+
+    # Copy Laravel .htaccess and index.php
+    - /bin/cp $LARAVEL_PATH/public/.htaccess $SUBDOMAIN_PATH/ 2>/dev/null || true
+    - /bin/cp $LARAVEL_PATH/public/index.php $SUBDOMAIN_PATH/
+
+    # Update index.php paths to point to correct Laravel location
+    - sed -i 's|__DIR__.\x27/../|/home/snusegypt/repositories/snusegypt2026/public_html/|g' $SUBDOMAIN_PATH/index.php
+
+    # Set permissions
+    - chmod -R 755 $SUBDOMAIN_PATH
+    - chmod -R 755 $LARAVEL_PATH/storage
+    - chmod -R 755 $LARAVEL_PATH/bootstrap/cache
