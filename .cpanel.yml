@@ -1,9 +1,9 @@
 ---
 deployment:
   tasks:
-    # Set deployment paths
-    - export DEPLOYPATH=/home/snusegypt/laravel-app
-    - export PUBLICPATH=/home/snusegypt/public_html
+    # Set deployment paths for tester.snusegypt.com subdomain
+    - export DEPLOYPATH=/home/snusegypt/repositories/snusegypt2026
+    - export PUBLICPATH=/home/snusegypt/repositories/snusegypt2026/public_html/public
 
     # Copy application files
     - /bin/cp -R * $DEPLOYPATH
