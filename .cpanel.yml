@@ -2,21 +2,7 @@
 deployment:
   tasks:
     # Git pulls files to /home/snusegypt/repositories/snusegypt2026
-    # No need to copy - files are already in the right place
-
-    # Set deployment path
-    - export DEPLOYPATH=/home/snusegypt/repositories/snusegypt2026
-
-    # Navigate to deployment path
-    - cd $DEPLOYPATH
-
-    # Clear Laravel caches only (fast)
-    - /usr/local/bin/ea-php82 artisan config:clear
-    - /usr/local/bin/ea-php82 artisan cache:clear
-    - /usr/local/bin/ea-php82 artisan route:clear
-    - /usr/local/bin/ea-php82 artisan view:clear
-
-    # Set correct permissions
-    - chmod -R 755 $DEPLOYPATH/storage
-    - chmod -R 755 $DEPLOYPATH/bootstrap/cache
-    - chmod -R 755 $DEPLOYPATH/public
+    # Set correct permissions only
+    - chmod -R 755 /home/snusegypt/repositories/snusegypt2026/storage
+    - chmod -R 755 /home/snusegypt/repositories/snusegypt2026/bootstrap/cache
+    - chmod -R 755 /home/snusegypt/repositories/snusegypt2026/public
