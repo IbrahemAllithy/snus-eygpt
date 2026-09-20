@@ -5,17 +5,17 @@ deployment:
     - export DEPLOYPATH=/home/snusegypt/repositories/snusegypt2026
     - export PUBLICPATH=/home/snusegypt/repositories/snusegypt2026/public_html/public
 
-    # Copy application files
-    - /bin/cp -R * $DEPLOYPATH
-
-    # Copy public files
-    - /bin/cp -R public/* $PUBLICPATH/
-
-    # Navigate to Laravel directory
+    # Navigate to deployment path
     - cd $DEPLOYPATH
 
     # Install/Update Composer dependencies (production only)
     - /usr/local/bin/ea-php82 /opt/cpanel/composer/bin/composer install --no-dev --optimize-autoloader --no-interaction
+
+    # Create public_html/public directory if it doesn't exist
+    - mkdir -p $PUBLICPATH
+
+    # Copy public files to the correct subdomain path
+    - /bin/cp -R public/* $PUBLICPATH/
 
     # Clear and cache Laravel configurations
     - /usr/local/bin/ea-php82 artisan config:clear
@@ -34,3 +34,4 @@ deployment:
     # Set correct permissions
     - chmod -R 755 $DEPLOYPATH/storage
     - chmod -R 755 $DEPLOYPATH/bootstrap/cache
+    - chmod -R 755 $PUBLICPATH
