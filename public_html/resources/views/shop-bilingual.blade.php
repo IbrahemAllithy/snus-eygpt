@@ -1,687 +1,620 @@
 @extends('layouts.master')
-@section('content')
 
-{{-- Page Header --}}
-<section class="page-header-modern">
-    <div class="container">
-        <div class="page-header-content">
-            @if($data['direction'] === 'rtl')
-                <h1 class="page-header-title">متجرنا</h1>
-                <p class="page-header-description">استكشف مجموعتنا الواسعة من المنتجات الأصلية</p>
-            @else
-                <h1 class="page-header-title">Our Shop</h1>
-                <p class="page-header-description">Explore our wide range of original products</p>
-            @endif
-            <nav class="breadcrumb-modern" aria-label="breadcrumb">
-                <ol class="breadcrumb-list">
+@section('content')
+<div class="main" style="background: var(--surface-0);">
+
+    {{-- Breadcrumb --}}
+    <div class="container-fluid" style="background: var(--surface-1); padding: var(--space-4) 0;">
+        <nav aria-label="breadcrumb">
+            <div class="container">
+                <ol class="breadcrumb mb-0" style="background: transparent;">
                     <li class="breadcrumb-item">
-                        <a href="/">
-                            <svg width="16" height="16" fill="currentColor" viewBox="0 0 20 20">
-                                <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"/>
-                            </svg>
-                            <span>{{ $data['direction'] === 'rtl' ? 'الرئيسية' : 'Home' }}</span>
+                        <a href="./" style="color: var(--color-primary); text-decoration: none;">
+                            @if($data['direction'] === 'rtl')
+                                الرئيسية
+                            @else
+                                Home
+                            @endif
                         </a>
                     </li>
-                    <li class="breadcrumb-item active">
-                        <span>{{ $data['direction'] === 'rtl' ? 'المتجر' : 'Shop' }}</span>
+                    <li class="breadcrumb-item active" aria-current="page" style="color: var(--text-primary);">
+                        @if($data['direction'] === 'rtl')
+                            المتجر
+                        @else
+                            Shop
+                        @endif
                     </li>
                 </ol>
-            </nav>
-        </div>
+            </div>
+        </nav>
     </div>
-</section>
 
-{{-- Shop Section --}}
-<section class="shop-section-modern">
-    <div class="container">
-        <div class="shop-layout">
-            {{-- Filters Sidebar --}}
-            <aside class="shop-filters" id="shopFilters">
-                <div class="filters-header">
-                    <h3 class="filters-title">
-                        {{ $data['direction'] === 'rtl' ? 'تصفية النتائج' : 'Filter Results' }}
-                    </h3>
-                    <button type="button" class="filters-close" id="closeFilters">
-                        <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
-                        </svg>
-                    </button>
-                </div>
+    {{-- Shop Content --}}
+    <section class="shop-content py-5">
+        <div class="container">
+            {{-- Page Title --}}
+            <div class="page-heading-title mb-5 text-center">
+                <h1 class="fw-bold" style="color: var(--text-primary); font-size: clamp(2rem, 4vw, 3rem);">
+                    @if($data['direction'] === 'rtl')
+                        متجر المنتجات
+                    @else
+                        Shop Products
+                    @endif
+                </h1>
+            </div>
 
-                <div class="filters-body">
-                    {{-- Categories Filter --}}
-                    <div class="filter-group">
-                        <h4 class="filter-group-title">
-                            {{ $data['direction'] === 'rtl' ? 'التصنيفات' : 'Categories' }}
-                        </h4>
-                        <div class="filter-group-content" id="categoriesFilter">
-                            {{-- Categories will be loaded dynamically --}}
+            {{-- Filters & Controls Bar --}}
+            <div class="top-bar mb-4 p-4" style="background: var(--surface-1); border-radius: var(--radius-lg); box-shadow: var(--shadow-md);">
+                <div class="row align-items-center g-3">
+                    {{-- Display Toggle --}}
+                    <div class="col-12 col-md-auto">
+                        <label class="mb-2 fw-semibold" style="color: var(--text-primary); font-size: 14px;">
+                            @if($data['direction'] === 'rtl')
+                                العرض
+                            @else
+                                Display
+                            @endif
+                        </label>
+                        <div class="buttons d-flex gap-2">
+                            <a href="javascript:void(0);" id="grid_4column" class="btn btn-sm" style="width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; background: var(--surface-2); border-radius: var(--radius-md); color: var(--text-primary);">
+                                <i class="fas fa-th-large"></i>
+                            </a>
+                            <a href="javascript:void(0);" id="list_4column" class="btn btn-sm" style="width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; background: var(--surface-2); border-radius: var(--radius-md); color: var(--text-primary);">
+                                <i class="fas fa-list"></i>
+                            </a>
                         </div>
                     </div>
 
-                    {{-- Price Range Filter --}}
-                    <div class="filter-group">
-                        <h4 class="filter-group-title">
-                            {{ $data['direction'] === 'rtl' ? 'نطاق السعر' : 'Price Range' }}
-                        </h4>
-                        <div class="filter-group-content">
-                            <div class="price-range-inputs">
-                                <input type="number" class="input-modern" id="minPrice" placeholder="{{ $data['direction'] === 'rtl' ? 'من' : 'Min' }}">
-                                <span class="price-range-separator">-</span>
-                                <input type="number" class="input-modern" id="maxPrice" placeholder="{{ $data['direction'] === 'rtl' ? 'إلى' : 'Max' }}">
-                            </div>
-                            <button type="button" class="btn-modern btn-modern-primary btn-modern-sm" id="applyPriceFilter">
-                                {{ $data['direction'] === 'rtl' ? 'تطبيق' : 'Apply' }}
-                            </button>
-                        </div>
+                    {{-- Category Filter --}}
+                    <div class="col-12 col-md">
+                        <label class="mb-2 fw-semibold" style="color: var(--text-primary); font-size: 14px;">
+                            @if($data['direction'] === 'rtl')
+                                الفئة
+                            @else
+                                Category
+                            @endif
+                        </label>
+                        <select class="form-select category-filter" name="category" style="background: var(--surface-2); border: 1px solid var(--surface-3); color: var(--text-primary); border-radius: var(--radius-md);">
+                            <option value="">
+                                @if($data['direction'] === 'rtl')
+                                    اختر
+                                @else
+                                    Choose
+                                @endif
+                            </option>
+                            @foreach ($data['category'] as $category)
+                                @if (isset($_GET['category']) && $_GET['category'] == $category->id)
+                                    <option selected value="{{ $category->id }}">
+                                        {{ $category->detail[0]->category_name }}
+                                    </option>
+                                @else
+                                    <option value="{{ $category->id }}">
+                                        {{ $category->detail[0]->category_name }}
+                                    </option>
+                                @endif
+                            @endforeach
+                        </select>
                     </div>
 
-                    {{-- Availability Filter --}}
-                    <div class="filter-group">
-                        <h4 class="filter-group-title">
-                            {{ $data['direction'] === 'rtl' ? 'التوفر' : 'Availability' }}
-                        </h4>
-                        <div class="filter-group-content">
-                            <label class="filter-checkbox">
-                                <input type="checkbox" id="inStockOnly">
-                                <span class="filter-checkbox-label">
-                                    {{ $data['direction'] === 'rtl' ? 'متوفر فقط' : 'In Stock Only' }}
-                                </span>
-                            </label>
-                        </div>
+                    {{-- Price Filter --}}
+                    <div class="col-12 col-md">
+                        <label class="mb-2 fw-semibold" style="color: var(--text-primary); font-size: 14px;">
+                            @if($data['direction'] === 'rtl')
+                                السعر
+                            @else
+                                Price
+                            @endif
+                        </label>
+                        <select class="form-select price-filter" name="price" style="background: var(--surface-2); border: 1px solid var(--surface-3); color: var(--text-primary); border-radius: var(--radius-md);">
+                            <option value="">
+                                @if($data['direction'] === 'rtl')
+                                    اختر
+                                @else
+                                    Choose
+                                @endif
+                            </option>
+                            @foreach ($data['price_range'] as $price_range)
+                                @if (isset($_GET['price']) && $_GET['price'] == $price_range)
+                                    <option selected value="{{ $price_range }}">{{ $price_range }}</option>
+                                @else
+                                    <option value="{{ $price_range }}">{{ $price_range }}</option>
+                                @endif
+                            @endforeach
+                        </select>
                     </div>
 
-                    {{-- Clear Filters --}}
-                    <button type="button" class="btn-modern btn-modern-ghost btn-modern-sm" id="clearFilters">
-                        {{ $data['direction'] === 'rtl' ? 'مسح الفلاتر' : 'Clear Filters' }}
-                    </button>
-                </div>
-            </aside>
+                    {{-- Variation Filters --}}
+                    @foreach ($data['attribute'] as $key => $attribute)
+                    <div class="col-12 col-md">
+                        <label class="mb-2 fw-semibold" style="color: var(--text-primary); font-size: 14px;">
+                            {{ $attribute->attribute_detail[0]->name }}
+                        </label>
+                        <input type="hidden" name="attribute[]" value="{{ $attribute->id }}" />
+                        <select class="form-select variaion-filter" name="variation[]"
+                                data-attribute-id="{{ $attribute->id }}"
+                                data-attribute-name="{{ $attribute->attribute_detail[0]->name }}"
+                                style="background: var(--surface-2); border: 1px solid var(--surface-3); color: var(--text-primary); border-radius: var(--radius-md);">
+                            <option value="">
+                                @if($data['direction'] === 'rtl')
+                                    اختر
+                                @else
+                                    Choose
+                                @endif
+                            </option>
+                            @foreach ($attribute->variation as $variation)
+                                @if (isset($_GET['variation_id']) && in_array($variation->variation_detail[0]->variation_id, explode(',', $_GET['variation_id'])))
+                                    <option selected value="{{ $variation->variation_detail[0]->variation_id }}"
+                                            data-variation-name="{{ $variation->variation_detail[0]->name }}">
+                                        {{ $variation->variation_detail[0]->name }}
+                                    </option>
+                                @else
+                                    <option value="{{ $variation->variation_detail[0]->variation_id }}"
+                                            data-variation-name="{{ $variation->variation_detail[0]->name }}">
+                                        {{ $variation->variation_detail[0]->name }}
+                                    </option>
+                                @endif
+                            @endforeach
+                        </select>
+                    </div>
+                    @endforeach
 
-            {{-- Products Grid --}}
-            <div class="shop-content">
-                {{-- Toolbar --}}
-                <div class="shop-toolbar">
-                    <div class="toolbar-left">
-                        <button type="button" class="btn-modern btn-modern-secondary btn-modern-sm" id="toggleFilters">
-                            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"/>
-                            </svg>
-                            <span>{{ $data['direction'] === 'rtl' ? 'الفلاتر' : 'Filters' }}</span>
+                    {{-- Filter Button --}}
+                    <div class="col-12 col-md-auto">
+                        <label class="mb-2 d-none d-md-block" style="opacity: 0;">Filter</label>
+                        <button class="btn w-100" type="button" id="filter" style="background: var(--color-primary); color: white; border: none; padding: 10px 24px; border-radius: var(--radius-md); font-weight: 600;">
+                            @if($data['direction'] === 'rtl')
+                                تصفية
+                            @else
+                                Filter
+                            @endif
                         </button>
-                        <span class="products-count" id="productsCount">
-                            {{ $data['direction'] === 'rtl' ? 'جاري التحميل...' : 'Loading...' }}
+                    </div>
+                </div>
+
+                {{-- Sort Options --}}
+                <div class="row align-items-center g-3 mt-3 pt-3" style="border-top: 1px solid var(--surface-3);">
+                    <div class="col-12 col-md-auto">
+                        <span class="fw-semibold" style="color: var(--text-primary);">
+                            @if($data['direction'] === 'rtl')
+                                ترتيب حسب:
+                            @else
+                                Sort By:
+                            @endif
                         </span>
                     </div>
 
-                    <div class="toolbar-right">
-                        <div class="sort-dropdown">
-                            <select class="input-modern" id="sortProducts">
-                                <option value="default">{{ $data['direction'] === 'rtl' ? 'الترتيب الافتراضي' : 'Default Sorting' }}</option>
-                                <option value="price-asc">{{ $data['direction'] === 'rtl' ? 'السعر: من الأقل للأعلى' : 'Price: Low to High' }}</option>
-                                <option value="price-desc">{{ $data['direction'] === 'rtl' ? 'السعر: من الأعلى للأقل' : 'Price: High to Low' }}</option>
-                                <option value="name-asc">{{ $data['direction'] === 'rtl' ? 'الاسم: أ-ي' : 'Name: A-Z' }}</option>
-                                <option value="newest">{{ $data['direction'] === 'rtl' ? 'الأحدث' : 'Newest' }}</option>
-                            </select>
-                        </div>
-
-                        <div class="view-toggle">
-                            <button type="button" class="view-toggle-btn active" data-view="grid">
-                                <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20">
-                                    <path d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM13 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2h-2z"/>
-                                </svg>
-                            </button>
-                            <button type="button" class="view-toggle-btn" data-view="list">
-                                <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"/>
-                                </svg>
-                            </button>
-                        </div>
+                    {{-- Sort by Price --}}
+                    <div class="col-12 col-md">
+                        <label class="mb-2 fw-semibold" style="color: var(--text-primary); font-size: 14px;">
+                            @if($data['direction'] === 'rtl')
+                                السعر
+                            @else
+                                Price
+                            @endif
+                        </label>
+                        <select class="form-select sortBy" style="background: var(--surface-2); border: 1px solid var(--surface-3); color: var(--text-primary); border-radius: var(--radius-md);">
+                            <option value="">
+                                @if($data['direction'] === 'rtl')
+                                    اختر
+                                @else
+                                    Choose
+                                @endif
+                            </option>
+                            <option value="low-high" data-sort-by="price" data-sort-type="asc">
+                                @if($data['direction'] === 'rtl')
+                                    من الأقل للأعلى
+                                @else
+                                    Low To High
+                                @endif
+                            </option>
+                            <option value="high-to" data-sort-by="price" data-sort-type="desc">
+                                @if($data['direction'] === 'rtl')
+                                    من الأعلى للأقل
+                                @else
+                                    High To Low
+                                @endif
+                            </option>
+                        </select>
                     </div>
-                </div>
 
-                {{-- Products Grid --}}
-                <div class="products-grid" id="productsGrid" data-view="grid">
-                    {{-- Products will be loaded dynamically --}}
-                    <div class="loading-state">
-                        <div class="loading-spinner"></div>
-                        <p>{{ $data['direction'] === 'rtl' ? 'جاري تحميل المنتجات...' : 'Loading products...' }}</p>
+                    {{-- Sort by Name --}}
+                    <div class="col-12 col-md">
+                        <label class="mb-2 fw-semibold" style="color: var(--text-primary); font-size: 14px;">
+                            @if($data['direction'] === 'rtl')
+                                الاسم
+                            @else
+                                Name
+                            @endif
+                        </label>
+                        <select class="form-select sortBy" style="background: var(--surface-2); border: 1px solid var(--surface-3); color: var(--text-primary); border-radius: var(--radius-md);">
+                            <option value="">
+                                @if($data['direction'] === 'rtl')
+                                    اختر
+                                @else
+                                    Choose
+                                @endif
+                            </option>
+                            <option value="A-Z" data-sort-by="title" data-sort-type="asc">A-Z</option>
+                            <option value="Z-A" data-sort-by="title" data-sort-type="desc">Z-A</option>
+                        </select>
                     </div>
-                </div>
-
-                {{-- Pagination --}}
-                <div class="pagination-modern" id="pagination">
-                    {{-- Pagination will be loaded dynamically --}}
                 </div>
             </div>
+
+            {{-- Products Grid --}}
+            <section id="swap" class="shop-content">
+                <div class="products-area">
+                    @include(isset(getSetting()['card_style']) ?
+                        'includes.cart.product_card_'.getSetting()['card_style'] : "includes.cart.product_card_style1")
+                    <div class="row g-4 shop_page_product_card">
+                        {{-- Products loaded via JavaScript --}}
+                    </div>
+                </div>
+            </section>
+
+            {{-- Pagination --}}
+            <div class="pagination justify-content-between mt-5">
+                {{-- Pagination loaded via JavaScript --}}
+            </div>
         </div>
-    </div>
-</section>
+    </section>
+
+</div>
 
 <style>
-/* Page Header */
-.page-header-modern {
-    padding: var(--space-16) 0 var(--space-12);
-    background: linear-gradient(135deg, var(--bg-elevated) 0%, var(--bg-page) 100%);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
-}
-
-.page-header-content {
-    text-align: center;
-}
-
-.page-header-title {
-    font-size: var(--text-4xl);
-    font-weight: 800;
-    color: var(--text-primary);
-    margin-bottom: var(--space-4);
-}
-
-.page-header-description {
-    font-size: var(--text-lg);
-    color: var(--text-secondary);
-    margin-bottom: var(--space-6);
-}
-
-.breadcrumb-modern {
-    display: flex;
-    justify-content: center;
-}
-
-.breadcrumb-list {
-    display: flex;
-    align-items: center;
-    gap: var(--space-2);
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.breadcrumb-item {
-    display: flex;
-    align-items: center;
-    gap: var(--space-2);
-}
-
-.breadcrumb-item a {
-    display: flex;
-    align-items: center;
-    gap: var(--space-2);
-    color: var(--text-secondary);
-    text-decoration: none;
-    font-size: var(--text-sm);
-    transition: color var(--transition-base);
-}
-
-.breadcrumb-item a:hover {
-    color: var(--color-primary);
-}
-
-.breadcrumb-item.active span {
-    color: var(--text-primary);
-    font-weight: 600;
-    font-size: var(--text-sm);
-}
-
-.breadcrumb-item:not(:last-child)::after {
-    content: '/';
-    color: var(--text-muted);
-    margin-left: var(--space-2);
-}
-
-/* Shop Layout */
-.shop-section-modern {
-    padding: var(--space-16) 0;
-}
-
-.shop-layout {
-    display: grid;
-    grid-template-columns: 280px 1fr;
-    gap: var(--space-8);
-}
-
-/* Filters Sidebar */
-.shop-filters {
-    background: var(--bg-elevated);
-    border-radius: var(--radius-xl);
-    padding: var(--space-6);
-    height: fit-content;
-    position: sticky;
-    top: var(--space-6);
-    box-shadow: var(--shadow-sm);
-}
-
-.filters-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: var(--space-6);
-    padding-bottom: var(--space-4);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
-}
-
-.filters-title {
-    font-size: var(--text-lg);
-    font-weight: 700;
-    color: var(--text-primary);
-    margin: 0;
-}
-
-.filters-close {
-    display: none;
-    align-items: center;
-    justify-content: center;
-    width: 32px;
-    height: 32px;
-    background: transparent;
-    border: none;
-    color: var(--text-secondary);
-    cursor: pointer;
-    border-radius: var(--radius-md);
-    transition: all var(--transition-base);
-}
-
-.filters-close:hover {
-    background: var(--bg-hover);
-    color: var(--text-primary);
-}
-
-.filters-body {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-6);
-}
-
-.filter-group {
-    padding-bottom: var(--space-6);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
-}
-
-.filter-group:last-child {
-    border-bottom: none;
-    padding-bottom: 0;
-}
-
-.filter-group-title {
-    font-size: var(--text-base);
-    font-weight: 700;
-    color: var(--text-primary);
-    margin-bottom: var(--space-4);
-}
-
-.filter-group-content {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-3);
-}
-
-.filter-checkbox {
-    display: flex;
-    align-items: center;
-    gap: var(--space-3);
-    cursor: pointer;
-    font-size: var(--text-sm);
-}
-
-.filter-checkbox input[type="checkbox"] {
-    width: 18px;
-    height: 18px;
-    cursor: pointer;
-}
-
-.price-range-inputs {
-    display: flex;
-    align-items: center;
-    gap: var(--space-2);
-}
-
-.price-range-separator {
-    color: var(--text-muted);
-}
-
-/* Shop Content */
-.shop-content {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-6);
-}
-
-.shop-toolbar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: var(--space-5);
-    background: var(--bg-elevated);
-    border-radius: var(--radius-xl);
-    box-shadow: var(--shadow-sm);
-    flex-wrap: wrap;
-    gap: var(--space-4);
-}
-
-.toolbar-left {
-    display: flex;
-    align-items: center;
-    gap: var(--space-4);
-}
-
-.toolbar-right {
-    display: flex;
-    align-items: center;
-    gap: var(--space-4);
-}
-
-.products-count {
-    font-size: var(--text-sm);
-    color: var(--text-secondary);
-}
-
-.sort-dropdown select {
-    min-width: 200px;
-}
-
-.view-toggle {
-    display: flex;
-    gap: var(--space-2);
-    background: var(--bg-page);
-    padding: var(--space-1);
-    border-radius: var(--radius-lg);
-}
-
-.view-toggle-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 36px;
-    height: 36px;
-    background: transparent;
-    border: none;
-    color: var(--text-secondary);
-    cursor: pointer;
-    border-radius: var(--radius-md);
-    transition: all var(--transition-base);
-}
-
-.view-toggle-btn.active {
-    background: var(--bg-elevated);
-    color: var(--color-primary);
-    box-shadow: var(--shadow-sm);
-}
-
-/* Products Grid */
-.products-grid {
-    display: grid;
-    gap: var(--space-6);
-}
-
-.products-grid[data-view="grid"] {
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-}
-
-.products-grid[data-view="list"] {
-    grid-template-columns: 1fr;
-}
-
-.loading-state {
-    grid-column: 1 / -1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: var(--space-20);
-}
-
-.loading-spinner {
-    width: 48px;
-    height: 48px;
-    border: 4px solid var(--bg-hover);
-    border-top-color: var(--color-primary);
-    border-radius: 50%;
-    animation: spin 0.8s linear infinite;
-}
-
-@keyframes spin {
-    to { transform: rotate(360deg); }
-}
-
-/* Pagination */
-.pagination-modern {
-    display: flex;
-    justify-content: center;
-    gap: var(--space-2);
-    padding: var(--space-8) 0;
-}
-
-.pagination-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 40px;
-    height: 40px;
-    padding: 0 var(--space-3);
-    background: var(--bg-elevated);
-    border: 1px solid rgba(0, 0, 0, 0.08);
-    border-radius: var(--radius-md);
-    color: var(--text-primary);
-    font-weight: 600;
-    text-decoration: none;
-    transition: all var(--transition-base);
-}
-
-.pagination-btn:hover {
-    background: var(--color-primary);
-    color: white;
-    border-color: var(--color-primary);
-}
-
-.pagination-btn.active {
-    background: var(--color-primary);
-    color: white;
-    border-color: var(--color-primary);
-}
-
-/* Responsive */
-@media (max-width: 1200px) {
-    .shop-layout {
-        grid-template-columns: 260px 1fr;
-    }
-}
-
-@media (max-width: 992px) {
-    .shop-layout {
-        grid-template-columns: 1fr;
+    .variation_active {
+        border: 2px solid var(--color-primary) !important;
     }
 
-    .shop-filters {
-        position: fixed;
-        top: 0;
-        left: -100%;
-        width: 320px;
-        max-width: 90vw;
-        height: 100vh;
-        z-index: 1000;
-        overflow-y: auto;
-        transition: left var(--transition-base);
+    .price-active {
+        border: 2px solid var(--color-primary) !important;
     }
 
-    .shop-filters.show {
-        left: 0;
+    .form-select:focus,
+    .form-control:focus {
+        border-color: var(--color-primary);
+        box-shadow: 0 0 0 3px rgba(193, 154, 73, 0.1);
     }
 
-    [dir="rtl"] .shop-filters {
-        left: auto;
-        right: -100%;
+    #grid_4column.active,
+    #list_4column.active {
+        background: var(--color-primary) !important;
+        color: white !important;
     }
 
-    [dir="rtl"] .shop-filters.show {
-        right: 0;
+    .btn:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-lg);
+        transition: all 0.3s ease;
     }
-
-    .filters-close {
-        display: flex;
-    }
-
-    .products-grid[data-view="grid"] {
-        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-    }
-}
-
-@media (max-width: 768px) {
-    .page-header-title {
-        font-size: var(--text-3xl);
-    }
-
-    .shop-toolbar {
-        flex-direction: column;
-        align-items: stretch;
-    }
-
-    .toolbar-left,
-    .toolbar-right {
-        width: 100%;
-        justify-content: space-between;
-    }
-
-    .sort-dropdown select {
-        min-width: auto;
-        flex: 1;
-    }
-
-    .products-grid[data-view="grid"] {
-        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    }
-}
-
-@media (max-width: 576px) {
-    .products-grid[data-view="grid"] {
-        grid-template-columns: 1fr;
-    }
-}
 </style>
 
 @endsection
 
 @section('script')
 <script>
-$(document).ready(function() {
-    // Toggle filters on mobile
-    $('#toggleFilters').click(function() {
-        $('#shopFilters').addClass('show');
+    var language_id = localStorage.getItem('languageId');
+    var attribute_id = [];
+    var attribute = [];
+    var variation_id = [];
+    var variation = [];
+    var sortBy = "";
+    var sortType = "";
+    var priceFromSidebar = "{{ isset($_GET['price']) ? $_GET['price'] : '' }}";
+    var shopStyle = "{{ getSetting()['shop'] }}";
+
+    var badgeSale = '{{ $data["direction"] === "rtl" ? "خصم" : "SALE" }}';
+    var badgeFeatured = '{{ $data["direction"] === "rtl" ? "مميز" : "FEATURED" }}';
+    var badgeNew = '{{ $data["direction"] === "rtl" ? "جديد" : "NEW" }}';
+    var addToCartText = '{{ $data["direction"] === "rtl" ? "أضف للسلة" : "Add To Cart" }}';
+    var viewDetailText = '{{ $data["direction"] === "rtl" ? "عرض التفاصيل" : "View Detail" }}';
+    var showingText = '{{ $data["direction"] === "rtl" ? "عرض من" : "Showing From" }}';
+    var ofText = '{{ $data["direction"] === "rtl" ? "من" : "of" }}';
+    var resultsText = '{{ $data["direction"] === "rtl" ? "نتيجة" : "results" }}';
+    var loadMoreText = '{{ $data["direction"] === "rtl" ? "تحميل المزيد" : "Load More" }}';
+    var noMoreItemsText = '{{ $data["direction"] === "rtl" ? "لا توجد منتجات أخرى" : "No More Items" }}';
+
+    $(document).ready(function() {
+        fetchProduct(1);
+        $(".variaion-filter").each(function() {
+            if ($(this).val() != "") {
+                attribute_id.push($(this).attr('data-attribute-id'));
+                variation_id.push($(this).val());
+                attribute.push($(this).attr('data-attribute-name'));
+                variation.push($('option:selected', this).attr('data-variation-name'));
+            }
+        });
     });
 
-    $('#closeFilters').click(function() {
-        $('#shopFilters').removeClass('show');
-    });
+    $('.sortBy').change(function() {
+        sortBy = $('option:selected', this).attr('data-sort-by')
+        sortType = $('option:selected', this).attr('data-sort-type')
+        $(".shop_page_product_card").html('');
+        fetchProduct(1);
+    })
 
-    // View toggle
-    $('.view-toggle-btn').click(function() {
-        $('.view-toggle-btn').removeClass('active');
-        $(this).addClass('active');
-        const view = $(this).data('view');
-        $('#productsGrid').attr('data-view', view);
-    });
+    function fetchProduct(page) {
+        var limit = "{{ isset($_GET['limit']) ? $_GET['limit'] : '12' }}";
+        var category = "{{ isset($_GET['category']) ? $_GET['category'] : '' }}";
+        var varations = "{{ isset($_GET['variation_id']) ? $_GET['variation_id'] : '' }}";
+        var price_range = "{{ isset($_GET['price']) ? $_GET['price'] : '' }}";
 
-    // Load products
-    loadProducts();
-    loadCategories();
-});
+        var url = "{{ url('') }}" + '/api/client/products?page=' + page + '&limit=' + limit +
+            '&getDetail=1&language_id=' + language_id + '&currency=' + localStorage.getItem("currency");
 
-function loadProducts() {
-    var url = "{{ url('') }}" +
-        '/api/client/products?limit=12&getCategory=1&getDetail=1&language_id=' + languageId +
-        '&currency=' + localStorage.getItem("currency");
+        if (category != "")
+            url += "&productCategories=" + category;
+        if (varations != "")
+            url += "&variations=" + varations;
+        if (price_range != "") {
+            price_range = price_range.split("-");
+            url += "&price_from=" + price_range[0];
+            url += "&price_to=" + price_range[1];
+        }
 
-    $.ajax({
-        type: 'get',
-        url: url,
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
-            clientid: "{{ isset(getSetting()['client_id']) ? getSetting()['client_id'] : '' }}",
-            clientsecret: "{{ isset(getSetting()['client_secret']) ? getSetting()['client_secret'] : '' }}",
-        },
-        success: function(data) {
-            if (data.status == 'Success' && Array.isArray(data.data) && data.data.length) {
-                renderProducts(data.data);
-                $('#productsCount').text(data.data.length + ' {{ $data['direction'] === 'rtl' ? 'منتج' : 'products' }}');
+        if (sortBy != "" && sortType != "")
+            url += "&sortBy=" + sortBy + "&sortType=" + sortType;
+        var searchinput = "{{ isset($_GET['search']) ? $_GET['search'] : '' }}";
+        if (searchinput != "")
+            url += "&searchParameter=" + searchinput;
+        var appendTo = 'shop_page_product_card';
+        $.ajax({
+            type: 'get',
+            url: url,
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+                clientid: "{{ isset(getSetting()['client_id']) ? getSetting()['client_id'] : '' }}",
+                clientsecret: "{{ isset(getSetting()['client_secret']) ? getSetting()['client_secret'] : '' }}",
+            },
+            beforeSend: function() {},
+            success: function(data) {
+                if (data.status == 'Success' && Array.isArray(data.data)) {
+                    if (data.meta.last_page < page) {
+                        $('.load-more-products').attr('disabled', true);
+                        $('.load-more-products').html(noMoreItemsText);
+                        return
+                    }
+                    var pagination =
+                        '<label for="staticEmail" class="col-form-label">' + showingText + ' <span class="showing_record">' +
+                        data.meta.to + '</span>&nbsp;' + ofText + '&nbsp;<span class="showing_total_record">' + data
+                        .meta.total + '</span>&nbsp;' + resultsText + '.</label>';
+                    var nextPage = parseInt(data.meta.current_page) + 1;
+                    pagination += '<div class="col-12 col-sm-6">';
+                    pagination += '<ol class="loader-page mt-0">';
+                    pagination += '<li class="loader-page-item">';
+                    pagination += '<button class="load-more-products btn btn-secondary" data-page="' +
+                        nextPage + '">' + loadMoreText + '</button>';
+                    pagination += '</li>';
+                    pagination += '</ol>';
+                    pagination += '</div>';
+
+                    $('.pagination').html(pagination);
+                    const templ = document.getElementById("product-card-template");
+                    if (!templ) return;
+                    for (i = 0; i < data.data.length; i++) {
+                        const clone = templ.content.cloneNode(true);
+                        const product = data.data[i] || {};
+                        const details = Array.isArray(product.detail) && product.detail.length ? product.detail[0] : null;
+                        const galleryDetails = product.product_gallary && Array.isArray(product.product_gallary.detail)
+                            ? product.product_gallary.detail : [];
+                        const productImage = galleryDetails[1] || galleryDetails[0];
+                        const categories = Array.isArray(product.category) ? product.category : [];
+                        const categoryDetails = categories[0] && categories[0].category_detail && Array.isArray(categories[0].category_detail.detail)
+                            ? categories[0].category_detail.detail : [];
+
+                        clone.querySelector(".div-class").classList.add('col-12');
+                        if (shopStyle.split('style')[1] == 1)
+                            clone.querySelector(".div-class").classList.add('col-lg-3');
+                        else
+                            clone.querySelector(".div-class").classList.add('col-lg-4');
+                        clone.querySelector(".div-class").classList.add('col-md-6');
+                        clone.querySelector(".div-class").classList.add('griding');
+                        clone.querySelector(".wishlist-icon").setAttribute('data-id', data.data[i].product_id);
+                        clone.querySelector(".wishlist-icon").setAttribute('data-type', data.data[i].product_type);
+                        clone.querySelector(".wishlist-icon").setAttribute('onclick', 'addWishlist(this)');
+
+                        clone.querySelector(".wishlist-icon-2").setAttribute('data-id', data.data[i].product_id);
+                        clone.querySelector(".wishlist-icon-2").setAttribute('data-type', data.data[i].product_type);
+                        clone.querySelector(".wishlist-icon-2").setAttribute('onclick', 'addWishlist(this)');
+
+                        clone.querySelector(".compare-icon").setAttribute('data-id', data.data[i].product_id);
+                        clone.querySelector(".compare-icon").setAttribute('data-type', data.data[i].product_type);
+                        clone.querySelector(".quick-view-icon").setAttribute('data-id', data.data[i].product_id);
+                        clone.querySelector(".compare-icon").setAttribute('onclick', 'addCompare(this)');
+                        clone.querySelector(".quick-view-icon").setAttribute('onclick', 'quiclViewData(this)');
+
+                        clone.querySelector(".quantity-right-plus").setAttribute('data-field', i);
+                        clone.querySelector(".quantity-left-minus").setAttribute('data-field', i);
+                        clone.querySelector(".qty-input").setAttribute('id', 'quantity'+i);
+                        clone.querySelector(".item-quantity").classList.add('itemqty'+i);
+
+                        if (productImage && productImage.gallary_path) {
+                            clone.querySelector(".product-card-image").setAttribute('src', productImage.gallary_path);
+                        }
+                        if (details && details.title) {
+                            clone.querySelector(".product-card-image").setAttribute('alt', details.title);
+                        }
+                        if (categoryDetails[0] && categoryDetails[0].name) {
+                            clone.querySelector(".product-card-category").innerHTML = categoryDetails[0].name;
+                        }
+                        if (details) {
+                            clone.querySelector(".product-card-name").innerHTML = details.title || 'Product';
+                            clone.querySelector(".product-card-name").setAttribute('href', '/product/' + data.data[i].product_id + '/' + data.data[i].product_slug);
+                            var desc = typeof details.desc === 'string' ? details.desc : '';
+                            clone.querySelector(".product-card-desc").innerHTML = desc.substring(0, 80);
+                        }
+
+                        if (data.data[i].product_type == 'simple') {
+                            if (data.data[i].product_discount_price == '' || data.data[i].product_discount_price == null || data.data[i].product_discount_price == 'null') {
+                                clone.querySelector(".product-card-price").innerHTML = data.data[i].product_price_symbol;
+                            } else {
+                                clone.querySelector(".product-card-price").innerHTML = data.data[i].product_discount_price_symbol + '<span>' + data.data[i].product_price_symbol + '</span>';
+                            }
+                        } else {
+                            clone.querySelector(".product-card-price").innerHTML = data.data[i].product_variable_price_symbol;
+                        }
+
+                        var bages = '';
+                        if(data.data[i].discount_percentage > 0)
+                            bages +='<span class="badge badge-danger">'+data.data[i].discount_percentage+'%</span>';
+                        if(data.data[i].is_featured != "0")
+                            bages +='<span class="badge badge-success">' + badgeFeatured + '</span>';
+                        if(data.data[i].new != "0")
+                            bages +='<span class="badge badge-info">' + badgeNew + '</span>';
+
+                        clone.querySelector(".badges").innerHTML = bages;
+
+                        if (data.data[i].product_type == 'simple') {
+                            clone.querySelector(".product-card-link").setAttribute('onclick', "addToCart(this)");
+                            clone.querySelector(".product-card-link").setAttribute('data-id', data.data[i].product_id);
+                            clone.querySelector(".product-card-link").setAttribute('data-type', data.data[i].product_type);
+                            clone.querySelector(".product-card-link").innerHTML = addToCartText;
+                            clone.querySelector(".product-card-link").setAttribute('data-field', i);
+
+                            clone.querySelector(".add-to-card-bag").setAttribute('onclick', "addToCart(this)");
+                            clone.querySelector(".add-to-card-bag").setAttribute('data-id', data.data[i].product_id);
+                            clone.querySelector(".add-to-card-bag").setAttribute('data-type', data.data[i].product_type);
+                            clone.querySelector(".add-to-card-bag").setAttribute('data-field', i);
+                        } else {
+                            clone.querySelector('.itemqty'+i).classList.add('d-none');
+                            clone.querySelector(".add-to-card-bag").classList.add('d-none');
+                            clone.querySelector(".product-card-link").classList.remove('d-g-none');
+                            clone.querySelector(".product-card-link").classList.remove('listing-none');
+                            clone.querySelector(".product-card-link").innerHTML = viewDetailText;
+                            clone.querySelector(".product-card-link").setAttribute('href', '/product/' + data.data[i].product_id + '/' + data.data[i].product_slug);
+                        }
+
+                        $("." + appendTo).append(clone);
+                    }
+                }
+            },
+            error: function(data) {},
+        });
+    }
+
+    var limit = "{{ isset($_GET['limit']) ? $_GET['limit'] : '12' }}";
+    var shopRedirecturl = "{{ url('/shop') }}" + '?limit=' + limit;
+
+    $('.category-filter').change(function() {
+        $(this).attr('selected', true);
+    })
+    $('.price-filter').change(function() {
+        $(this).attr('selected', true);
+    })
+
+    $('.variaion-filter').on('change', function() {
+        if (attribute_id.indexOf($(this).attr('data-attribute-id')) === -1) {
+            attribute_id.push($(this).attr('data-attribute-id'));
+            variation_id.push($(this).val());
+            attribute.push($(this).attr('data-attribute-name'));
+            variation.push($('option:selected', this).attr('data-variation-name'));
+        } else {
+            var index = attribute_id.indexOf($(this).attr('data-attribute-id'));
+            if ($(this).val() == "") {
+                attribute_id.splice(index, 1);
+                variation_id.splice(index, 1);
+                attribute.splice(index, 1);
+                variation.splice(index, 1);
             } else {
-                $('#productsGrid').html('<div class="loading-state"><p>{{ $data['direction'] === 'rtl' ? 'لا توجد منتجات' : 'No products found' }}</p></div>');
-            }
-        },
-        error: function() {
-            $('#productsGrid').html('<div class="loading-state"><p>{{ $data['direction'] === 'rtl' ? 'حدث خطأ في تحميل المنتجات' : 'Error loading products' }}</p></div>');
-        }
-    });
-}
-
-function renderProducts(products) {
-    let html = '';
-    products.forEach((product, index) => {
-        const image = product.product_gallary?.detail?.[0]?.gallary_path || '';
-        const title = product.detail?.[0]?.title || '';
-        const price = product.product_discount_price_symbol || product.product_price_symbol || '';
-        const oldPrice = product.product_discount_price ? product.product_price_symbol : '';
-
-        html += `
-            <div class="product-card-modern">
-                <div class="product-card-modern__image-wrapper">
-                    <img src="${image}" alt="${title}" class="product-card-modern__image">
-                    <div class="product-card-modern__actions">
-                        <button class="product-action-btn" onclick="addWishlist(this)" data-id="${product.product_id}" data-type="${product.product_type}">
-                            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
-                            </svg>
-                        </button>
-                    </div>
-                </div>
-                <div class="product-card-modern__content">
-                    <h3 class="product-card-modern__title">
-                        <a href="/product/${product.product_id}/${product.product_slug}">${title}</a>
-                    </h3>
-                    <div class="product-card-modern__footer">
-                        <div class="product-card-modern__price">
-                            <span class="product-price-current">${price}</span>
-                            ${oldPrice ? `<span class="product-price-old">${oldPrice}</span>` : ''}
-                        </div>
-                        <button class="product-card-modern__cart-btn" onclick="addToCart(this)" data-id="${product.product_id}" data-type="${product.product_type}" data-field="${index}">
-                            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/>
-                            </svg>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        `;
-    });
-
-    $('#productsGrid').html(html);
-}
-
-function loadCategories() {
-    var url = "{{ url('') }}" +
-        '/api/client/category?getDetail=1&page=1&limit=20&language_id=' + languageId;
-
-    $.ajax({
-        type: 'get',
-        url: url,
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
-            clientid: "{{ isset(getSetting()['client_id']) ? getSetting()['client_id'] : '' }}",
-            clientsecret: "{{ isset(getSetting()['client_secret']) ? getSetting()['client_secret'] : '' }}",
-        },
-        success: function(data) {
-            if (data.status == 'Success' && Array.isArray(data.data) && data.data.length) {
-                let html = '';
-                data.data.forEach(category => {
-                    html += `
-                        <label class="filter-checkbox">
-                            <input type="checkbox" value="${category.id}" class="category-filter">
-                            <span class="filter-checkbox-label">${category.name}</span>
-                        </label>
-                    `;
-                });
-                $('#categoriesFilter').html(html);
+                attribute_id[index] = $(this).attr('data-attribute-id');
+                variation_id[index] = $(this).val();
+                attribute[index] = $(this).attr('data-attribute-name');
+                variation[index] = $('option:selected', this).attr('data-variation-name');
             }
         }
+    })
+
+    $('.price-range-list').on('click', function() {
+        var price_range = $(this).attr('data-price-range');
+        $('.price-range-list').each(function() {
+            $('.price-range-list').removeClass("price-active");
+        })
+        $('.price-range-list' + '-' + price_range).addClass("price-active");
+        priceFromSidebar = price_range;
     });
-}
+
+    $('.variation_list_item').on('click', function() {
+        var variation_name = $(this).attr('data-variation-name');
+        var attribute_name = $(this).attr('data-attribute-name').split(' ').join('_');
+
+        $('.attribute_' + attribute_name + '_div').each(function() {
+            $('.attribute_' + attribute_name + '_div').removeClass("variation_active");
+        })
+
+        $('.' + variation_name + '-' + attribute_name).addClass("variation_active");
+
+        if (attribute_id.indexOf($(this).attr('data-attribute-id')) === -1) {
+            attribute_id.push($(this).attr('data-attribute-id'));
+            attribute.push($(this).attr('data-attribute-name'));
+            variation_id.push($(this).attr('data-variation-id'));
+            variation.push($(this).attr('data-variation-name'));
+        } else {
+            var index = attribute_id.indexOf($(this).attr('data-attribute-id'));
+            if ($(this).attr('data-variation-id') == "") {
+                attribute_id.splice(index, 1);
+                variation_id.splice(index, 1);
+                attribute.splice(index, 1);
+                variation.splice(index, 1);
+            } else {
+                attribute_id[index] = $(this).attr('data-attribute-id');
+                variation_id[index] = $(this).attr('data-variation-id');
+                attribute[index] = $(this).attr('data-attribute-name');
+                variation[index] = $(this).attr('data-variation-name');
+            }
+        }
+    })
+
+    $('#filter').click(function(e) {
+        e.preventDefault();
+        filter();
+    })
+
+    $('.filter-from-sidebar').click(function() {
+        filter();
+    })
+
+    function filter() {
+        var limit = "{{ isset($_GET['limit']) ? $_GET['limit'] : '12' }}";
+        var searchinput = "{{ isset($_GET['search']) ? $_GET['search'] : '' }}";
+
+        if ($('.category-filter').val() != "" && $('.category-filter').val() != undefined) {
+            shopRedirecturl += "&category=" + $('.category-filter').val();
+        }
+        if ($('.price-filter').val() != "" && $('.price-filter').val() != undefined) {
+            shopRedirecturl += "&price=" + $('.price-filter').val();
+        } else if (priceFromSidebar != "") {
+            shopRedirecturl += "&price=" + priceFromSidebar;
+        }
+
+        if (searchinput != "")
+            shopRedirecturl += "&searchParameter=" + searchinput;
+        if (variation_id.length > 0)
+            shopRedirecturl += "&attribute=" + attribute;
+        if (variation_id.length > 0)
+            shopRedirecturl += "&variation=" + variation;
+        if (variation_id.length > 0)
+            shopRedirecturl += "&attribute_id=" + attribute_id;
+        if (variation_id.length > 0)
+            shopRedirecturl += "&variation_id=" + variation_id;
+        window.location.href = shopRedirecturl;
+    }
+
+    $(document).on('click', '.load-more-products', function() {
+        var pageToLoad = $(this).attr('data-page');
+        fetchProduct(pageToLoad);
+    })
+
+    $(document).on('click', '.quantity-right-plus', function() {
+        var row_id = $(this).attr('data-field');
+        var quantity = $('#quantity' + row_id).val();
+        $('#quantity' + row_id).val(parseInt(quantity) + 1);
+    })
+
+    $(document).on('click', '.quantity-left-minus', function() {
+        var row_id = $(this).attr('data-field');
+        var quantity = $('#quantity' + row_id).val();
+        if (quantity > 1)
+            $('#quantity' + row_id).val(parseInt(quantity) - 1);
+    })
 </script>
 @endsection

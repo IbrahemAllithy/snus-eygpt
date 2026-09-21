@@ -1,663 +1,822 @@
 @extends('layouts.master')
+
 @section('content')
+<div class="main" style="background: var(--surface-0);">
 
-{{-- Hero Section - Bilingual --}}
-<section class="hero-section-bilingual" data-aos="fade-in">
-    <div class="hero-pattern-overlay"></div>
-    <div class="container" style="position: relative; z-index: 2;">
-        <div class="row align-items-center min-vh-70">
-            <div class="col-lg-6 mb-5 mb-lg-0" data-aos="fade-up" data-aos-delay="100">
-                <div class="hero-content">
-                    @if($data['direction'] === 'rtl')
-                        <h1 class="hero-title">اكتشف أفضل منتجات <span class="text-gradient">السنس</span> في مصر</h1>
-                        <p class="hero-description">منتجات أصلية 100%، أسعار منافسة، وتوصيل سريع لجميع المحافظات</p>
-                        <div class="hero-features">
-                            <div class="hero-feature-item">
-                                <svg class="hero-feature-icon" width="20" height="20" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-                                </svg>
-                                <span>شحن مجاني للطلبات فوق 500 جنيه</span>
-                            </div>
-                            <div class="hero-feature-item">
-                                <svg class="hero-feature-icon" width="20" height="20" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-                                </svg>
-                                <span>ضمان استرجاع المال خلال 14 يوم</span>
-                            </div>
-                        </div>
-                        <div class="hero-actions">
-                            <a href="/shop" class="btn-modern btn-modern-primary btn-modern-lg">
-                                <span>تسوق الآن</span>
-                                <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
-                                </svg>
-                            </a>
-                            <a href="#featured" class="btn-modern btn-modern-secondary btn-modern-lg">
-                                <span>المنتجات المميزة</span>
-                            </a>
-                        </div>
-                    @else
-                        <h1 class="hero-title">Discover the Best <span class="text-gradient">Snus Products</span> in Egypt</h1>
-                        <p class="hero-description">100% Original Products, Competitive Prices, and Fast Delivery to All Governorates</p>
-                        <div class="hero-features">
-                            <div class="hero-feature-item">
-                                <svg class="hero-feature-icon" width="20" height="20" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-                                </svg>
-                                <span>Free shipping on orders over 500 EGP</span>
-                            </div>
-                            <div class="hero-feature-item">
-                                <svg class="hero-feature-icon" width="20" height="20" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-                                </svg>
-                                <span>14-day money back guarantee</span>
-                            </div>
-                        </div>
-                        <div class="hero-actions">
-                            <a href="/shop" class="btn-modern btn-modern-primary btn-modern-lg">
-                                <span>Shop Now</span>
-                                <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
-                                </svg>
-                            </a>
-                            <a href="#featured" class="btn-modern btn-modern-secondary btn-modern-lg">
-                                <span>Featured Products</span>
-                            </a>
-                        </div>
-                    @endif
+    {{-- Hero Section --}}
+    <section class="hero-section-modern" data-aos="fade-in" style="background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%); padding: 4rem 0; position: relative; overflow: hidden;">
+        <div class="hero-pattern" style="position: absolute; inset: 0; opacity: 0.1; background: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(255,255,255,0.05) 10px, rgba(255,255,255,0.05) 20px);"></div>
+        <div class="container" style="position: relative; z-index: 2;">
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-5 mb-lg-0" data-aos="fade-right">
+                    <h1 class="text-white fw-bold mb-3" style="font-size: clamp(2rem, 5vw, 3rem); line-height: 1.2;">
+                        @if($data['direction'] === 'rtl')
+                            اكتشف أفضل منتجات <span style="opacity: 0.9;">السنس</span> في مصر
+                        @else
+                            Discover the Best <span style="opacity: 0.9;">Snus</span> Products in Egypt
+                        @endif
+                    </h1>
+                    <p class="text-white mb-4" style="font-size: clamp(1rem, 2vw, 1.2rem); opacity: 0.95;">
+                        @if($data['direction'] === 'rtl')
+                            منتجات أصلية، أسعار منافسة، وتوصيل سريع لجميع المحافظات
+                        @else
+                            Authentic products, competitive prices, and fast delivery to all governorates
+                        @endif
+                    </p>
+                    <div class="hero-buttons d-flex flex-wrap gap-3">
+                        <a href="{{ url('/shop') }}" class="btn btn-light btn-lg rounded-pill px-4 py-3" style="font-weight: 600; box-shadow: var(--shadow-lg);">
+                            <i class="fas fa-shopping-bag me-2"></i>
+                            @if($data['direction'] === 'rtl')
+                                تسوق الآن
+                            @else
+                                Shop Now
+                            @endif
+                        </a>
+                        <a href="#categories" class="btn btn-outline-light btn-lg rounded-pill px-4 py-3" style="font-weight: 600; border-width: 2px;">
+                            <i class="fas fa-th-large me-2"></i>
+                            @if($data['direction'] === 'rtl')
+                                التصنيفات
+                            @else
+                                Categories
+                            @endif
+                        </a>
+                    </div>
                 </div>
-            </div>
-            <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
-                <div class="hero-image-modern">
-                    <div class="hero-glow-effect"></div>
-                    <img src="{{ asset('assets/images/hero-snus.png') }}"
-                         alt="{{ $data['direction'] === 'rtl' ? 'منتجات السنس' : 'Snus Products' }}"
-                         class="hero-main-image"
-                         loading="eager">
+                <div class="col-lg-6" data-aos="fade-left" data-aos-delay="200">
+                    <div class="hero-image-wrapper" style="position: relative;">
+                        <div class="hero-glow" style="position: absolute; inset: -20%; background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 70%); filter: blur(40px); z-index: 0;"></div>
+                        <img src="https://via.placeholder.com/600x400/C19A49/ffffff?text=Snus+Egypt" alt="Snus Products" loading="lazy" style="border-radius: var(--radius-lg); box-shadow: var(--shadow-xl); position: relative; z-index: 1; width: 100%; height: auto;">
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-{{-- Trust Badges Section --}}
-<section class="trust-badges-section" data-aos="fade-up">
-    <div class="container">
-        <div class="trust-badges-grid">
-            <div class="trust-badge" data-aos="zoom-in" data-aos-delay="100">
-                <div class="trust-badge-icon trust-badge-icon-success">
-                    <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
-                    </svg>
+    {{-- Features Section --}}
+    <section class="features-section py-5" data-aos="fade-up">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="100">
+                    <div class="feature-card p-4 text-center h-100" style="background: var(--surface-1); border-radius: var(--radius-lg); box-shadow: var(--shadow-md); transition: all 0.3s ease;">
+                        <div class="feature-icon mx-auto mb-3" style="width: 70px; height: 70px; border-radius: 50%; background: linear-gradient(135deg, #10b981 0%, #059669 100%); display: flex; align-items: center; justify-content: center;">
+                            <i class="fas fa-shipping-fast" style="font-size: 1.8rem; color: white;"></i>
+                        </div>
+                        <h4 class="fw-bold mb-2" style="color: var(--text-primary); font-size: 1.1rem;">
+                            @if($data['direction'] === 'rtl')
+                                شحن سريع
+                            @else
+                                Fast Shipping
+                            @endif
+                        </h4>
+                        <p class="mb-0" style="color: var(--text-secondary); font-size: 0.95rem;">
+                            @if($data['direction'] === 'rtl')
+                                توصيل لجميع المحافظات في أقل من 48 ساعة
+                            @else
+                                Delivery to all governorates in less than 48 hours
+                            @endif
+                        </p>
+                    </div>
                 </div>
-                <div class="trust-badge-content">
-                    <h4>{{ $data['direction'] === 'rtl' ? 'شحن سريع' : 'Fast Shipping' }}</h4>
-                    <p>{{ $data['direction'] === 'rtl' ? 'توصيل في 48 ساعة' : 'Delivery in 48 hours' }}</p>
-                </div>
-            </div>
 
-            <div class="trust-badge" data-aos="zoom-in" data-aos-delay="200">
-                <div class="trust-badge-icon trust-badge-icon-primary">
-                    <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
-                    </svg>
+                <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="200">
+                    <div class="feature-card p-4 text-center h-100" style="background: var(--surface-1); border-radius: var(--radius-lg); box-shadow: var(--shadow-md); transition: all 0.3s ease;">
+                        <div class="feature-icon mx-auto mb-3" style="width: 70px; height: 70px; border-radius: 50%; background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%); display: flex; align-items: center; justify-content: center;">
+                            <i class="fas fa-shield-alt" style="font-size: 1.8rem; color: white;"></i>
+                        </div>
+                        <h4 class="fw-bold mb-2" style="color: var(--text-primary); font-size: 1.1rem;">
+                            @if($data['direction'] === 'rtl')
+                                منتجات أصلية
+                            @else
+                                Authentic Products
+                            @endif
+                        </h4>
+                        <p class="mb-0" style="color: var(--text-secondary); font-size: 0.95rem;">
+                            @if($data['direction'] === 'rtl')
+                                جميع المنتجات أصلية 100% ومضمونة
+                            @else
+                                All products are 100% authentic and guaranteed
+                            @endif
+                        </p>
+                    </div>
                 </div>
-                <div class="trust-badge-content">
-                    <h4>{{ $data['direction'] === 'rtl' ? 'منتجات أصلية' : '100% Original' }}</h4>
-                    <p>{{ $data['direction'] === 'rtl' ? 'مضمونة 100%' : 'Guaranteed authentic' }}</p>
-                </div>
-            </div>
 
-            <div class="trust-badge" data-aos="zoom-in" data-aos-delay="300">
-                <div class="trust-badge-icon trust-badge-icon-info">
-                    <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z"/>
-                    </svg>
+                <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="300">
+                    <div class="feature-card p-4 text-center h-100" style="background: var(--surface-1); border-radius: var(--radius-lg); box-shadow: var(--shadow-md); transition: all 0.3s ease;">
+                        <div class="feature-icon mx-auto mb-3" style="width: 70px; height: 70px; border-radius: 50%; background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%); display: flex; align-items: center; justify-content: center;">
+                            <i class="fas fa-headset" style="font-size: 1.8rem; color: white;"></i>
+                        </div>
+                        <h4 class="fw-bold mb-2" style="color: var(--text-primary); font-size: 1.1rem;">
+                            @if($data['direction'] === 'rtl')
+                                دعم 24/7
+                            @else
+                                24/7 Support
+                            @endif
+                        </h4>
+                        <p class="mb-0" style="color: var(--text-secondary); font-size: 0.95rem;">
+                            @if($data['direction'] === 'rtl')
+                                خدمة عملاء متاحة على مدار الساعة
+                            @else
+                                Customer service available around the clock
+                            @endif
+                        </p>
+                    </div>
                 </div>
-                <div class="trust-badge-content">
-                    <h4>{{ $data['direction'] === 'rtl' ? 'دعم 24/7' : '24/7 Support' }}</h4>
-                    <p>{{ $data['direction'] === 'rtl' ? 'نحن هنا للمساعدة' : 'We are here to help' }}</p>
-                </div>
-            </div>
 
-            <div class="trust-badge" data-aos="zoom-in" data-aos-delay="400">
-                <div class="trust-badge-icon trust-badge-icon-warning">
-                    <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/>
-                    </svg>
-                </div>
-                <div class="trust-badge-content">
-                    <h4>{{ $data['direction'] === 'rtl' ? 'دفع آمن' : 'Secure Payment' }}</h4>
-                    <p>{{ $data['direction'] === 'rtl' ? 'معاملات مشفرة' : 'Encrypted transactions' }}</p>
+                <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="400">
+                    <div class="feature-card p-4 text-center h-100" style="background: var(--surface-1); border-radius: var(--radius-lg); box-shadow: var(--shadow-md); transition: all 0.3s ease;">
+                        <div class="feature-icon mx-auto mb-3" style="width: 70px; height: 70px; border-radius: 50%; background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); display: flex; align-items: center; justify-content: center;">
+                            <i class="fas fa-wallet" style="font-size: 1.8rem; color: white;"></i>
+                        </div>
+                        <h4 class="fw-bold mb-2" style="color: var(--text-primary); font-size: 1.1rem;">
+                            @if($data['direction'] === 'rtl')
+                                دفع آمن
+                            @else
+                                Secure Payment
+                            @endif
+                        </h4>
+                        <p class="mb-0" style="color: var(--text-secondary); font-size: 0.95rem;">
+                            @if($data['direction'] === 'rtl')
+                                طرق دفع متعددة وآمنة تمامًا
+                            @else
+                                Multiple payment methods, completely secure
+                            @endif
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-{{-- Include existing sections --}}
-@include(isset(getSetting()['slider_style']) ? 'includes.sliders.slider-'.getSetting()['slider_style'] : 'includes.sliders.slider-style1')
+    @include(isset(getSetting()['slider_style']) ? 'includes.sliders.slider-'.getSetting()['slider_style'] : 'includes.sliders.slider-style1')
 
-@php($homeTemplates = homePageBuilderJson())
-@if (count($homeTemplates))
-    @foreach ($homeTemplates as $template)
-        @if (!empty($template['template_postfix']) && empty($template['skip']) && !empty($template['display']))
-            @include('sections.home-'.$template['template_postfix'].'-section')
-        @endif
-    @endforeach
-@else
-    @include('sections.home-category-section')
-    @include('sections.home-new-arrival-section')
-    @include('sections.home-tabs-section')
-    @include('sections.home-week-sale-section')
-    @include('sections.home-services-section')
-@endif
+    @php($homeTemplates = homePageBuilderJson())
+    @if (count($homeTemplates))
+        @foreach ($homeTemplates as $template)
+            @if (!empty($template['template_postfix']) && empty($template['skip']) && !empty($template['display']))
+                @include('sections.home-'.$template['template_postfix'].'-section')
+            @endif
+        @endforeach
+    @else
+        @include('sections.home-category-section')
+        @include('sections.home-new-arrival-section')
+        @include('sections.home-tabs-section')
+        @include('sections.home-week-sale-section')
+        @include('sections.home-services-section')
+    @endif
+
+</div>
 
 <style>
-/* Hero Section Styles */
-.hero-section-bilingual {
-    position: relative;
-    padding: var(--space-20) 0 var(--space-16);
-    background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
-    overflow: hidden;
-}
-
-.hero-pattern-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-image:
-        radial-gradient(circle at 20% 50%, rgba(193, 154, 73, 0.08) 0%, transparent 50%),
-        radial-gradient(circle at 80% 80%, rgba(26, 51, 83, 0.05) 0%, transparent 50%);
-    pointer-events: none;
-}
-
-.min-vh-70 {
-    min-height: 70vh;
-}
-
-.hero-content {
-    max-width: 600px;
-}
-
-.hero-title {
-    font-size: clamp(2rem, 5vw, 3.5rem);
-    font-weight: 800;
-    line-height: 1.1;
-    margin-bottom: var(--space-6);
-    color: var(--text-primary);
-}
-
-.text-gradient {
-    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-}
-
-.hero-description {
-    font-size: var(--text-lg);
-    color: var(--text-secondary);
-    margin-bottom: var(--space-8);
-    line-height: 1.7;
-}
-
-.hero-features {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-3);
-    margin-bottom: var(--space-8);
-}
-
-.hero-feature-item {
-    display: flex;
-    align-items: center;
-    gap: var(--space-3);
-    font-size: var(--text-sm);
-    color: var(--text-secondary);
-}
-
-.hero-feature-icon {
-    color: var(--color-success);
-    flex-shrink: 0;
-}
-
-.hero-actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-4);
-}
-
-.btn-modern {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: var(--space-2);
-    padding: var(--space-3) var(--space-6);
-    font-size: var(--text-base);
-    font-weight: 600;
-    border-radius: var(--radius-full);
-    text-decoration: none;
-    transition: all var(--transition-base);
-    border: 2px solid transparent;
-}
-
-.btn-modern-lg {
-    padding: var(--space-4) var(--space-8);
-    font-size: var(--text-lg);
-}
-
-.btn-modern-primary {
-    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
-    color: var(--text-on-primary);
-    box-shadow: 0 10px 30px rgba(193, 154, 73, 0.3);
-}
-
-.btn-modern-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 15px 35px rgba(193, 154, 73, 0.4);
-    color: var(--text-on-primary);
-}
-
-.btn-modern-secondary {
-    background: var(--bg-elevated);
-    color: var(--text-primary);
-    border-color: rgba(0, 0, 0, 0.1);
-}
-
-.btn-modern-secondary:hover {
-    background: var(--bg-hover);
-    border-color: var(--color-primary);
-    color: var(--color-primary);
-}
-
-.hero-image-modern {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.hero-glow-effect {
-    position: absolute;
-    width: 80%;
-    height: 80%;
-    background: radial-gradient(circle, rgba(193, 154, 73, 0.15) 0%, transparent 70%);
-    filter: blur(60px);
-    animation: pulse 3s ease-in-out infinite;
-}
-
-@keyframes pulse {
-    0%, 100% { opacity: 0.6; transform: scale(1); }
-    50% { opacity: 0.8; transform: scale(1.05); }
-}
-
-.hero-main-image {
-    position: relative;
-    max-width: 100%;
-    height: auto;
-    filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.15));
-    animation: float 6s ease-in-out infinite;
-}
-
-@keyframes float {
-    0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-20px); }
-}
-
-/* Trust Badges Section */
-.trust-badges-section {
-    padding: var(--space-12) 0;
-    background: var(--bg-elevated);
-}
-
-.trust-badges-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: var(--space-6);
-}
-
-.trust-badge {
-    display: flex;
-    align-items: flex-start;
-    gap: var(--space-4);
-    padding: var(--space-6);
-    background: var(--bg-page);
-    border-radius: var(--radius-xl);
-    transition: all var(--transition-base);
-}
-
-.trust-badge:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-lg);
-}
-
-.trust-badge-icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 48px;
-    height: 48px;
-    border-radius: var(--radius-lg);
-    flex-shrink: 0;
-}
-
-.trust-badge-icon-success {
-    background: var(--color-success-light);
-    color: var(--color-success);
-}
-
-.trust-badge-icon-primary {
-    background: var(--color-primary-glow);
-    color: var(--color-primary);
-}
-
-.trust-badge-icon-info {
-    background: var(--color-info-light);
-    color: var(--color-info);
-}
-
-.trust-badge-icon-warning {
-    background: var(--color-warning-light);
-    color: var(--color-warning);
-}
-
-.trust-badge-content h4 {
-    font-size: var(--text-base);
-    font-weight: 700;
-    margin-bottom: var(--space-1);
-    color: var(--text-primary);
-}
-
-.trust-badge-content p {
-    font-size: var(--text-sm);
-    color: var(--text-secondary);
-    margin: 0;
-}
-
-/* Responsive */
-@media (max-width: 992px) {
-    .hero-section-bilingual {
-        padding: var(--space-16) 0 var(--space-12);
+    .feature-card:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--shadow-lg) !important;
     }
 
-    .hero-content {
-        text-align: center;
-        max-width: 100%;
+    .hero-buttons .btn:hover {
+        transform: translateY(-2px);
     }
 
-    .hero-actions {
-        justify-content: center;
+    @media (max-width: 768px) {
+        .hero-section-modern {
+            padding: 3rem 0;
+        }
+
+        .feature-card {
+            margin-bottom: 1rem;
+        }
     }
-
-    .trust-badges-grid {
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: var(--space-4);
-    }
-}
-
-@media (max-width: 576px) {
-    .hero-actions {
-        flex-direction: column;
-        width: 100%;
-    }
-
-    .btn-modern {
-        width: 100%;
-    }
-
-    .trust-badges-grid {
-        grid-template-columns: 1fr;
-    }
-}
-
-/* RTL Support */
-[dir="rtl"] .hero-actions {
-    flex-direction: row-reverse;
-}
-
-[dir="rtl"] .btn-modern svg {
-    transform: scaleX(-1);
-}
 </style>
 
 @endsection
 
 @section('script')
-<script>
-    $(document).ready(function() {
-        var url = "{{ url('') }}" +
-            '/api/client/products?limit=10&getCategory=1&getDetail=1&language_id=' + languageId +
-            '&isFeatured=1&currency=' + localStorage.getItem("currency");
-        appendTo = 'tab_top_sales';
-        fetchProduct(url, appendTo);
+    <script>
+        $(document).ready(function() {
+            var url = "{{ url('') }}" +
+                '/api/client/products?limit=10&getCategory=1&getDetail=1&language_id=' + languageId +
+                '&isFeatured=1&currency=' + localStorage.getItem("currency");
+            appendTo = 'tab_top_sales';
+            fetchProduct(url, appendTo);
 
-        var url = "{{ url('') }}" + '/api/client/products?limit=10&getDetail=1&language_id=' +
-            languageId + '&currency=' + localStorage.getItem("currency");
-        appendTo = 'tab_special_products';
-        fetchProduct(url, appendTo);
+            var url = "{{ url('') }}" + '/api/client/products?limit=10&getDetail=1&language_id=' +
+                languageId + '&currency=' + localStorage.getItem("currency");
+            appendTo = 'tab_special_products';
+            fetchProduct(url, appendTo);
 
-        var url = "{{ url('') }}" + '/api/client/products?limit=10&getDetail=1&language_id=' +
-            languageId + '&currency=' + localStorage.getItem("currency");
-        appendTo = 'tab_most_liked';
-        fetchProduct(url, appendTo);
+            var url = "{{ url('') }}" + '/api/client/products?limit=10&getDetail=1&language_id=' +
+                languageId + '&currency=' + localStorage.getItem("currency");
+            appendTo = 'tab_most_liked';
+            fetchProduct(url, appendTo);
 
-        var url = "{{ url('') }}" +
-            '/api/client/products?limit=12&getCategory=1&getDetail=1&language_id=' + languageId +
-            '&sortBy=id&sortType=DESC&currency=' + localStorage.getItem("currency");
-        appendTo = 'new-arrival';
-        fetchProduct(url, appendTo);
-
-        var url = "{{ url('') }}" +
-            '/api/client/products?limit=6&getCategory=1&getDetail=1&language_id=' + languageId +
-            '&sortBy=id&sortType=DESC&currency=' + localStorage.getItem("currency");
-        appendTo = 'weekly-sale';
-        fetchProduct(url, appendTo);
-
-        blogNews();
-        sliderMedia();
-        categorySlider();
-        bannerMedia();
-        cartSession = $.trim(localStorage.getItem("cartSession"));
-        if (cartSession == null || cartSession == 'null') {
-            cartSession = '';
-        }
-        menuCart(cartSession);
-    });
-
-    function fetchProduct(url, appendTo) {
-        $.ajax({
-            type: 'get',
-            url: url,
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
-                clientid: "{{ isset(getSetting()['client_id']) ? getSetting()['client_id'] : '' }}",
-                clientsecret: "{{ isset(getSetting()['client_secret']) ? getSetting()['client_secret'] : '' }}",
-            },
-            beforeSend: function() {},
-            success: function(data) {
-                if (data.status == 'Success' && Array.isArray(data.data) && data.data.length) {
-                    const templ = document.getElementById("product-card-template");
-                    if (!templ) return;
-
-                    for (i = 0; i < data.data.length; i++) {
-                        const clone = templ.content.cloneNode(true);
-
-                        clone.querySelector(".wishlist-icon").setAttribute('data-id', data.data[i]
-                            .product_id);
-                        clone.querySelector(".wishlist-icon").setAttribute('onclick', 'addWishlist(this)');
-
-                        clone.querySelector(".wishlist-icon").setAttribute('data-type', data.data[i]
-                            .product_type);
-
-                        clone.querySelector(".wishlist-icon-2").setAttribute('data-id', data.data[i]
-                            .product_id);
-                        clone.querySelector(".wishlist-icon-2").setAttribute('onclick', 'addWishlist(this)');
-
-                        clone.querySelector(".wishlist-icon-2").setAttribute('data-type', data.data[i]
-                            .product_type);
-
-                        clone.querySelector(".compare-icon").setAttribute('data-id', data.data[i]
-                            .product_id);
-                        clone.querySelector(".compare-icon").setAttribute('data-type', data.data[i]
-                            .product_type);
-                        clone.querySelector(".compare-icon").setAttribute('onclick', 'addCompare(this)');
-                        clone.querySelector(".quick-view-icon").setAttribute('data-id', data.data[i]
-                            .product_id);
-                        clone.querySelector(".quick-view-icon").setAttribute('data-type', data.data[i]
-                            .product_type);
-                        clone.querySelector(".quick-view-icon").setAttribute('onclick',
-                            'quiclViewData(this)');
+            var url = "{{ url('') }}" +
+                '/api/client/products?limit=12&getCategory=1&getDetail=1&language_id=' + languageId +
+                '&sortBy=id&sortType=DESC&currency=' + localStorage.getItem("currency");
+            appendTo = 'new-arrival';
+            fetchProduct(url, appendTo);
 
 
-                        clone.querySelector(".quantity-right-plus").setAttribute('data-field', i);
-                        clone.querySelector(".quantity-left-minus").setAttribute('data-field', i);
-                        clone.querySelector(".qty-input").setAttribute('id', 'quantity'+i);
-                        clone.querySelector(".item-quantity").classList.add('itemqty'+i);
+            var url = "{{ url('') }}" +
+                '/api/client/products?limit=6&getCategory=1&getDetail=1&language_id=' + languageId +
+                '&sortBy=id&sortType=DESC&currency=' + localStorage.getItem("currency");
+            appendTo = 'weekly-sale';
+            fetchProduct(url, appendTo);
 
-                        var bages = '';
-                        if(data.data[i].discount_percentage > 0)
-                            bages +='<span class="badge badge-danger">'+data.data[i].discount_percentage+'%</span>';
-                        if(data.data[i].is_featured != "0")
-                            bages +='<span class="badge badge-success">Featured</span>';
-                        if(data.data[i].new != "0")
-                            bages +='<span class="badge badge-info ">New</span>';
+            blogNews();
+            sliderMedia();
+            categorySlider();
+            bannerMedia();
+            cartSession = $.trim(localStorage.getItem("cartSession"));
+            if (cartSession == null || cartSession == 'null') {
+                cartSession = '';
+            }
+            menuCart(cartSession);
+        });
 
-                        clone.querySelector(".badges").innerHTML = bages;
 
-                        rating = '';
-                        if(data.data[i].product_rating == 1){
-                            rating = '<label class="full fa " for="star1" title="Awesome - 1 stars"></label><label class="full fa " for="star_2" title="Awesome - 2 stars"></label><label class="full fa " for="star_3" title="Awesome - 3 stars"></label><label class="full fa " for="star_4" title="Awesome - 4 stars"></label><label class="full fa active" for="star_5" title="Awesome - 5 stars"></label>'
-                        }
-                        else if(data.data[i].product_rating == 2){
-                            rating = '<label class="full fa " for="star1" title="Awesome - 1 stars"></label><label class="full fa " for="star_2" title="Awesome - 2 stars"></label><label class="full fa " for="star_3" title="Awesome - 3 stars"></label><label class="full fa active" for="star_4" title="Awesome - 4 stars"></label><label class="full fa active" for="star_5" title="Awesome - 5 stars"></label>'
-                        }
-                        else if(data.data[i].product_rating == 3){
-                            rating = '<label class="full fa " for="star1" title="Awesome - 1 stars"></label><label class="full fa " for="star_2" title="Awesome - 2 stars"></label><label class="full fa active" for="star_3" title="Awesome - 3 stars"></label><label class="full fa active" for="star_4" title="Awesome - 4 stars"></label><label class="full fa active" for="star_5" title="Awesome - 5 stars"></label>'
-                        }
-                        else if(data.data[i].product_rating == 4){
-                            rating = '<label class="full fa " for="star1" title="Awesome - 1 stars"></label><label class="full fa active" for="star_2" title="Awesome - 2 stars"></label><label class="full fa active" for="star_3" title="Awesome - 3 stars"></label><label class="full fa active" for="star_4" title="Awesome - 4 stars"></label><label class="full fa active" for="star_5" title="Awesome - 5 stars"></label>'
-                        }
-                        else if(data.data[i].product_rating == 5){
-                            rating = '<label class="full fa active" for="star1" title="Awesome - 1 stars"></label><label class="full fa active" for="star_2" title="Awesome - 2 stars"></label><label class="full fa active" for="star_3" title="Awesome - 3 stars"></label><label class="full fa active" for="star_4" title="Awesome - 4 stars"></label><label class="full fa active" for="star_5" title="Awesome - 5 stars"></label>'
-                        }
-                        else{
-                            rating = '<label class="full fa " for="star1" title="Awesome - 1 stars"></label><label class="full fa " for="star_2" title="Awesome - 2 stars"></label><label class="full fa " for="star_3" title="Awesome - 3 stars"></label><label class="full fa " for="star_4" title="Awesome - 4 stars"></label><label class="full fa " for="star_5" title="Awesome - 5 stars"></label>'
-                        }
+        function fetchProduct(url, appendTo) {
+            $.ajax({
+                type: 'get',
+                url: url,
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+                    clientid: "{{ isset(getSetting()['client_id']) ? getSetting()['client_id'] : '' }}",
+                    clientsecret: "{{ isset(getSetting()['client_secret']) ? getSetting()['client_secret'] : '' }}",
+                },
+                beforeSend: function() {},
+                success: function(data) {
+                    if (data.status == 'Success' && Array.isArray(data.data) && data.data.length) {
+                        const templ = document.getElementById("product-card-template");
+                        if (!templ) return;
 
-                        clone.querySelector(".display-rating").innerHTML = rating;
-                        clone.querySelector(".display-rating1").innerHTML = rating;
+                        for (i = 0; i < data.data.length; i++) {
+                            const clone = templ.content.cloneNode(true);
 
-                        if (data.data[i].product_gallary != null && data.data[i].product_gallary !=
-                            'null' && data.data[i].product_gallary != '') {
-                            if (data.data[i].product_gallary.detail != null && data.data[i].product_gallary
-                                .detail != 'null' && data.data[i].product_gallary.detail != '') {
-                                var productImage = data.data[i].product_gallary.detail[1] || data.data[i].product_gallary.detail[0];
-                                if (productImage && productImage.gallary_path) {
-                                    clone.querySelector(".product-card-image").setAttribute('src', productImage.gallary_path);
-                                }
-                            }
-                        }
-                        if (data.data[i].detail != null && data.data[i].detail != 'null' && data.data[i]
-                            .detail != '') {
-                            clone.querySelector(".product-card-image").setAttribute('alt', data.data[i]
-                                .detail[0].title);
-                        }
-                        if (data.data[i].category != null && data.data[i].category != 'null' && data.data[i]
-                            .category != '') {
-                            if (data.data[i].category[0].category_detail != null && data.data[i].category[0]
-                                .category_detail != 'null' && data.data[i].category[0].category_detail != ''
-                            ) {
-                                if (data.data[i].category[0].category_detail.detail != null && data.data[i]
-                                    .category[0].category_detail.detail != 'null' && data.data[i].category[
-                                        0].category_detail.detail != '') {
-                                    clone.querySelector(".product-card-category").innerHTML = data.data[i]
-                                        .category[0].category_detail.detail[0].name;
-                                }
-                            }
-                        }
-                        if (data.data[i].detail != null && data.data[i].detail != 'null' && data.data[i]
-                            .detail != '') {
-                            clone.querySelector(".product-card-name").innerHTML = data.data[i].detail[0]
-                                .title;
-                            clone.querySelector(".product-card-name").setAttribute('href', '/product/' +
-                                data
-                                .data[i].product_id + '/' + data
-                                .data[i].product_slug);
-                            var desc = data.data[i].detail[0].desc;
-                            clone.querySelector(".product-card-desc").innerHTML = desc.substring(0, 50);
-                        }
-
-                        if (data.data[i].product_type == 'simple') {
-                            if (data.data[i].product_discount_price == '' || data.data[i]
-                                .product_discount_price == null || data.data[i].product_discount_price ==
-                                'null') {
-                                clone.querySelector(".product-card-price").innerHTML = data.data[i]
-                                    .product_price_symbol;
-                            } else {
-                                clone.querySelector(".product-card-price").innerHTML =
-                                data.data[i]
-                                    .product_discount_price_symbol + '<span>' +data.data[i].product_price_symbol + '</span>';
-                            }
-                        } else {
-                            clone.querySelector(".product-card-price").innerHTML = data.data[i].product_variable_price_symbol;
-                        }
-
-                        if (data.data[i].product_type == 'simple') {
-                            clone.querySelector(".product-card-link").setAttribute('onclick',
-                                "addToCart(this)");
-                            clone.querySelector(".product-card-link").setAttribute('data-id', data.data[i]
+                            clone.querySelector(".wishlist-icon").setAttribute('data-id', data.data[i]
                                 .product_id);
-                            clone.querySelector(".product-card-link").setAttribute('data-field', i);
-                            clone.querySelector(".product-card-link").setAttribute('data-type', data.data[i]
+                            clone.querySelector(".wishlist-icon").setAttribute('onclick', 'addWishlist(this)');
+
+                            clone.querySelector(".wishlist-icon").setAttribute('data-type', data.data[i]
                                 .product_type);
-                            clone.querySelector(".product-card-link").innerHTML = 'Add To Cart';
 
-                            clone.querySelector(".add-to-card-bag").setAttribute('onclick', "addToCart(this)");
-                            clone.querySelector(".add-to-card-bag").setAttribute('data-id', data.data[i].product_id);
-                            clone.querySelector(".add-to-card-bag").setAttribute('data-type', data.data[i].product_type);
-                            clone.querySelector(".add-to-card-bag").setAttribute('data-field', i);
+                            clone.querySelector(".wishlist-icon-2").setAttribute('data-id', data.data[i]
+                                .product_id);
+                            clone.querySelector(".wishlist-icon-2").setAttribute('onclick', 'addWishlist(this)');
 
-                        } else {
-                            clone.querySelector('.itemqty'+i).classList.add('d-none');
-                            clone.querySelector(".add-to-card-bag").classList.add('d-none');
-                            clone.querySelector(".product-card-link").classList.remove('d-g-none');
-                            clone.querySelector(".product-card-link").classList.remove('listing-none');
-                            clone.querySelector(".product-card-link").innerHTML = 'View Detail';
-                            clone.querySelector(".product-card-link").setAttribute('href', '/product/' +
-                                data
-                                .data[i].product_id + '/' + data
-                                .data[i].product_slug);
+                            clone.querySelector(".wishlist-icon-2").setAttribute('data-type', data.data[i]
+                                .product_type);
+
+                            clone.querySelector(".compare-icon").setAttribute('data-id', data.data[i]
+                                .product_id);
+                            clone.querySelector(".compare-icon").setAttribute('data-type', data.data[i]
+                                .product_type);
+                            clone.querySelector(".compare-icon").setAttribute('onclick', 'addCompare(this)');
+                            clone.querySelector(".quick-view-icon").setAttribute('data-id', data.data[i]
+                                .product_id);
+                            clone.querySelector(".quick-view-icon").setAttribute('data-type', data.data[i]
+                                .product_type);
+                            clone.querySelector(".quick-view-icon").setAttribute('onclick',
+                                'quiclViewData(this)');
+
+
+                            clone.querySelector(".quantity-right-plus").setAttribute('data-field', i);
+                            clone.querySelector(".quantity-left-minus").setAttribute('data-field', i);
+                            clone.querySelector(".qty-input").setAttribute('id', 'quantity'+i);
+                            clone.querySelector(".item-quantity").classList.add('itemqty'+i);
+
+                            var bages = '';
+                            if(data.data[i].discount_percentage > 0)
+                                bages +='<span class="badge badge-danger">'+data.data[i].discount_percentage+'%</span>';
+                            if(data.data[i].is_featured != "0")
+                                bages +='<span class="badge badge-success">Featured</span>';
+                            if(data.data[i].new != "0")
+                                bages +='<span class="badge badge-info ">New</span>';
+
+                            clone.querySelector(".badges").innerHTML = bages;
+
+                            rating = '';
+                            if(data.data[i].product_rating == 1){
+                                rating = '<label class="full fa " for="star1" title="Awesome - 1 stars"></label><label class="full fa " for="star_2" title="Awesome - 2 stars"></label><label class="full fa " for="star_3" title="Awesome - 3 stars"></label><label class="full fa " for="star_4" title="Awesome - 4 stars"></label><label class="full fa active" for="star_5" title="Awesome - 5 stars"></label>'
+                            }
+                            else if(data.data[i].product_rating == 2){
+                                rating = '<label class="full fa " for="star1" title="Awesome - 1 stars"></label><label class="full fa " for="star_2" title="Awesome - 2 stars"></label><label class="full fa " for="star_3" title="Awesome - 3 stars"></label><label class="full fa active" for="star_4" title="Awesome - 4 stars"></label><label class="full fa active" for="star_5" title="Awesome - 5 stars"></label>'
+                            }
+                            else if(data.data[i].product_rating == 3){
+                                rating = '<label class="full fa " for="star1" title="Awesome - 1 stars"></label><label class="full fa " for="star_2" title="Awesome - 2 stars"></label><label class="full fa active" for="star_3" title="Awesome - 3 stars"></label><label class="full fa active" for="star_4" title="Awesome - 4 stars"></label><label class="full fa active" for="star_5" title="Awesome - 5 stars"></label>'
+                            }
+                            else if(data.data[i].product_rating == 4){
+                                rating = '<label class="full fa " for="star1" title="Awesome - 1 stars"></label><label class="full fa active" for="star_2" title="Awesome - 2 stars"></label><label class="full fa active" for="star_3" title="Awesome - 3 stars"></label><label class="full fa active" for="star_4" title="Awesome - 4 stars"></label><label class="full fa active" for="star_5" title="Awesome - 5 stars"></label>'
+                            }
+                            else if(data.data[i].product_rating == 5){
+                                rating = '<label class="full fa active" for="star1" title="Awesome - 1 stars"></label><label class="full fa active" for="star_2" title="Awesome - 2 stars"></label><label class="full fa active" for="star_3" title="Awesome - 3 stars"></label><label class="full fa active" for="star_4" title="Awesome - 4 stars"></label><label class="full fa active" for="star_5" title="Awesome - 5 stars"></label>'
+                            }
+                            else{
+                                rating = '<label class="full fa " for="star1" title="Awesome - 1 stars"></label><label class="full fa " for="star_2" title="Awesome - 2 stars"></label><label class="full fa " for="star_3" title="Awesome - 3 stars"></label><label class="full fa " for="star_4" title="Awesome - 4 stars"></label><label class="full fa " for="star_5" title="Awesome - 5 stars"></label>'
+                            }
+
+                            clone.querySelector(".display-rating").innerHTML = rating;
+                            clone.querySelector(".display-rating1").innerHTML = rating;
+
+                            if (data.data[i].product_gallary != null && data.data[i].product_gallary !=
+                                'null' && data.data[i].product_gallary != '') {
+                                if (data.data[i].product_gallary.detail != null && data.data[i].product_gallary
+                                    .detail != 'null' && data.data[i].product_gallary.detail != '') {
+                                    var productImage = data.data[i].product_gallary.detail[1] || data.data[i].product_gallary.detail[0];
+                                    if (productImage && productImage.gallary_path) {
+                                        clone.querySelector(".product-card-image").setAttribute('src', productImage.gallary_path);
+                                    }
+                                }
+                            }
+                            if (data.data[i].detail != null && data.data[i].detail != 'null' && data.data[i]
+                                .detail != '') {
+                                clone.querySelector(".product-card-image").setAttribute('alt', data.data[i]
+                                    .detail[0].title);
+                            }
+                            if (data.data[i].category != null && data.data[i].category != 'null' && data.data[i]
+                                .category != '') {
+                                if (data.data[i].category[0].category_detail != null && data.data[i].category[0]
+                                    .category_detail != 'null' && data.data[i].category[0].category_detail != ''
+                                ) {
+                                    if (data.data[i].category[0].category_detail.detail != null && data.data[i]
+                                        .category[0].category_detail.detail != 'null' && data.data[i].category[
+                                            0].category_detail.detail != '') {
+                                        clone.querySelector(".product-card-category").innerHTML = data.data[i]
+                                            .category[0].category_detail.detail[0].name;
+                                    }
+                                }
+                            }
+                            if (data.data[i].detail != null && data.data[i].detail != 'null' && data.data[i]
+                                .detail != '') {
+                                clone.querySelector(".product-card-name").innerHTML = data.data[i].detail[0]
+                                    .title;
+                                clone.querySelector(".product-card-name").setAttribute('href', '/product/' +
+                                    data
+                                    .data[i].product_id + '/' + data
+                                    .data[i].product_slug);
+                                var desc = data.data[i].detail[0].desc;
+                                clone.querySelector(".product-card-desc").innerHTML = desc.substring(0, 50);
+                            }
+
+                            if (data.data[i].product_type == 'simple') {
+                                if (data.data[i].product_discount_price == '' || data.data[i]
+                                    .product_discount_price == null || data.data[i].product_discount_price ==
+                                    'null') {
+                                    clone.querySelector(".product-card-price").innerHTML = data.data[i]
+                                        .product_price_symbol;
+                                } else {
+                                    clone.querySelector(".product-card-price").innerHTML =
+                                    data.data[i]
+                                        .product_discount_price_symbol + '<span>' +data.data[i].product_price_symbol + '</span>';
+                                }
+                            } else {
+                                clone.querySelector(".product-card-price").innerHTML = data.data[i].product_variable_price_symbol;
+                            }
+
+                            if (data.data[i].product_type == 'simple') {
+                                clone.querySelector(".product-card-link").setAttribute('onclick',
+                                    "addToCart(this)");
+                                clone.querySelector(".product-card-link").setAttribute('data-id', data.data[i]
+                                    .product_id);
+                                clone.querySelector(".product-card-link").setAttribute('data-field', i);
+                                clone.querySelector(".product-card-link").setAttribute('data-type', data.data[i]
+                                    .product_type);
+                                clone.querySelector(".product-card-link").innerHTML = 'Add To Cart';
+
+                                clone.querySelector(".add-to-card-bag").setAttribute('onclick', "addToCart(this)");
+                                clone.querySelector(".add-to-card-bag").setAttribute('data-id', data.data[i].product_id);
+                                clone.querySelector(".add-to-card-bag").setAttribute('data-type', data.data[i].product_type);
+                                clone.querySelector(".add-to-card-bag").setAttribute('data-field', i);
+
+                            } else {
+                                clone.querySelector('.itemqty'+i).classList.add('d-none');
+                                clone.querySelector(".add-to-card-bag").classList.add('d-none');
+                                clone.querySelector(".product-card-link").classList.remove('d-g-none');
+                                clone.querySelector(".product-card-link").classList.remove('listing-none');
+                                clone.querySelector(".product-card-link").innerHTML = 'View Detail';
+                                clone.querySelector(".product-card-link").setAttribute('href', '/product/' +
+                                    data
+                                    .data[i].product_id + '/' + data
+                                    .data[i].product_slug);
+                            }
+
+                            $("." + appendTo).append(clone);
+
+                            if (appendTo == 'new-arrival' || appendTo == 'weekly-sale') {
+                                $(".div-class").addClass('col-12 col-sm-6 col-lg-3');
+                            }
                         }
 
-                        $("." + appendTo).append(clone);
+                        if (appendTo != 'new-arrival' && appendTo != 'weekly-sale')
+                            getSliderSettings(appendTo);
+                    }
+                },
+                error: function(data) {},
+            });
+        }
 
-                        if (appendTo == 'new-arrival' || appendTo == 'weekly-sale') {
-                            $(".div-class").addClass('col-12 col-sm-6 col-lg-3');
+        function fetchFeaturedWeeklyProduct(url, appendTo) {
+            $.ajax({
+                type: 'get',
+                url: url,
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+                    clientid: "{{ isset(getSetting()['client_id']) ? getSetting()['client_id'] : '' }}",
+                    clientsecret: "{{ isset(getSetting()['client_secret']) ? getSetting()['client_secret'] : '' }}",
+                },
+                beforeSend: function() {},
+                success: function(data) {
+                    if (data.status == 'Success' && Array.isArray(data.data) && data.data.length) {
+                        var htmlToRender ="<article><div class='badges'><span class='badge badge-success'>Featured</span></div><div class='detail'>";
+
+                        htmlToRender +='<h5 class="title"><a  href="/product/'+data
+                                .data[0].product_id +'/'+data
+                                .data[0].product_slug+'">'+data.data[0].detail[0]
+                                .title+'</a></h5>';
+
+                        htmlToRender +='<p class="discription">'+data.data[0].detail[0]
+                                .desc+'</p>';
+
+                        var featuredDetails = Array.isArray(data.data[0].detail) && data.data[0].detail.length ? data.data[0].detail[0] : null;
+                            if (!featuredDetails) return;
+                            if (data.data[0].product_type == 'simple') {
+                                if (data.data[0].product_discount_price == '' || data.data[0]
+                                    .product_discount_price == null || data.data[0].product_discount_price ==
+                                    'null') {
+                                    htmlToRender +='<div class="price">'+data.data[0]
+                                        .product_price_symbol+'</div>';
+                                } else {
+                                    htmlToRender +='<div class="price">'+data.data[0]
+                                        .product_discount_price_symbol + '<span>' +data.data[0].product_price_symbol + '</span></div>';
+                                }
+                            } else {
+                                if (data.data[0].product_combination != null && data.data[0]
+                                    .product_combination != 'null' && data.data[0].product_combination != '') {
+                                        htmlToRender +='<div class="price">'+data.data[0]
+                                        .product_combination[0].product_price_symbol+'</div>';
+                                }
+                            }
+
+                            htmlToRender +='<div class="pro-sub-buttons"><div class="buttons"><button type="button" class="btn  btn-link " data-id='+data.data[0]
+                                .product_id+' onclick="addWishlist(this)" data-type='+data.data[0]
+                                .product_type+'><i class="fas fa-heart"></i>Add to Wishlist</button>';
+
+                            htmlToRender +='<button type="button" class="btn btn-link" data-id='+data.data[0]
+                                .product_id+' data-type='+data.data[0]
+                                .product_type+' onclick="addCompare(this)" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Add to Compare"><i class="fas fa-align-right"></i>Add to Compare</button></div></div></div>';
+                            htmlToRender +='<picture><div class="product-hover">';
+                            if (data.data[0].product_type == 'simple') {
+                                htmlToRender +='<button type="button" data-id="'+data.data[0].product_id+'" data-field="'+0+'" data-type="'+data.data[0].product_type+'" onclick="addToCart(this)" class="btn btn-block btn-secondary cart swipe-to-top" >Add to Cart</button>';
+
+                            } else {
+
+                                htmlToRender +='<a href="/product/'+data
+                                    .data[0].product_id +'/'+data
+                                    .data[0].product_slug+'" onclick="addToCart(this)" class="btn btn-block btn-secondary cart swipe-to-top" >View Detail</a>';
+
+                            }
+
+                            htmlToRender +='</div>';
+
+                             if (data.data[0].product_gallary != null && data.data[0].product_gallary !=
+                                'null' && data.data[0].product_gallary != '') {
+                                if (data.data[0].product_gallary.detail != null && data.data[0].product_gallary
+                                    .detail != 'null' && data.data[0].product_gallary.detail != '') {
+                                       var featuredImage = data.data[0].product_gallary.detail[1] || data.data[0].product_gallary.detail[0];
+                                       if (featuredImage && featuredImage.gallary_path) {
+                                           htmlToRender +='<img class="img-fluid" src="'+featuredImage.gallary_path+'" alt="'+featuredDetails.title+'">';
+                                       }
+
+                                }
+                            }
+                            htmlToRender +='</picture></article>';
+
+                        $('#weekly-sale-first-div').html(htmlToRender);
+                    }
+                },
+                error: function(data) {},
+            });
+        }
+
+        function blogNews() {
+            $.ajax({
+                type: 'get',
+                url: "{{ url('') }}" +
+                    '/api/client/blog_news?getGallaryDetail=1&limit=10&sortBy=id&language_id=' + languageId +
+                    '&getDetail=1&getBlogCategory=1&sortType=DESC',
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+                    clientid: "{{ isset(getSetting()['client_id']) ? getSetting()['client_id'] : '' }}",
+                    clientsecret: "{{ isset(getSetting()['client_secret']) ? getSetting()['client_secret'] : '' }}",
+                },
+                beforeSend: function() {},
+                success: function(data) {
+                    if (data.status == 'Success' && Array.isArray(data.data) && data.data.length) {
+                        $(".blog-news-data").html('');
+                        const templ = document.getElementById("news-blog-template");
+                        if (!templ) return;
+                        for (i = 0; i < data.data.length; i++) {
+                            const clone = templ.content.cloneNode(true);
+                            clone.querySelector(".news-blog-date").innerHTML = data.data[i].date;
+                            clone.querySelector(".news-blog-date").setAttribute('data-id', data.data[i]
+                                .product_id);
+                            clone.querySelector(".blog-url").setAttribute('href', '/blog-detail/' + data.data[i]
+                                .slug);
+                            clone.querySelector(".read-more-url").setAttribute('href', '/blog-detail/' + data
+                                .data[i].slug);
+
+                            if (data.data[i].gallary != null && data.data[i].gallary != 'null' && data.data[i]
+                                .gallary != '') {
+                                if (data.data[i].gallary.detail != null && $.trim(data.data[i].gallary
+                                        .detail) != '' && data.data[i].gallary.detail != 'null') {
+                                    if (data.data[i].gallary.detail[1] && data.data[i].gallary.detail[1].gallary_path) {
+                                        clone.querySelector(".news-blog-image").setAttribute('src', data.data[i]
+                                            .gallary.detail[1].gallary_path);
+                                    } else {
+                                        if (data.data[i].gallary.detail[0] && data.data[i].gallary.detail[0].gallary_path) {
+                                            clone.querySelector(".news-blog-image").setAttribute('src', data.data[i]
+                                                .gallary.detail[0].gallary_path);
+                                        }
+                                    }
+                                }
+                            }
+                            if (data.data[i].detail != null && $.trim(data.data[i].detail) != '' && data.data[i]
+                                .detail != 'null') {
+                                clone.querySelector(".news-blog-image").setAttribute('alt', data.data[i].detail[
+                                    0].name);
+                            }
+                            if (data.data[i].category != null && data.data[i].category != 'null' && $.trim(data
+                                    .data[i].category) != '') {
+                                if (data.data[i].category.blog_detail != null && data.data[i].category
+                                    .blog_detail != 'null' && data.data[i].category.blog_detail != '') {
+                                    clone.querySelector(".news-blog-category").innerHTML = data.data[i].category
+                                        .blog_detail[0].name;
+                                }
+                            }
+                            if (data.data[i].detail != null && data.data[i].detail != 'null' && $.trim(data
+                                    .data[i].detail) != '') {
+                                clone.querySelector(".news-blog-name").innerHTML = data.data[i].detail[0].name;
+                                clone.querySelector(".news-blog-desc").innerHTML = data.data[i].detail[0]
+                                    .description;
+                            }
+                            $(".blog-news-data").append(clone);
+                        }
+                        getSliderSettings("blog-news-data");
+                    }
+                },
+                error: function(data) {},
+            });
+        }
+
+        function sliderMedia() {
+            var sliderType = "{{ getSetting()['slider_style'] ? getSetting()['slider_style'] : '' }}";
+            if (sliderType == "style1") {
+                sliderType = 1;
+            }
+            if (sliderType == "style2") {
+                sliderType = 2;
+            }
+            if (sliderType == "style3") {
+                sliderType = 3;
+            }
+            if (sliderType == "style4") {
+                sliderType = 4;
+            }
+            if (sliderType == "style5") {
+                sliderType = 5;
+            }
+            $.ajax({
+                type: 'get',
+                url: "{{ url('') }}" +
+                    '/api/client/slider?getLanguage=' + languageId +
+                    '&getSliderType=1&getSliderNavigation=1&getSliderGallary=1&limit=5&sortBy=id&sortType=ASC&sliderType=' +
+                    sliderType + '&language_id=' + languageId,
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+                    clientid: "{{ isset(getSetting()['client_id']) ? getSetting()['client_id'] : '' }}",
+                    clientsecret: "{{ isset(getSetting()['client_secret']) ? getSetting()['client_secret'] : '' }}",
+                },
+                beforeSend: function() {},
+                success: function(data) {
+                    if (data.status == 'Success' && Array.isArray(data.data) && data.data.length) {
+                        $(".slider-navigation-show").html('');
+                        const templ = document.getElementById("slider-navigation-template");
+                        if (!templ) return;
+                        for (i = 0; i < data.data.length; i++) {
+
+                            $("#slider-bullets-" + i).addClass("d-block");
+                            $("#slider-bullets-" + i).removeClass('d-none')
+
+                            const clone = templ.content.cloneNode(true);
+                            clone.querySelector(".slider-navigation-title").innerHTML = data.data[i]
+                                .slider_title;
+                            clone.querySelector(".slider-navigation-desc").innerHTML = data.data[i]
+                                .slider_description;
+                            clone.querySelector(".slider-navigation-url").setAttribute('href', data.data[i]
+                                .slider_url);
+
+                            clone.querySelector(".carousel-caption").classList.add(data.data[i]
+                                .slider_position);
+                            clone.querySelector(".carousel-caption").classList.add(data.data[i]
+                                .slider_textcontent);
+                            clone.querySelector(".carousel-caption").classList.add(data.data[i]
+                                .slider_text);
+
+                            if (i == 0) {
+                                clone.querySelector(".slider-navigation-active").classList.add("active");
+                            }
+                            if (data.data[i].gallary != null && $.trim(data.data[i].gallary) != '') {
+                                clone.querySelector(".slider-navigation-image").setAttribute('src',
+                                    '/gallary/' + data.data[i].gallary);
+                            }
+                            $(".slider-navigation-show").append(clone);
                         }
                     }
+                },
+                error: function(data) {},
+            });
 
-                    if (appendTo != 'new-arrival' && appendTo != 'weekly-sale')
-                        getSliderSettings(appendTo);
-                }
-            },
-            error: function(data) {},
-        });
-    }
 
-    $(document).on('click', '.quantity-right-plus', function() {
-        var row_id = $(this).attr('data-field');
-        var quantity = $('#quantity' + row_id).val();
-        $('#quantity' + row_id).val(parseInt(quantity) + 1);
-    })
+            $.ajax({
+                type: 'get',
+                url: "{{ url('') }}" +
+                    '/api/client/constant_banner?getLanguage=' + languageId +
+                    '&title=rightsliderbanner&language_id=' + languageId + '&getGallary=1',
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+                    clientid: "{{ isset(getSetting()['client_id']) ? getSetting()['client_id'] : '' }}",
+                    clientsecret: "{{ isset(getSetting()['client_secret']) ? getSetting()['client_secret'] : '' }}",
+                },
+                beforeSend: function() {},
+                success: function(data) {
+                    if (data.status == 'Success' && Array.isArray(data.data) && data.data.length >= 2) {
+                        var side_banners = '';
+                        side_banners += '<figure class="banner-image imagespace">';
+                        side_banners +=
+                            '<a class="banner-slider-link1" href=""><img class="img-fluid banner-slider-image1" src="" alt="Banner Image"></a>';
+                        side_banners += '</figure>';
+                        side_banners += '<figure class="banner-image ">';
+                        side_banners +=
+                            '<a class="banner-slider-link2" href=""><img class="img-fluid banner-slider-image2" src="" alt="Banner Image"></a>';
+                        side_banners += '</figure>';
+                        $('.side-banners').html(side_banners);
 
-    $(document).on('click', '.quantity-left-minus', function() {
-        var row_id = $(this).attr('data-field');
-        var quantity = $('#quantity' + row_id).val();
-        if (quantity > 1)
-            $('#quantity' + row_id).val(parseInt(quantity) - 1);
-    })
-</script>
+                        if (data.data[0] && data.data[0].gallary) {
+                            $('.banner-slider-link1').attr('href', "{{ url('') }}" + (data.data[0].banner_url || '#'));
+                            $('.banner-slider-image1').attr('src', "/gallary/" + data.data[0].gallary.gallary_name);
+                        }
+                        if (data.data[1] && data.data[1].gallary) {
+                            $('.banner-slider-link2').attr('href', "{{ url('') }}" + (data.data[1].banner_url || '#'));
+                            $('.banner-slider-image2').attr('src', "/gallary/" + data.data[1].gallary.gallary_name);
+                        }
+
+                    }
+                },
+                error: function(data) {},
+            });
+        }
+
+        function categorySlider() {
+            $.ajax({
+                type: 'get',
+                url: "{{ url('') }}" +
+                    '/api/client/category?getDetail=1&page=1&limit=10&getGallary=1&language_id=' + languageId +
+                    '&sortBy=category_name&sortType=DESC',
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+                    clientid: "{{ isset(getSetting()['client_id']) ? getSetting()['client_id'] : '' }}",
+                    clientsecret: "{{ isset(getSetting()['client_secret']) ? getSetting()['client_secret'] : '' }}",
+                },
+                beforeSend: function() {},
+                success: function(data) {
+                    if (data.status == 'Success' && Array.isArray(data.data) && data.data.length) {
+                        $(".category-slider-show").html('');
+                        const templ = document.getElementById("category-slider-template");
+                        if (!templ) return;
+                        for (i = 0; i < data.data.length; i++) {
+                            const clone = templ.content.cloneNode(true);
+                            clone.querySelector(".category-slider-url").setAttribute('href', '/shop?category=' +
+                                data.data[i].id);
+                            clone.querySelector(".category-slider-image").setAttribute('src', data.data[i].icon && data.data[i].icon != 'placeholder'
+                                ? '/gallary/' + data.data[i].icon : '{{ asset('assets/images/snuslogo1.png') }}');
+                            clone.querySelector(".category-slider-title").innerHTML = data.data[i].name;
+                            $(".category-slider-show").append(clone);
+                        }
+                        getSliderSettings("category-slider-show");
+                    }
+                },
+                error: function(data) {},
+            });
+        }
+
+        function bannerMedia() {
+            var bannerType = "{{ getSetting()['banner_style'] ? getSetting()['banner_style'] : 'style1' }}";
+            if (bannerType == "style1") {
+                bannerType = 'banner1';
+            }
+            if (bannerType == "style2" || bannerType == "style3" || bannerType == "style4") {
+                bannerType = "banner2";
+            }
+            if (bannerType == "style5" || bannerType == "style6") {
+                bannerType = "banner5";
+            }
+            if (bannerType == "style7" || bannerType == "style8") {
+                bannerType = "banner7";
+            }
+            if (bannerType == "style9") {
+                bannerType = "banner9";
+            }
+            if (bannerType == "style10" || bannerType == "style11" || bannerType == "style12") {
+                bannerType = "banner10";
+            }
+
+            if (bannerType == "style13" || bannerType == "style14" || bannerType == "style15") {
+                bannerType = "banner13";
+            }
+
+            if (bannerType == "style16" || bannerType == "style17") {
+                bannerType = "banner16";
+            }
+
+            if (bannerType == "style18" || bannerType == "style19") {
+                bannerType = "banner18";
+            }
+            $('.banner_div').css('display', 'none');
+            $.ajax({
+                type: 'get',
+                url: "{{ url('') }}" + '/api/client/constant_banner?getLanguage=' + languageId + '&title=' +
+                    bannerType +
+                    '&language_id=' + languageId + '&getGallary=1',
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+                    clientid: "{{ isset(getSetting()['client_id']) ? getSetting()['client_id'] : '' }}",
+                    clientsecret: "{{ isset(getSetting()['client_secret']) ? getSetting()['client_secret'] : '' }}",
+                },
+                beforeSend: function() {},
+                success: function(data) {
+                    if (data.status == 'Success' && Array.isArray(data.data) && data.data.length) {
+                        if (typeof data.data[0] !== 'undefined') {
+                            $('.banner-link1').attr('href', data.data[0]
+                                .banner_url);
+
+                            if (data.data[0].gallary && data.data[0].gallary.gallary_name) {
+                                $('.banner-image1').attr('src', "/gallary/" + data.data[0].gallary.gallary_name);
+                            }
+                        }
+
+                        if (typeof data.data[1] !== 'undefined') {
+                            $('.banner-link2').attr('href', data.data[1]
+                                .banner_url);
+
+                            if (data.data[1].gallary && data.data[1].gallary.gallary_name) {
+                                $('.banner-image2').attr('src', "/gallary/" + data.data[1].gallary.gallary_name);
+                            }
+                        }
+
+                        if (typeof data.data[2] !== 'undefined') {
+                            $('.banner-link3').attr('href', data.data[2]
+                                .banner_url);
+                            $('.banner-image3').attr('src', "/gallary/" + data.data[2].gallary
+                                .gallary_name);
+                        }
+
+                        if (typeof data.data[3] !== 'undefined') {
+                            $('.banner-link4').attr('href', data.data[3]
+                                .banner_url);
+                            $('.banner-image4').attr('src', "/gallary/" + data.data[3].gallary
+                                .gallary_name);
+                        }
+
+                        if (typeof data.data[4] !== 'undefined') {
+
+                            $('.banner-link5').attr('href', data.data[4]
+                                .banner_url);
+                            $('.banner-image5').attr('src', "/gallary/" + data.data[4].gallary
+                                .gallary_name);
+                        }
+                        if (typeof data.data[5] !== 'undefined') {
+                            $('.banner-link6').attr('href', data.data[5]
+                                .banner_url);
+                            $('.banner-image6').attr('src', "/gallary/" + data.data[5].gallary
+                                .gallary_name);
+
+                        }
+                        $('.banner_div').css('display', 'block');
+                    }
+                },
+                error: function(data) {},
+            });
+        }
+
+        $(document).on('click', '.quantity-right-plus', function() {
+            var row_id = $(this).attr('data-field');
+            var quantity = $('#quantity' + row_id).val();
+            $('#quantity' + row_id).val(parseInt(quantity) + 1);
+        })
+
+        $(document).on('click', '.quantity-left-minus', function() {
+            var row_id = $(this).attr('data-field');
+            var quantity = $('#quantity' + row_id).val();
+            if (quantity > 1)
+                $('#quantity' + row_id).val(parseInt(quantity) - 1);
+        })
+    </script>
 @endsection
