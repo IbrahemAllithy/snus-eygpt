@@ -67,7 +67,7 @@ class IndexController extends Controller
         $data = $homeService->homeIndex();
         $setting = getSetting();
 
-        return view('home', compact('data', 'setting'));
+        return view('home-bilingual', compact('data', 'setting'));
     }
 
     public function contactUs()
@@ -108,7 +108,7 @@ class IndexController extends Controller
         $data['price_range'] = ['0-500', '500-1000', '1000-2000'];
         $data['brand'] = $brand;
 
-        return view('shop', compact('data'));
+        return view('shop-bilingual', compact('data'));
     }
 
     public function cartPage()

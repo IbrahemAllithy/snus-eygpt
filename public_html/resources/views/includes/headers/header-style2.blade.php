@@ -22,19 +22,7 @@
                       <div class="col-12 col-md-6">
                           <div class="navbar-lang">
 
-                              <div class="dropdown">
-                                  <button class="btn dropdown-toggle language-default-name" type="button">
-                                      English
-                                  </button>
-                                  <div class="dropdown-menu">
-                                      @foreach ($data['language'] as $languages)
-                                          <a class="dropdown-item language-default"
-                                              href=" {{ url('/lang/' . $languages->code) }}"
-                                              data-id={{ $languages->id }}
-                                              data-name="{{ $languages->name }}">{{ $languages->name }}</a>
-                                      @endforeach
-                                  </div>
-                              </div>
+                              @include('components.language-switcher')
 
                               <div class="dropdown">
                                   <button class="btn dropdown-toggle" id="selected-currency" type="button">
