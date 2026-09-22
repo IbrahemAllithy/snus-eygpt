@@ -20,6 +20,54 @@ h1, h2, h3, h4, h5, h6 {
     font-family: 'Cairo', sans-serif !important;
 }
 
+/* ===== Navbar Login/Logout Fix ===== */
+.header-mini .pro-header-options li a,
+.header-mini .pro-header-options li .nav-link {
+    color: #FFFFFF !important;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.header-mini .pro-header-options li a:hover,
+.header-mini .pro-header-options li .nav-link:hover {
+    color: #FFD700 !important;
+    text-shadow: 0 0 8px rgba(255, 215, 0, 0.4);
+}
+
+.header-mini .pro-header-options li .dropdown-toggle {
+    color: #FFFFFF !important;
+    background: transparent !important;
+    border: none;
+    font-weight: 600;
+}
+
+.header-mini .pro-header-options li .dropdown-toggle:hover {
+    color: #FFD700 !important;
+}
+
+.header-mini .pro-header-options li .dropdown-menu {
+    background: #FFFFFF;
+    border: 2px solid #E8E8E8;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    border-radius: 8px;
+}
+
+.header-mini .pro-header-options li .dropdown-menu .dropdown-item {
+    color: #1A1A1A !important;
+    padding: 10px 20px;
+    transition: all 0.3s ease;
+}
+
+.header-mini .pro-header-options li .dropdown-menu .dropdown-item:hover {
+    background: #FFD700 !important;
+    color: #1A1A1A !important;
+    transform: translateX(5px);
+}
+
+.header-mini .link-list li .link-item {
+    color: #FFFFFF !important;
+}
+
 .btn,
 button {
     transition: all 0.3s ease;
