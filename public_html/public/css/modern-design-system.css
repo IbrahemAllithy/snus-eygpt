@@ -1,37 +1,48 @@
 
 :root {
   /* === Color System === */
-  /* Brand Colors */
+  /* Brand Colors - Brass & Gold Theme */
   --color-primary: #C19A49;
   --color-primary-dark: #9d7a35;
   --color-primary-light: #d4b36a;
+  --color-primary-glow: rgba(193, 154, 73, 0.15);
   --color-secondary: #1a3353;
+  --color-secondary-light: #2d4a6d;
   --color-accent: #e67e22;
+  --color-accent-light: #f39c12;
 
-  /* Surface Colors - Dark Mode Ready */
+  /* Surface Colors - Dark Tonal Ladder */
   --surface-1: #05070C;
   --surface-2: #0A0D12;
   --surface-3: #0F131C;
   --surface-4: #161D2B;
   --surface-5: #1E2636;
+  --surface-6: #2a3545;
 
   /* Light Mode Surfaces */
   --bg-page: #f8f9fa;
   --bg-body: #ffffff;
-  --bg-panel: #ffffff;
+  --bg-panel: #fafbfc;
   --bg-elevated: #ffffff;
+  --bg-hover: #f3f4f6;
 
   /* Text Colors */
-  --text-primary: #1a3353;
-  --text-secondary: #6c757d;
+  --text-primary: #0f1419;
+  --text-secondary: #536471;
+  --text-tertiary: #8b98a5;
   --text-muted: #9ca3af;
   --text-inverse: #ffffff;
+  --text-on-primary: #ffffff;
 
   /* Semantic Colors */
   --color-success: #10b981;
+  --color-success-light: #d1fae5;
   --color-warning: #f59e0b;
+  --color-warning-light: #fef3c7;
   --color-error: #ef4444;
+  --color-error-light: #fee2e2;
   --color-info: #3b82f6;
+  --color-info-light: #dbeafe;
 
   /* === Typography === */
   --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
