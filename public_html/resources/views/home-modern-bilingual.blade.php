@@ -752,39 +752,178 @@
 @endsection
 
 @section('content')
-{{-- Hero Section Modern --}}
-<section class="hero-section-modern">
-    <div class="hero-section-modern__content">
-        <div class="hero-section-modern__text">
-            <h1>
-                @if($data['direction'] === 'rtl')
-                    <span>السنس المصري</span>
-                    تراث الفراعنة
-                @else
-                    <span>Egyptian Snus</span>
-                    Legacy of Pharaohs
-                @endif
-            </h1>
-            <p>
-                @if($data['direction'] === 'rtl')
-                    منتجات أصلية مستوحاة من حضارة مصر العريقة - جودة عالمية بلمسة مصرية
-                @else
-                    Authentic products inspired by Egypt's ancient civilization - World quality with Egyptian touch
-                @endif
-            </p>
-            <a href="/shop" class="btn-hero">
-                @if($data['direction'] === 'rtl')
-                    اكتشف المنتجات
-                @else
-                    Discover Products
-                @endif
-            </a>
+{{-- Top Promotional Banner --}}
+<section style="background: linear-gradient(135deg, var(--pharaoh-gold) 0%, var(--pharaoh-gold-dark) 100%); padding: var(--space-4) 0; text-align: center;">
+    <div class="container">
+        <p style="color: #FFFFFF; font-weight: 700; margin: 0; font-size: 1rem; text-transform: uppercase; letter-spacing: 0.05em;">
+            @if($data['direction'] === 'rtl')
+                احصل على خصم يصل إلى 10% على طلبك الأول
+            @else
+                Get UPTO 10% OFF On Your 1st Order
+            @endif
+        </p>
+    </div>
+</section>
+
+{{-- Hero Slider/Banner Section --}}
+<section style="background: #F8F8F8; padding: 0;">
+    <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel" style="max-width: 1400px; margin: 0 auto;">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active"></button>
+            <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1"></button>
+            <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2"></button>
         </div>
-        <div class="hero-section-modern__image">
-            <img src="{{ asset('images/hero-product.png') }}" alt="Snus Egypt" onerror="this.src='data:image/svg+xml,%3Csvg width=\'400\' height=\'400\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Crect width=\'400\' height=\'400\' fill=\'%23C19A49\' opacity=\'0.1\'/%3E%3Ctext x=\'50%25\' y=\'50%25\' text-anchor=\'middle\' dy=\'.3em\' fill=\'%23C19A49\' font-size=\'20\' font-weight=\'bold\'%3ESNUS EGYPT%3C/text%3E%3C/svg%3E'">
+        <div class="carousel-inner">
+            <div class="carousel-item active" style="position: relative; min-height: 500px; background: linear-gradient(135deg, rgba(193, 154, 73, 0.1) 0%, rgba(43, 95, 124, 0.1) 100%); display: flex; align-items: center;">
+                <div class="container">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-12); align-items: center;">
+                        <div style="padding: var(--space-8);">
+                            <h2 style="font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 900; color: var(--hieroglyph-dark); margin: 0 0 var(--space-6) 0; text-transform: uppercase; line-height: 1.1;">
+                                @if($data['direction'] === 'rtl')
+                                    <span style="color: var(--pharaoh-gold); display: block;">السنس المصري</span>
+                                    اكتشف مجموعتنا الجديدة
+                                @else
+                                    <span style="color: var(--pharaoh-gold); display: block;">Snus Egypt</span>
+                                    Discover Our New Collection
+                                @endif
+                            </h2>
+                            <p style="font-size: 1.25rem; color: #666; margin: 0 0 var(--space-8) 0; line-height: 1.7;">
+                                @if($data['direction'] === 'rtl')
+                                    منتجات أصلية بجودة عالمية - تراث الفراعنة
+                                @else
+                                    Authentic products with world quality - Legacy of Pharaohs
+                                @endif
+                            </p>
+                            <a href="/shop" style="display: inline-flex; align-items: center; gap: var(--space-3); padding: var(--space-5) var(--space-10); background: var(--pharaoh-gold); color: #FFFFFF; border-radius: 999px; text-decoration: none; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; box-shadow: 0 10px 30px rgba(193, 154, 73, 0.3); transition: all 0.3s;">
+                                @if($data['direction'] === 'rtl')
+                                    تسوق الآن
+                                @else
+                                    Shop Now
+                                @endif
+                                <i class="fas fa-arrow-@if($data['direction'] === 'rtl')left@else right @endif"></i>
+                            </a>
+                        </div>
+                        <div style="position: relative; padding: var(--space-8); display: flex; align-items: center; justify-content: center;">
+                            <img src="{{ asset('images/hero-product-1.png') }}" alt="Featured Product" style="max-width: 100%; height: auto; max-height: 400px; object-fit: contain; filter: drop-shadow(0 20px 60px rgba(193, 154, 73, 0.2));" onerror="this.src='data:image/svg+xml,%3Csvg width=\'400\' height=\'400\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Ccircle cx=\'200\' cy=\'200\' r=\'150\' fill=\'%23C19A49\' opacity=\'0.2\'/%3E%3Ctext x=\'50%25\' y=\'50%25\' text-anchor=\'middle\' dy=\'.3em\' fill=\'%23C19A49\' font-size=\'24\' font-weight=\'bold\'%3EPRODUCT%3C/text%3E%3C/svg%3E'">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item" style="position: relative; min-height: 500px; background: linear-gradient(135deg, rgba(43, 95, 124, 0.1) 0%, rgba(193, 154, 73, 0.1) 100%); display: flex; align-items: center;">
+                <div class="container">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-12); align-items: center;">
+                        <div style="padding: var(--space-8);">
+                            <h2 style="font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 900; color: var(--hieroglyph-dark); margin: 0 0 var(--space-6) 0; text-transform: uppercase; line-height: 1.1;">
+                                @if($data['direction'] === 'rtl')
+                                    <span style="color: var(--nile-blue); display: block;">عروض خاصة</span>
+                                    توفير يصل إلى 25%
+                                @else
+                                    <span style="color: var(--nile-blue); display: block;">Special Offers</span>
+                                    Save Up To 25%
+                                @endif
+                            </h2>
+                            <p style="font-size: 1.25rem; color: #666; margin: 0 0 var(--space-8) 0; line-height: 1.7;">
+                                @if($data['direction'] === 'rtl')
+                                    على مجموعة مختارة من المنتجات المميزة
+                                @else
+                                    On selected premium products
+                                @endif
+                            </p>
+                            <a href="/shop" style="display: inline-flex; align-items: center; gap: var(--space-3); padding: var(--space-5) var(--space-10); background: var(--nile-blue); color: #FFFFFF; border-radius: 999px; text-decoration: none; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; box-shadow: 0 10px 30px rgba(43, 95, 124, 0.3); transition: all 0.3s;">
+                                @if($data['direction'] === 'rtl')
+                                    تسوق الآن
+                                @else
+                                    Shop Now
+                                @endif
+                                <i class="fas fa-arrow-@if($data['direction'] === 'rtl')left@else right @endif"></i>
+                            </a>
+                        </div>
+                        <div style="position: relative; padding: var(--space-8); display: flex; align-items: center; justify-content: center;">
+                            <img src="{{ asset('images/hero-product-2.png') }}" alt="Special Offer" style="max-width: 100%; height: auto; max-height: 400px; object-fit: contain; filter: drop-shadow(0 20px 60px rgba(43, 95, 124, 0.2));" onerror="this.src='data:image/svg+xml,%3Csvg width=\'400\' height=\'400\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Ccircle cx=\'200\' cy=\'200\' r=\'150\' fill=\'%232B5F7C\' opacity=\'0.2\'/%3E%3Ctext x=\'50%25\' y=\'50%25\' text-anchor=\'middle\' dy=\'.3em\' fill=\'%232B5F7C\' font-size=\'24\' font-weight=\'bold\'%3ESALE%3C/text%3E%3C/svg%3E'">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item" style="position: relative; min-height: 500px; background: linear-gradient(135deg, rgba(193, 154, 73, 0.15) 0%, rgba(233, 213, 184, 0.15) 100%); display: flex; align-items: center;">
+                <div class="container">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-12); align-items: center;">
+                        <div style="padding: var(--space-8);">
+                            <h2 style="font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 900; color: var(--hieroglyph-dark); margin: 0 0 var(--space-6) 0; text-transform: uppercase; line-height: 1.1;">
+                                @if($data['direction'] === 'rtl')
+                                    <span style="color: var(--pharaoh-gold); display: block;">منتجات جديدة</span>
+                                    وصل حديثاً
+                                @else
+                                    <span style="color: var(--pharaoh-gold); display: block;">New Products</span>
+                                    Just Arrived
+                                @endif
+                            </h2>
+                            <p style="font-size: 1.25rem; color: #666; margin: 0 0 var(--space-8) 0; line-height: 1.7;">
+                                @if($data['direction'] === 'rtl')
+                                    أحدث إصداراتنا من المنتجات الأصلية
+                                @else
+                                    Our latest releases of authentic products
+                                @endif
+                            </p>
+                            <a href="/shop" style="display: inline-flex; align-items: center; gap: var(--space-3); padding: var(--space-5) var(--space-10); background: var(--pharaoh-gold); color: #FFFFFF; border-radius: 999px; text-decoration: none; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; box-shadow: 0 10px 30px rgba(193, 154, 73, 0.3); transition: all 0.3s;">
+                                @if($data['direction'] === 'rtl')
+                                    اكتشف الآن
+                                @else
+                                    Discover Now
+                                @endif
+                                <i class="fas fa-arrow-@if($data['direction'] === 'rtl')left@else right @endif"></i>
+                            </a>
+                        </div>
+                        <div style="position: relative; padding: var(--space-8); display: flex; align-items: center; justify-content: center;">
+                            <img src="{{ asset('images/hero-product-3.png') }}" alt="New Arrival" style="max-width: 100%; height: auto; max-height: 400px; object-fit: contain; filter: drop-shadow(0 20px 60px rgba(193, 154, 73, 0.2));" onerror="this.src='data:image/svg+xml,%3Csvg width=\'400\' height=\'400\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Ccircle cx=\'200\' cy=\'200\' r=\'150\' fill=\'%23C19A49\' opacity=\'0.2\'/%3E%3Ctext x=\'50%25\' y=\'50%25\' text-anchor=\'middle\' dy=\'.3em\' fill=\'%23C19A49\' font-size=\'24\' font-weight=\'bold\'%3ENEW%3C/text%3E%3C/svg%3E'">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev" style="width: 60px;">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next" style="width: 60px;">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+</section>
+
+{{-- Category Bar --}}
+<section style="background: #FFFFFF; border-bottom: 2px solid #F0F0F0; padding: var(--space-8) 0;">
+    <div class="container">
+        <div style="display: flex; align-items: center; justify-content: center; gap: var(--space-6); flex-wrap: wrap;">
+            <a href="/category/cuba" style="padding: var(--space-3) var(--space-6); font-weight: 700; color: var(--hieroglyph-dark); text-decoration: none; text-transform: uppercase; letter-spacing: 0.05em; border-radius: 999px; transition: all 0.3s; font-size: 0.95rem;">CUBA</a>
+            <a href="/category/pablo" style="padding: var(--space-3) var(--space-6); font-weight: 700; color: var(--hieroglyph-dark); text-decoration: none; text-transform: uppercase; letter-spacing: 0.05em; border-radius: 999px; transition: all 0.3s; font-size: 0.95rem;">PABLO</a>
+            <a href="/category/swag" style="padding: var(--space-3) var(--space-6); font-weight: 700; color: var(--hieroglyph-dark); text-decoration: none; text-transform: uppercase; letter-spacing: 0.05em; border-radius: 999px; transition: all 0.3s; font-size: 0.95rem;">SWAG</a>
+            <a href="/category/killa" style="padding: var(--space-3) var(--space-6); font-weight: 700; color: var(--hieroglyph-dark); text-decoration: none; text-transform: uppercase; letter-spacing: 0.05em; border-radius: 999px; transition: all 0.3s; font-size: 0.95rem;">KILLA</a>
+            <a href="/category/velo" style="padding: var(--space-3) var(--space-6); font-weight: 700; color: var(--pharaoh-gold); text-decoration: none; text-transform: uppercase; letter-spacing: 0.05em; border-radius: 999px; transition: all 0.3s; font-size: 0.95rem;">VELO</a>
+            <a href="/category/zyn" style="padding: var(--space-3) var(--space-6); font-weight: 700; color: var(--hieroglyph-dark); text-decoration: none; text-transform: uppercase; letter-spacing: 0.05em; border-radius: 999px; transition: all 0.3s; font-size: 0.95rem;">ZYN</a>
+            <a href="/category/fox" style="padding: var(--space-3) var(--space-6); font-weight: 700; color: var(--hieroglyph-dark); text-decoration: none; text-transform: uppercase; letter-spacing: 0.05em; border-radius: 999px; transition: all 0.3s; font-size: 0.95rem;">FOX</a>
+            <a href="/category/iceberg" style="padding: var(--space-3) var(--space-6); font-weight: 700; color: var(--hieroglyph-dark); text-decoration: none; text-transform: uppercase; letter-spacing: 0.05em; border-radius: 999px; transition: all 0.3s; font-size: 0.95rem;">ICEBERG</a>
         </div>
     </div>
 </section>
+
+<style>
+    @media (max-width: 768px) {
+        .carousel-item > .container > div {
+            grid-template-columns: 1fr !important;
+            text-align: center;
+        }
+        .carousel-item img {
+            max-height: 300px !important;
+        }
+    }
+
+    section a[href^="/category/"]:hover {
+        background: var(--pharaoh-gold);
+        color: #FFFFFF !important;
+        transform: translateY(-2px);
+    }
+</style>
 
 {{-- Features Section --}}
 <section class="section-modern">
@@ -938,9 +1077,103 @@
                 @endif
             </p>
         </div>
-        <div class="tab_top_sales"></div>
+        <div class="products-grid-modern tab_top_sales"></div>
     </div>
 </section>
+
+{{-- Top Selling Section --}}
+<section class="section-modern" style="padding: var(--space-16) 0;">
+    <div class="container">
+        <div class="section-header-modern">
+            <h2>
+                @if($data['direction'] === 'rtl')
+                    الأكثر مبيعاً هذا الأسبوع
+                @else
+                    Top Selling of the Week
+                @endif
+            </h2>
+            <p>
+                @if($data['direction'] === 'rtl')
+                    المنتجات الأكثر شعبية لدى عملائنا
+                @else
+                    Most popular products among our customers
+                @endif
+            </p>
+        </div>
+
+        {{-- Product Tabs --}}
+        <div style="display: flex; justify-content: center; gap: var(--space-4); margin-bottom: var(--space-12); flex-wrap: wrap;">
+            <button class="product-tab active" data-tab="featured" style="padding: var(--space-4) var(--space-8); background: var(--pharaoh-gold); color: #FFFFFF; border: none; border-radius: 999px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; cursor: pointer; transition: all 0.3s; font-size: 0.95rem;">
+                @if($data['direction'] === 'rtl')
+                    مميز
+                @else
+                    Featured
+                @endif
+            </button>
+            <button class="product-tab" data-tab="special" style="padding: var(--space-4) var(--space-8); background: #FFFFFF; color: var(--hieroglyph-dark); border: 2px solid #E0E0E0; border-radius: 999px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; cursor: pointer; transition: all 0.3s; font-size: 0.95rem;">
+                @if($data['direction'] === 'rtl')
+                    عروض خاصة
+                @else
+                    Special
+                @endif
+            </button>
+            <button class="product-tab" data-tab="liked" style="padding: var(--space-4) var(--space-8); background: #FFFFFF; color: var(--hieroglyph-dark); border: 2px solid #E0E0E0; border-radius: 999px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; cursor: pointer; transition: all 0.3s; font-size: 0.95rem;">
+                @if($data['direction'] === 'rtl')
+                    الأكثر إعجاباً
+                @else
+                    Most Liked
+                @endif
+            </button>
+        </div>
+
+        <div class="products-grid-modern top-selling-products"></div>
+    </div>
+</section>
+
+<style>
+    .product-tab:hover {
+        transform: translateY(-2px);
+    }
+
+    .product-tab.active {
+        background: var(--pharaoh-gold) !important;
+        color: #FFFFFF !important;
+        border-color: var(--pharaoh-gold) !important;
+        box-shadow: 0 8px 24px rgba(193, 154, 73, 0.3);
+    }
+</style>
+
+<script>
+// Tab functionality for Top Selling section
+document.addEventListener('DOMContentLoaded', function() {
+    const tabs = document.querySelectorAll('.product-tab');
+    tabs.forEach(tab => {
+        tab.addEventListener('click', function() {
+            // Remove active class from all tabs
+            tabs.forEach(t => t.classList.remove('active'));
+            // Add active class to clicked tab
+            this.classList.add('active');
+
+            // Get the tab type
+            const tabType = this.getAttribute('data-tab');
+            const languageId = localStorage.getItem('languageId') || 1;
+            const currency = localStorage.getItem('currency') || 'EGP';
+
+            // Load products based on tab
+            let url = "{{ url('') }}" + '/api/client/products?limit=12&getCategory=1&getDetail=1&language_id=' + languageId + '&currency=' + currency;
+
+            if (tabType === 'featured') {
+                url += '&isFeatured=1';
+            } else if (tabType === 'special') {
+                url += '&isSpecial=1';
+            } else if (tabType === 'liked') {
+                url += '&sortBy=rating&sortType=DESC';
+            }
+
+            fetchProduct(url, 'top-selling-products');
+        });
+    });
+});
 
 {{-- Newsletter CTA --}}
 <section class="section-modern" style="padding: var(--space-16) 0;">
@@ -1056,6 +1289,10 @@
         // Load new arrivals
         var url = "{{ url('') }}" + '/api/client/products?limit=12&getCategory=1&getDetail=1&language_id=' + languageId + '&sortBy=id&sortType=DESC&currency=' + localStorage.getItem("currency");
         fetchProduct(url, 'new-arrival');
+
+        // Load top selling products (default: featured)
+        var url = "{{ url('') }}" + '/api/client/products?limit=12&getCategory=1&getDetail=1&language_id=' + languageId + '&isFeatured=1&currency=' + localStorage.getItem("currency");
+        fetchProduct(url, 'top-selling-products');
 
         // Load categories
         categorySlider();
