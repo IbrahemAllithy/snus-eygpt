@@ -2,8 +2,8 @@
   "version": "0.0.1",
   "configurations": [
     {
-      "name": "public_html",
-      "url": "http://public_html.test"
+      "name": "laravel-server",
+      "url": "http://localhost:8000"
     }
   ]
 }
