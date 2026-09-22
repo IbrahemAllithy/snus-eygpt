@@ -7,15 +7,16 @@
 @section('css')
 <style>
     :root {
-        --pharaoh-gold: #C19A49;
-        --pharaoh-gold-light: #D4AF63;
-        --pharaoh-gold-dark: #9B7A38;
-        --desert-sand: #E9D5B8;
-        --nile-blue: #2B5F7C;
-        --papyrus: #F5EFE0;
-        --hieroglyph-dark: #1A1A1A;
-        --cairo-night: #0F1419;
-        --pyramid-stone: #8B7355;
+        --pharaoh-gold: #D4A574;
+        --pharaoh-gold-light: #E8C499;
+        --pharaoh-gold-dark: #B8884F;
+        --desert-sand: #F4E4D1;
+        --nile-blue: #1E5A7D;
+        --nile-blue-light: #3B7BA8;
+        --papyrus: #FBF7F0;
+        --hieroglyph-dark: #0F0F0F;
+        --cairo-night: #050505;
+        --pyramid-stone: #9D8570;
         --space-3: 0.75rem;
         --space-4: 1rem;
         --space-5: 1.25rem;
@@ -56,81 +57,114 @@
         background: #FFFFFF;
         border-radius: var(--radius-xl);
         overflow: hidden;
-        transition: all 0.4s ease;
-        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
         display: flex;
         flex-direction: column;
+        border: 2px solid transparent;
     }
 
     .product-card-modern:hover {
-        transform: translateY(-8px);
-        box-shadow: 0 20px 40px rgba(193, 154, 73, 0.15);
+        transform: translateY(-12px);
+        box-shadow: 0 24px 48px rgba(212, 165, 116, 0.25);
+        border-color: var(--pharaoh-gold);
     }
 
     .product-card-modern__image {
         width: 100%;
         height: 320px;
-        background: #F8F9FA;
+        background: linear-gradient(135deg, #F8F9FA 0%, var(--papyrus) 100%);
         display: flex;
         align-items: center;
         justify-content: center;
         overflow: hidden;
+        position: relative;
+    }
+
+    .product-card-modern__image::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(135deg, transparent 0%, rgba(212, 165, 116, 0.1) 100%);
+        opacity: 0;
+        transition: opacity 0.4s ease;
+    }
+
+    .product-card-modern:hover .product-card-modern__image::before {
+        opacity: 1;
     }
 
     .product-card-modern__image img {
         width: 100%;
         height: 100%;
         object-fit: cover;
-        transition: transform 0.5s ease;
+        transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     .product-card-modern:hover .product-card-modern__image img {
-        transform: scale(1.05);
+        transform: scale(1.08);
     }
 
     .product-card-modern__content {
-        padding: 1.5rem;
+        padding: 1.75rem;
         flex: 1;
         display: flex;
         flex-direction: column;
+        background: #FFFFFF;
     }
 
     .product-card-modern__title {
-        font-size: 1.25rem;
-        font-weight: 700;
+        font-size: 1.3rem;
+        font-weight: 800;
         color: var(--hieroglyph-dark);
         margin: 0 0 1rem 0;
         line-height: 1.3;
+        transition: color 0.3s ease;
+    }
+
+    .product-card-modern:hover .product-card-modern__title {
+        color: var(--pharaoh-gold);
     }
 
     .product-card-modern__price {
-        font-size: 1.75rem;
+        font-size: 1.85rem;
         font-weight: 900;
         color: var(--pharaoh-gold);
-        margin: auto 0 1rem 0;
+        margin: auto 0 1.25rem 0;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
     }
 
     .product-card-modern__cart {
         display: flex;
         align-items: center;
         gap: 0.75rem;
-        padding: 1rem 1.5rem;
-        background: var(--pharaoh-gold);
+        padding: 1.1rem 1.75rem;
+        background: linear-gradient(135deg, var(--pharaoh-gold) 0%, var(--pharaoh-gold-dark) 100%);
         color: #FFFFFF;
         border-radius: 999px;
         border: none;
-        font-weight: 700;
+        font-weight: 800;
         text-transform: uppercase;
-        letter-spacing: 0.05em;
+        letter-spacing: 0.08em;
         cursor: pointer;
-        transition: all 0.3s ease;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         justify-content: center;
+        box-shadow: 0 4px 15px rgba(212, 165, 116, 0.3);
     }
 
     .product-card-modern__cart:hover {
-        background: var(--pharaoh-gold-dark);
-        transform: translateY(-2px);
-        box-shadow: 0 8px 20px rgba(193, 154, 73, 0.3);
+        background: linear-gradient(135deg, var(--pharaoh-gold-dark) 0%, var(--cairo-night) 100%);
+        transform: translateY(-3px);
+        box-shadow: 0 12px 28px rgba(212, 165, 116, 0.45);
+    }
+
+    .product-card-modern__cart:active {
+        transform: translateY(-1px);
     }
 
     /* Features Grid */
@@ -142,38 +176,72 @@
     }
 
     .feature-card-modern {
-        background: #FFFFFF;
-        padding: 2rem;
+        background: linear-gradient(135deg, #FFFFFF 0%, var(--papyrus) 100%);
+        padding: 2.5rem;
         border-radius: var(--radius-xl);
         text-align: center;
-        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
-        transition: all 0.3s ease;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        border: 2px solid transparent;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .feature-card-modern::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(135deg, var(--pharaoh-gold) 0%, var(--pharaoh-gold-dark) 100%);
+        opacity: 0;
+        transition: opacity 0.4s ease;
+        z-index: 0;
+    }
+
+    .feature-card-modern:hover::before {
+        opacity: 0.05;
     }
 
     .feature-card-modern:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+        transform: translateY(-8px) scale(1.02);
+        box-shadow: 0 16px 40px rgba(212, 165, 116, 0.25);
+        border-color: var(--pharaoh-gold);
     }
 
     .feature-card-modern i {
-        font-size: 3rem;
+        font-size: 3.5rem;
         color: var(--pharaoh-gold);
         margin-bottom: 1.5rem;
+        transition: all 0.4s ease;
+        position: relative;
+        z-index: 1;
+    }
+
+    .feature-card-modern:hover i {
+        color: var(--pharaoh-gold-dark);
+        transform: scale(1.15) rotateY(360deg);
     }
 
     .feature-card-modern h3 {
-        font-size: 1.25rem;
-        font-weight: 700;
+        font-size: 1.3rem;
+        font-weight: 800;
         color: var(--hieroglyph-dark);
         margin: 0 0 1rem 0;
         text-transform: uppercase;
+        letter-spacing: 0.05em;
+        position: relative;
+        z-index: 1;
     }
 
     .feature-card-modern p {
         font-size: 1rem;
-        color: #666;
+        color: #555;
         margin: 0;
-        line-height: 1.7;
+        line-height: 1.8;
+        position: relative;
+        z-index: 1;
     }
 
     /* Section Headers */
@@ -208,30 +276,39 @@
     }
 
     .product-tab {
-        padding: 1rem 2rem;
+        padding: 1.1rem 2.5rem;
         background: #FFFFFF;
         color: var(--hieroglyph-dark);
-        border: 2px solid #E0E0E0;
+        border: 2px solid #DDD;
         border-radius: 999px;
-        font-weight: 700;
+        font-weight: 800;
         text-transform: uppercase;
-        letter-spacing: 0.05em;
+        letter-spacing: 0.08em;
         cursor: pointer;
-        transition: all 0.3s ease;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         font-size: 0.95rem;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
     }
 
     .product-tab:hover {
         border-color: var(--pharaoh-gold);
         color: var(--pharaoh-gold);
-        transform: translateY(-2px);
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(212, 165, 116, 0.2);
+        background: var(--papyrus);
     }
 
     .product-tab.active {
-        background: var(--pharaoh-gold);
+        background: linear-gradient(135deg, var(--pharaoh-gold) 0%, var(--pharaoh-gold-dark) 100%);
         color: #FFFFFF;
         border-color: var(--pharaoh-gold);
-        box-shadow: 0 8px 20px rgba(193, 154, 73, 0.3);
+        box-shadow: 0 8px 24px rgba(212, 165, 116, 0.4);
+        transform: translateY(-2px);
+    }
+
+    .product-tab.active:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 32px rgba(212, 165, 116, 0.5);
     }
 
     /* Newsletter */
@@ -305,6 +382,175 @@
             width: 100%;
         }
     }
+
+    /* Brand Cards Hover */
+    .brand-card {
+        background: linear-gradient(135deg, #FFFFFF 0%, var(--papyrus) 100%);
+        padding: 2rem;
+        border-radius: var(--radius-xl);
+        text-align: center;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        border: 2px solid transparent;
+        cursor: pointer;
+    }
+
+    .brand-card:hover {
+        transform: translateY(-8px) scale(1.05);
+        box-shadow: 0 16px 40px rgba(212, 165, 116, 0.25);
+        border-color: var(--pharaoh-gold);
+        background: linear-gradient(135deg, var(--papyrus) 0%, #FFFFFF 100%);
+    }
+
+    .brand-card h4 {
+        font-size: 1.5rem;
+        font-weight: 900;
+        color: var(--hieroglyph-dark);
+        margin: 0;
+        letter-spacing: 0.1em;
+        transition: color 0.3s ease;
+    }
+
+    .brand-card:hover h4 {
+        color: var(--pharaoh-gold);
+    }
+
+    /* Why Choose Us Cards */
+    .why-card {
+        background: #FFFFFF;
+        padding: 2.5rem;
+        border-radius: var(--radius-xl);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        border-left: 4px solid var(--pharaoh-gold);
+        cursor: pointer;
+    }
+
+    .why-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 48px rgba(212, 165, 116, 0.2);
+        border-left-width: 6px;
+    }
+
+    .why-card-icon {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 1.5rem;
+        transition: all 0.4s ease;
+    }
+
+    .why-card:hover .why-card-icon {
+        transform: rotateY(360deg) scale(1.1);
+    }
+
+    /* Testimonial Cards */
+    .testimonial-card {
+        background: linear-gradient(135deg, #FFFFFF 0%, var(--papyrus) 100%);
+        padding: 2.5rem;
+        border-radius: var(--radius-xl);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        border: 2px solid transparent;
+        cursor: pointer;
+    }
+
+    .testimonial-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 48px rgba(212, 165, 116, 0.2);
+        border-color: var(--pharaoh-gold);
+        background: linear-gradient(135deg, var(--papyrus) 0%, #FFFFFF 100%);
+    }
+
+    /* Hero Buttons */
+    .hero-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.75rem;
+        padding: 1.2rem 2.75rem;
+        border-radius: 999px;
+        text-decoration: none;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .hero-btn::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 0;
+        height: 0;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.2);
+        transform: translate(-50%, -50%);
+        transition: width 0.6s, height 0.6s;
+    }
+
+    .hero-btn:hover::before {
+        width: 300px;
+        height: 300px;
+    }
+
+    .hero-btn:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 16px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    .hero-btn i {
+        transition: transform 0.3s ease;
+    }
+
+    .hero-btn:hover i {
+        transform: translateX(5px);
+    }
+
+    /* Carousel Controls Enhancement */
+    .carousel-control-prev,
+    .carousel-control-next {
+        width: 60px;
+        height: 60px;
+        background: rgba(212, 165, 116, 0.9);
+        border-radius: 50%;
+        top: 50%;
+        transform: translateY(-50%);
+        opacity: 0;
+        transition: all 0.3s ease;
+    }
+
+    .carousel:hover .carousel-control-prev,
+    .carousel:hover .carousel-control-next {
+        opacity: 1;
+    }
+
+    .carousel-control-prev:hover,
+    .carousel-control-next:hover {
+        background: var(--pharaoh-gold);
+        transform: translateY(-50%) scale(1.1);
+    }
+
+    .carousel-indicators button {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: var(--pharaoh-gold);
+        opacity: 0.5;
+        transition: all 0.3s ease;
+    }
+
+    .carousel-indicators button.active {
+        opacity: 1;
+        width: 40px;
+        border-radius: 6px;
+    }
+
 </style>
 @endsection
 
@@ -354,7 +600,7 @@
                                         Authentic products with world quality - Legacy of Pharaohs
                                     @endif
                                 </p>
-                                <a href="/shop" style="display: inline-flex; align-items: center; gap: 0.75rem; padding: 1rem 2.5rem; background: var(--pharaoh-gold); color: #FFFFFF; border-radius: 999px; text-decoration: none; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; box-shadow: 0 10px 30px rgba(193, 154, 73, 0.3);">
+                                <a href="/shop" class="hero-btn" style="background: linear-gradient(135deg, var(--pharaoh-gold) 0%, var(--pharaoh-gold-dark) 100%); color: #FFFFFF; box-shadow: 0 10px 30px rgba(212, 165, 116, 0.4);">
                                     @if($data['direction'] === 'rtl')
                                         تسوق الآن
                                     @else
@@ -393,7 +639,7 @@
                                         On selected products for limited time
                                     @endif
                                 </p>
-                                <a href="/shop" style="display: inline-flex; align-items: center; gap: 0.75rem; padding: 1rem 2.5rem; background: var(--nile-blue); color: #FFFFFF; border-radius: 999px; text-decoration: none; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; box-shadow: 0 10px 30px rgba(43, 95, 124, 0.3);">
+                                <a href="/shop" class="hero-btn" style="background: linear-gradient(135deg, var(--nile-blue) 0%, var(--nile-blue-light) 100%); color: #FFFFFF; box-shadow: 0 10px 30px rgba(30, 90, 125, 0.4);">
                                     @if($data['direction'] === 'rtl')
                                         تسوق العروض
                                     @else
@@ -707,6 +953,252 @@
                 @endif
             </button>
         </form>
+    </div>
+</section>
+
+{{-- Brands Section --}}
+<section style="background: #FFFFFF; padding: 4rem 0;">
+    <div class="container">
+        <div class="section-header-modern">
+            <h2>
+                @if($data['direction'] === 'rtl')
+                    العلامات التجارية الموثوقة
+                @else
+                    Trusted Brands
+                @endif
+            </h2>
+            <p>
+                @if($data['direction'] === 'rtl')
+                    نوفر أفضل العلامات التجارية العالمية
+                @else
+                    We offer the best international brands
+                @endif
+            </p>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 2rem; align-items: center; margin-top: 3rem;">
+            @foreach(['VELO', 'ZYN', 'ICEBERG', 'KILLA', 'PABLO', 'CUBA', 'FOX', 'SWAG'] as $brand)
+            <div class="brand-card">
+                <h4 style="font-size: 1.5rem; font-weight: 900; color: var(--hieroglyph-dark); margin: 0; letter-spacing: 0.1em;">{{ $brand }}</h4>
+            </div>
+            @endforeach
+        </div>
+    </div>
+</section>
+
+{{-- Why Choose Us Section --}}
+<section style="background: linear-gradient(135deg, var(--papyrus) 0%, #FFFFFF 100%); padding: 5rem 0;">
+    <div class="container">
+        <div class="section-header-modern">
+            <h2>
+                @if($data['direction'] === 'rtl')
+                    لماذا نحن الخيار الأفضل؟
+                @else
+                    Why Choose Us?
+                @endif
+            </h2>
+            <p>
+                @if($data['direction'] === 'rtl')
+                    نقدم تجربة تسوق استثنائية بأعلى معايير الجودة
+                @else
+                    We provide exceptional shopping experience with highest quality standards
+                @endif
+            </p>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2.5rem; margin-top: 3rem;">
+            <div class="why-card" style="border-left-color: var(--pharaoh-gold);">
+                <div class="why-card-icon" style="background: linear-gradient(135deg, var(--pharaoh-gold) 0%, var(--pharaoh-gold-dark) 100%);">
+                    <i class="fas fa-shield-alt" style="font-size: 1.75rem; color: #FFFFFF;"></i>
+                </div>
+                <h3 style="font-size: 1.4rem; font-weight: 800; color: var(--hieroglyph-dark); margin: 0 0 1rem 0;">
+                    @if($data['direction'] === 'rtl')
+                        منتجات أصلية 100%
+                    @else
+                        100% Authentic Products
+                    @endif
+                </h3>
+                <p style="color: #666; line-height: 1.8; margin: 0;">
+                    @if($data['direction'] === 'rtl')
+                        جميع منتجاتنا أصلية ومضمونة من الموردين الرسميين
+                    @else
+                        All our products are authentic and guaranteed from official suppliers
+                    @endif
+                </p>
+            </div>
+
+            <div class="why-card" style="border-left-color: var(--nile-blue);">
+                <div class="why-card-icon" style="background: linear-gradient(135deg, var(--nile-blue) 0%, var(--nile-blue-light) 100%);">
+                    <i class="fas fa-shipping-fast" style="font-size: 1.75rem; color: #FFFFFF;"></i>
+                </div>
+                <h3 style="font-size: 1.4rem; font-weight: 800; color: var(--hieroglyph-dark); margin: 0 0 1rem 0;">
+                    @if($data['direction'] === 'rtl')
+                        شحن سريع وآمن
+                    @else
+                        Fast & Secure Shipping
+                    @endif
+                </h3>
+                <p style="color: #666; line-height: 1.8; margin: 0;">
+                    @if($data['direction'] === 'rtl')
+                        توصيل سريع لجميع أنحاء مصر مع ضمان سلامة المنتج
+                    @else
+                        Fast delivery across Egypt with product safety guarantee
+                    @endif
+                </p>
+            </div>
+
+            <div class="why-card" style="border-left-color: var(--pyramid-stone);">
+                <div class="why-card-icon" style="background: linear-gradient(135deg, var(--pyramid-stone) 0%, var(--hieroglyph-dark) 100%);">
+                    <i class="fas fa-headset" style="font-size: 1.75rem; color: #FFFFFF;"></i>
+                </div>
+                <h3 style="font-size: 1.4rem; font-weight: 800; color: var(--hieroglyph-dark); margin: 0 0 1rem 0;">
+                    @if($data['direction'] === 'rtl')
+                        دعم فني 24/7
+                    @else
+                        24/7 Customer Support
+                    @endif
+                </h3>
+                <p style="color: #666; line-height: 1.8; margin: 0;">
+                    @if($data['direction'] === 'rtl')
+                        فريق الدعم جاهز للرد على استفساراتك في أي وقت
+                    @else
+                        Support team ready to answer your inquiries anytime
+                    @endif
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+{{-- Testimonials Section --}}
+<section style="background: #FFFFFF; padding: 5rem 0;">
+    <div class="container">
+        <div class="section-header-modern">
+            <h2>
+                @if($data['direction'] === 'rtl')
+                    ماذا يقول عملاؤنا
+                @else
+                    What Our Customers Say
+                @endif
+            </h2>
+            <p>
+                @if($data['direction'] === 'rtl')
+                    آراء حقيقية من عملائنا المميزين
+                @else
+                    Real reviews from our valued customers
+                @endif
+            </p>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 3rem;">
+            <div class="testimonial-card">
+                <div style="display: flex; gap: 0.5rem; margin-bottom: 1.5rem;">
+                    @for($i = 0; $i < 5; $i++)
+                    <i class="fas fa-star" style="color: var(--pharaoh-gold); font-size: 1.25rem;"></i>
+                    @endfor
+                </div>
+                <p style="font-size: 1.1rem; color: #555; line-height: 1.8; margin: 0 0 1.5rem 0; font-style: italic;">
+                    @if($data['direction'] === 'rtl')
+                        "أفضل متجر سنس في مصر، منتجات أصلية وتوصيل سريع. ممتاز جداً!"
+                    @else
+                        "Best snus store in Egypt, authentic products and fast delivery. Excellent!"
+                    @endif
+                </p>
+                <div style="display: flex; align-items: center; gap: 1rem;">
+                    <div style="width: 50px; height: 50px; background: linear-gradient(135deg, var(--pharaoh-gold) 0%, var(--pharaoh-gold-dark) 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                        <span style="color: #FFFFFF; font-weight: 800; font-size: 1.25rem;">أ</span>
+                    </div>
+                    <div>
+                        <h4 style="font-size: 1.1rem; font-weight: 800; color: var(--hieroglyph-dark); margin: 0;">
+                            @if($data['direction'] === 'rtl')
+                                أحمد محمد
+                            @else
+                                Ahmed Mohamed
+                            @endif
+                        </h4>
+                        <p style="font-size: 0.9rem; color: #999; margin: 0;">
+                            @if($data['direction'] === 'rtl')
+                                القاهرة
+                            @else
+                                Cairo
+                            @endif
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-card">
+                <div style="display: flex; gap: 0.5rem; margin-bottom: 1.5rem;">
+                    @for($i = 0; $i < 5; $i++)
+                    <i class="fas fa-star" style="color: var(--pharaoh-gold); font-size: 1.25rem;"></i>
+                    @endfor
+                </div>
+                <p style="font-size: 1.1rem; color: #555; line-height: 1.8; margin: 0 0 1.5rem 0; font-style: italic;">
+                    @if($data['direction'] === 'rtl')
+                        "خدمة عملاء ممتازة وأسعار تنافسية. أنصح بالتعامل معهم."
+                    @else
+                        "Excellent customer service and competitive prices. Highly recommended."
+                    @endif
+                </p>
+                <div style="display: flex; align-items: center; gap: 1rem;">
+                    <div style="width: 50px; height: 50px; background: linear-gradient(135deg, var(--nile-blue) 0%, var(--nile-blue-light) 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                        <span style="color: #FFFFFF; font-weight: 800; font-size: 1.25rem;">م</span>
+                    </div>
+                    <div>
+                        <h4 style="font-size: 1.1rem; font-weight: 800; color: var(--hieroglyph-dark); margin: 0;">
+                            @if($data['direction'] === 'rtl')
+                                محمود علي
+                            @else
+                                Mahmoud Ali
+                            @endif
+                        </h4>
+                        <p style="font-size: 0.9rem; color: #999; margin: 0;">
+                            @if($data['direction'] === 'rtl')
+                                الإسكندرية
+                            @else
+                                Alexandria
+                            @endif
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-card">
+                <div style="display: flex; gap: 0.5rem; margin-bottom: 1.5rem;">
+                    @for($i = 0; $i < 5; $i++)
+                    <i class="fas fa-star" style="color: var(--pharaoh-gold); font-size: 1.25rem;"></i>
+                    @endfor
+                </div>
+                <p style="font-size: 1.1rem; color: #555; line-height: 1.8; margin: 0 0 1.5rem 0; font-style: italic;">
+                    @if($data['direction'] === 'rtl')
+                        "تشكيلة رائعة من المنتجات، وتوصيل احترافي. شكراً سنس مصر!"
+                    @else
+                        "Great selection of products, professional delivery. Thanks Snus Egypt!"
+                    @endif
+                </p>
+                <div style="display: flex; align-items: center; gap: 1rem;">
+                    <div style="width: 50px; height: 50px; background: linear-gradient(135deg, var(--pyramid-stone) 0%, var(--hieroglyph-dark) 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                        <span style="color: #FFFFFF; font-weight: 800; font-size: 1.25rem;">ع</span>
+                    </div>
+                    <div>
+                        <h4 style="font-size: 1.1rem; font-weight: 800; color: var(--hieroglyph-dark); margin: 0;">
+                            @if($data['direction'] === 'rtl')
+                                عمر حسن
+                            @else
+                                Omar Hassan
+                            @endif
+                        </h4>
+                        <p style="font-size: 0.9rem; color: #999; margin: 0;">
+                            @if($data['direction'] === 'rtl')
+                                الجيزة
+                            @else
+                                Giza
+                            @endif
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </section>
 
