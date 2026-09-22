@@ -522,13 +522,13 @@
         <div class="product-card-modern__image">
             <img class="product-card-image" src="" alt="">
             <div class="product-card-modern__actions">
-                <button class="product-card-modern__action wishlist-icon" title="@if($data['direction'] === 'rtl')إضافة للمفضلة@else Add to Wishlist@endif">
+                <button class="product-card-modern__action wishlist-icon" title="@if($data['direction'] === 'rtl')إضافة للمفضلة@else Add to Wishlist @endif">
                     <i class="far fa-heart"></i>
                 </button>
-                <button class="product-card-modern__action compare-icon" title="@if($data['direction'] === 'rtl')إضافة للمقارنة@else Add to Compare@endif">
+                <button class="product-card-modern__action compare-icon" title="@if($data['direction'] === 'rtl')إضافة للمقارنة@else Add to Compare @endif">
                     <i class="fas fa-exchange-alt"></i>
                 </button>
-                <button class="product-card-modern__action quick-view-icon" title="@if($data['direction'] === 'rtl')عرض سريع@else Quick View@endif">
+                <button class="product-card-modern__action quick-view-icon" title="@if($data['direction'] === 'rtl')عرض سريع@else Quick View @endif">
                     <i class="fas fa-eye"></i>
                 </button>
             </div>
@@ -571,7 +571,7 @@
                     </button>
                     <a href="#" class="product-card-link" style="flex: 1; display: flex; align-items: center; justify-content: center; gap: var(--space-2); padding: var(--space-3) var(--space-6); background: var(--surface-0); color: var(--color-primary); border: none; border-radius: 999px; font-weight: 700; text-decoration: none; cursor: pointer; transition: all 0.3s;">
                         <i class="fas fa-shopping-cart"></i>
-                        <span>@if($data['direction'] === 'rtl')أضف للسلة@else Add to Cart@endif</span>
+                        <span>@if($data['direction'] === 'rtl')أضف للسلة@else Add to Cart @endif</span>
                     </a>
                 </div>
             </div>
@@ -666,9 +666,9 @@
 
                         // Badges
                         var badges = '';
-                        var badgeSale = '{{ $data["direction"] === "rtl" ? "خصم" : "SALE" }}';
-                        var badgeFeatured = '{{ $data["direction"] === "rtl" ? "مميز" : "FEATURED" }}';
-                        var badgeNew = '{{ $data["direction"] === "rtl" ? "جديد" : "NEW" }}';
+                        var badgeSale = '@if($data["direction"] === "rtl")خصم@else SALE @endif';
+                        var badgeFeatured = '@if($data["direction"] === "rtl")مميز@else FEATURED @endif';
+                        var badgeNew = '@if($data["direction"] === "rtl")جديد@else NEW @endif';
 
                         if (data.data[i].discount_percentage > 0)
                             badges += '<span class="product-card-modern__badge product-card-modern__badge--sale">-' + data.data[i].discount_percentage + '%</span>';
@@ -748,7 +748,7 @@
                         } else {
                             clone.querySelector('.itemqty' + i).style.display = 'none';
                             clone.querySelector(".add-to-card-bag").style.display = 'none';
-                            clone.querySelector(".product-card-link").innerHTML = '<i class="fas fa-eye"></i><span>{{ $data["direction"] === "rtl" ? "عرض" : "View" }}</span>';
+                            clone.querySelector(".product-card-link").innerHTML = '<i class="fas fa-eye"></i><span>@if($data["direction"] === "rtl")عرض@else View @endif</span>';
                             clone.querySelector(".product-card-link").setAttribute('href', '/product/' + data.data[i].product_id + '/' + data.data[i].product_slug);
                             clone.querySelector(".product-card-link").removeAttribute('onclick');
                         }
@@ -803,13 +803,14 @@
         var row_id = $(this).attr('data-field');
         var quantity = $('#quantity' + row_id).val();
         $('#quantity' + row_id).val(parseInt(quantity) + 1);
-    })
+    });
 
     $(document).on('click', '.quantity-left-minus', function() {
         var row_id = $(this).attr('data-field');
         var quantity = $('#quantity' + row_id).val();
         if (quantity > 1)
             $('#quantity' + row_id).val(parseInt(quantity) - 1);
-    })
+    });
 </script>
+
 @endsection
