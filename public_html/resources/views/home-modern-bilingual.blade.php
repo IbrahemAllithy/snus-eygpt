@@ -696,7 +696,7 @@
                                         Our latest releases of authentic products
                                     @endif
                                 </p>
-                                <a href="/shop" style="display: inline-flex; align-items: center; gap: 0.75rem; padding: 1rem 2.5rem; background: var(--pharaoh-gold); color: #FFFFFF; border-radius: 999px; text-decoration: none; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; box-shadow: 0 10px 30px rgba(193, 154, 73, 0.3);">
+                                <a href="/shop" class="hero-btn" style="background: linear-gradient(135deg, var(--pharaoh-gold) 0%, var(--pharaoh-gold-dark) 100%); color: #FFFFFF; box-shadow: 0 10px 30px rgba(212, 165, 116, 0.4);">
                                     @if($data['direction'] === 'rtl')
                                         اكتشف الآن
                                     @else
