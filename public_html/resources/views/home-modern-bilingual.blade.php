@@ -6,17 +6,28 @@
 
 @section('css')
 <style>
-    /* Hero Section Modern */
+    :root {
+        --pharaoh-gold: #C19A49;
+        --pharaoh-gold-light: #D4AF63;
+        --pharaoh-gold-dark: #9B7A38;
+        --desert-sand: #E9D5B8;
+        --nile-blue: #2B5F7C;
+        --papyrus: #F5EFE0;
+        --hieroglyph-dark: #1A1A1A;
+        --cairo-night: #0F1419;
+        --pyramid-stone: #8B7355;
+    }
+
+    /* Hero Section - Velo-inspired with Egyptian Identity */
     .hero-section-modern {
         position: relative;
-        min-height: 500px;
+        min-height: 85vh;
         display: flex;
         align-items: center;
         justify-content: center;
-        text-align: center;
-        padding: var(--space-16) var(--space-4);
-        background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+        background: #FFFFFF;
         overflow: hidden;
+        padding: 0;
     }
 
     .hero-section-modern::before {
@@ -26,163 +37,242 @@
         left: 0;
         right: 0;
         bottom: 0;
-        background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-        opacity: 0.4;
+        background: linear-gradient(135deg, var(--pharaoh-gold) 0%, var(--nile-blue) 100%);
+        opacity: 0.05;
     }
 
     .hero-section-modern__content {
         position: relative;
-        z-index: 1;
-        max-width: 800px;
+        z-index: 2;
+        max-width: 1400px;
+        width: 100%;
+        padding: var(--space-4);
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--space-12);
+        align-items: center;
+    }
+
+    @media (max-width: 968px) {
+        .hero-section-modern__content {
+            grid-template-columns: 1fr;
+            text-align: center;
+        }
+    }
+
+    .hero-section-modern__text {
+        padding: var(--space-8);
     }
 
     .hero-section-modern h1 {
-        font-size: clamp(2rem, 5vw, 3.5rem);
-        font-weight: 800;
-        color: var(--surface-0);
+        font-size: clamp(2.5rem, 6vw, 4.5rem);
+        font-weight: 900;
+        color: var(--hieroglyph-dark);
         margin: 0 0 var(--space-6) 0;
-        line-height: 1.2;
-        text-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        line-height: 1.1;
+        letter-spacing: -0.02em;
+        text-transform: uppercase;
     }
 
     .hero-section-modern h1 span {
-        color: var(--surface-0);
-        border-bottom: 4px solid var(--surface-0);
-        padding-bottom: var(--space-1);
+        color: var(--pharaoh-gold);
+        display: block;
     }
 
     .hero-section-modern p {
-        font-size: clamp(1.125rem, 2vw, 1.375rem);
-        color: rgba(255, 255, 255, 0.95);
-        margin: 0 0 var(--space-8) 0;
-        line-height: 1.6;
+        font-size: clamp(1.125rem, 2vw, 1.5rem);
+        color: #666;
+        margin: 0 0 var(--space-10) 0;
+        line-height: 1.8;
+        font-weight: 400;
+    }
+
+    .hero-section-modern__image {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: var(--space-8);
+    }
+
+    .hero-section-modern__image img {
+        max-width: 100%;
+        height: auto;
+        max-height: 500px;
+        object-fit: contain;
+        filter: drop-shadow(0 20px 60px rgba(193, 154, 73, 0.2));
     }
 
     .btn-hero {
         display: inline-flex;
         align-items: center;
-        gap: var(--space-2);
+        justify-content: center;
+        gap: var(--space-3);
         padding: var(--space-5) var(--space-10);
         font-size: 1.125rem;
         font-weight: 700;
-        color: var(--color-primary);
-        background: var(--surface-0);
-        border: 3px solid var(--surface-0);
+        background: var(--pharaoh-gold);
+        color: #FFFFFF;
+        border: none;
         border-radius: 999px;
+        cursor: pointer;
+        transition: all 0.3s ease;
         text-decoration: none;
-        transition: all 0.3s;
-        box-shadow: var(--shadow-xl);
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        box-shadow: 0 10px 30px rgba(193, 154, 73, 0.3);
     }
 
     .btn-hero:hover {
+        background: var(--pharaoh-gold-dark);
         transform: translateY(-3px);
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-        color: var(--color-primary);
+        box-shadow: 0 15px 40px rgba(193, 154, 73, 0.4);
+        color: #FFFFFF;
     }
 
-    /* Features Section */
+    /* Section Styling */
+    .section-modern {
+        padding: var(--space-16) 0;
+    }
+
+    .section-header-modern {
+        text-align: center;
+        margin-bottom: var(--space-12);
+    }
+
+    .section-header-modern h2 {
+        font-size: clamp(2rem, 4vw, 3rem);
+        font-weight: 900;
+        color: var(--hieroglyph-dark);
+        margin: 0 0 var(--space-4) 0;
+        text-transform: uppercase;
+        letter-spacing: -0.01em;
+    }
+
+    .section-header-modern p {
+        font-size: 1.25rem;
+        color: #666;
+        margin: 0;
+        font-weight: 400;
+    }
+
+    /* Features Section - Clean White Background */
     .features-grid-modern {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: var(--space-6);
-        margin: var(--space-12) 0;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: var(--space-8);
+        padding: var(--space-4);
     }
 
     .feature-card-modern {
-        background: var(--surface-1);
+        background: #FFFFFF;
         border-radius: var(--radius-lg);
-        padding: var(--space-8);
+        padding: var(--space-10);
         text-align: center;
-        border: 2px solid var(--surface-2);
-        transition: all 0.3s;
+        border: none;
+        transition: all 0.4s ease;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
     }
 
     .feature-card-modern:hover {
-        transform: translateY(-5px);
-        box-shadow: var(--shadow-xl);
-        border-color: var(--color-primary-light);
+        transform: translateY(-8px);
+        box-shadow: 0 12px 32px rgba(193, 154, 73, 0.15);
     }
 
     .feature-card-modern__icon {
-        width: 64px;
-        height: 64px;
+        width: 80px;
+        height: 80px;
         border-radius: 50%;
-        background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+        background: var(--pharaoh-gold);
         display: flex;
         align-items: center;
         justify-content: center;
-        margin: 0 auto var(--space-4);
+        margin: 0 auto var(--space-6);
+        box-shadow: 0 8px 24px rgba(193, 154, 73, 0.25);
     }
 
     .feature-card-modern__icon i {
-        font-size: 1.75rem;
-        color: var(--surface-0);
+        font-size: 2rem;
+        color: #FFFFFF;
     }
 
     .feature-card-modern h4 {
-        font-size: 1.25rem;
+        font-size: 1.375rem;
         font-weight: 700;
-        color: var(--text-primary);
-        margin: 0 0 var(--space-2) 0;
+        color: var(--hieroglyph-dark);
+        margin: 0 0 var(--space-3) 0;
+        text-transform: uppercase;
+        letter-spacing: 0.02em;
     }
 
     .feature-card-modern p {
-        font-size: 0.9375rem;
-        color: var(--text-secondary);
+        font-size: 1rem;
+        color: #666;
+        margin: 0;
+        line-height: 1.7;
+    }
+
+    /* Section Header - Velo Style */
+    .section-header-modern {
+        text-align: center;
+        margin-bottom: var(--space-12);
+        padding: var(--space-4);
+    }
+
+    .section-header-modern h2 {
+        font-size: clamp(2.25rem, 5vw, 3.5rem);
+        font-weight: 900;
+        color: var(--hieroglyph-dark);
+        margin: 0 0 var(--space-4) 0;
+        text-transform: uppercase;
+        letter-spacing: -0.01em;
+    }
+
+    .section-header-modern p {
+        font-size: 1.25rem;
+        color: #666;
         margin: 0;
         line-height: 1.6;
     }
 
-    /* Section Header */
-    .section-header-modern {
-        text-align: center;
-        margin-bottom: var(--space-10);
-    }
-
-    .section-header-modern h2 {
-        font-size: clamp(2rem, 4vw, 2.75rem);
-        font-weight: 800;
-        color: var(--text-primary);
-        margin: 0 0 var(--space-3) 0;
-    }
-
-    .section-header-modern p {
-        font-size: 1.125rem;
-        color: var(--text-secondary);
-        margin: 0;
-    }
-
-    /* Product Grid */
+    /* Product Grid - Velo 3-column Layout */
     .products-grid-modern {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-        gap: var(--space-8);
-        margin-bottom: var(--space-12);
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+        gap: var(--space-10);
+        margin-bottom: var(--space-16);
+        padding: var(--space-4);
     }
 
-    /* Product Card Modern */
+    @media (min-width: 1200px) {
+        .products-grid-modern {
+            grid-template-columns: repeat(3, 1fr);
+        }
+    }
+
+    /* Product Card - Velo Style with Egyptian Touch */
     .product-card-modern {
         position: relative;
-        background: var(--surface-0);
+        background: #FFFFFF;
         border-radius: var(--radius-xl);
-        overflow: hidden;
+        overflow: visible;
         transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        border: 2px solid var(--surface-2);
+        border: none;
         display: flex;
         flex-direction: column;
         height: 100%;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
     }
 
     .product-card-modern:hover {
-        transform: translateY(-8px);
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-        border-color: var(--color-primary);
+        transform: translateY(-12px);
+        box-shadow: 0 24px 48px rgba(193, 154, 73, 0.15);
     }
 
     .product-card-modern__badges {
         position: absolute;
-        top: var(--space-4);
-        left: var(--space-4);
+        top: var(--space-5);
+        left: var(--space-5);
         z-index: 10;
         display: flex;
         flex-direction: column;
@@ -191,74 +281,74 @@
 
     [dir="rtl"] .product-card-modern__badges {
         left: auto;
-        right: var(--space-4);
+        right: var(--space-5);
     }
 
     .product-card-modern__badge {
         display: inline-block;
-        padding: var(--space-2) var(--space-4);
+        padding: var(--space-2) var(--space-5);
         border-radius: 999px;
         font-size: 0.75rem;
         font-weight: 700;
         text-transform: uppercase;
-        letter-spacing: 0.5px;
-        backdrop-filter: blur(10px);
-        box-shadow: var(--shadow-md);
-    }
-
-    .product-card-modern__badge--sale {
-        background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
-        color: var(--surface-0);
-    }
-
-    .product-card-modern__badge--featured {
-        background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
-        color: var(--surface-0);
+        letter-spacing: 0.05em;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     }
 
     .product-card-modern__badge--new {
-        background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-        color: var(--surface-0);
+        background: var(--pharaoh-gold);
+        color: #FFFFFF;
+    }
+
+    .product-card-modern__badge--sale {
+        background: #E74C3C;
+        color: #FFFFFF;
+    }
+
+    .product-card-modern__badge--hot {
+        background: #E67E22;
+        color: #FFFFFF;
     }
 
     .product-card-modern__image {
         position: relative;
         width: 100%;
-        height: 280px;
-        background: var(--surface-1);
+        height: 350px;
+        background: #F8F9FA;
         overflow: hidden;
         display: flex;
         align-items: center;
         justify-content: center;
+        border-radius: var(--radius-xl) var(--radius-xl) 0 0;
     }
 
     .product-card-modern__image img {
         width: 100%;
         height: 100%;
         object-fit: cover;
-        transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     .product-card-modern:hover .product-card-modern__image img {
-        transform: scale(1.1);
+        transform: scale(1.08);
     }
 
     .product-card-modern__actions {
         position: absolute;
         top: 50%;
-        right: var(--space-4);
-        transform: translateY(-50%) translateX(60px);
+        right: var(--space-5);
+        transform: translateY(-50%) translateX(80px);
         display: flex;
         flex-direction: column;
-        gap: var(--space-2);
+        gap: var(--space-3);
         opacity: 0;
-        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     [dir="rtl"] .product-card-modern__actions {
         right: auto;
-        left: var(--space-4);
-        transform: translateY(-50%) translateX(-60px);
+        left: var(--space-5);
+        transform: translateY(-50%) translateX(-80px);
     }
 
     .product-card-modern:hover .product-card-modern__actions {
@@ -271,38 +361,37 @@
     }
 
     .product-card-modern__action {
-        width: 44px;
-        height: 44px;
+        width: 48px;
+        height: 48px;
         border-radius: 50%;
-        background: rgba(255, 255, 255, 0.95);
-        backdrop-filter: blur(10px);
-        border: 2px solid var(--surface-2);
+        background: #FFFFFF;
+        border: none;
         display: flex;
         align-items: center;
         justify-content: center;
         cursor: pointer;
-        transition: all 0.3s;
-        box-shadow: var(--shadow-lg);
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
     }
 
     .product-card-modern__action:hover {
-        background: var(--color-primary);
-        border-color: var(--color-primary);
-        transform: scale(1.1);
+        background: var(--pharaoh-gold);
+        transform: scale(1.15);
+        box-shadow: 0 6px 20px rgba(193, 154, 73, 0.3);
     }
 
     .product-card-modern__action i {
         font-size: 1.125rem;
-        color: var(--text-primary);
+        color: var(--hieroglyph-dark);
         transition: color 0.3s;
     }
 
     .product-card-modern__action:hover i {
-        color: var(--surface-0);
+        color: #FFFFFF;
     }
 
     .product-card-modern__content {
-        padding: var(--space-6);
+        padding: var(--space-8);
         flex: 1;
         display: flex;
         flex-direction: column;
@@ -311,16 +400,16 @@
 
     .product-card-modern__category {
         font-size: 0.8125rem;
-        font-weight: 600;
-        color: var(--color-primary);
+        font-weight: 700;
+        color: var(--pharaoh-gold);
         text-transform: uppercase;
-        letter-spacing: 0.5px;
+        letter-spacing: 0.08em;
     }
 
     .product-card-modern__title {
-        font-size: 1.125rem;
+        font-size: 1.25rem;
         font-weight: 700;
-        color: var(--text-primary);
+        color: var(--hieroglyph-dark);
         text-decoration: none;
         line-height: 1.4;
         display: -webkit-box;
@@ -331,13 +420,13 @@
     }
 
     .product-card-modern__title:hover {
-        color: var(--color-primary);
+        color: var(--pharaoh-gold);
     }
 
     .product-card-modern__desc {
-        font-size: 0.875rem;
-        color: var(--text-secondary);
-        line-height: 1.6;
+        font-size: 0.9375rem;
+        color: #666;
+        line-height: 1.7;
         display: -webkit-box;
         -webkit-line-clamp: 2;
         -webkit-box-orient: vertical;
@@ -347,11 +436,18 @@
     .product-card-modern__rating {
         display: flex;
         align-items: center;
-        gap: var(--space-1);
+        gap: var(--space-2);
     }
 
     .product-card-modern__rating i {
+        font-size: 0.9375rem;
+        color: var(--pharaoh-gold);
+    }
+
+    .product-card-modern__rating span {
         font-size: 0.875rem;
+        color: #666;
+        font-weight: 500;
     }
 
     .product-card-modern__footer {
@@ -359,28 +455,34 @@
         align-items: center;
         justify-content: space-between;
         gap: var(--space-4);
-        padding-top: var(--space-4);
-        border-top: 2px solid var(--surface-1);
+        padding-top: var(--space-6);
         margin-top: auto;
     }
 
     .product-card-modern__price {
-        font-size: 1.5rem;
-        font-weight: 800;
-        color: var(--text-primary);
+        font-size: 1.75rem;
+        font-weight: 900;
+        color: var(--hieroglyph-dark);
         line-height: 1;
     }
 
     .product-card-modern__price del {
-        font-size: 1rem;
+        font-size: 1.125rem;
         font-weight: 500;
-        color: var(--text-tertiary);
+        color: #999;
         margin-left: var(--space-2);
     }
 
     [dir="rtl"] .product-card-modern__price del {
         margin-left: 0;
         margin-right: var(--space-2);
+    }
+
+    .product-card-modern__price-subscription {
+        font-size: 0.875rem;
+        color: #666;
+        margin-top: var(--space-1);
+        font-weight: 500;
     }
 
     .product-card-modern__cart {
@@ -414,48 +516,68 @@
         width: 100%;
     }
 
-    /* Button Styles */
+    /* Button Styles - Velo Inspired */
     .btn-modern {
         display: inline-flex;
         align-items: center;
         justify-content: center;
         gap: var(--space-2);
-        padding: var(--space-3) var(--space-6);
-        font-size: 0.9375rem;
+        padding: var(--space-4) var(--space-8);
+        font-size: 1rem;
         font-weight: 700;
-        border: 2px solid transparent;
-        border-radius: var(--radius-md);
+        border: none;
+        border-radius: 999px;
         cursor: pointer;
-        transition: all 0.3s;
+        transition: all 0.3s ease;
         text-decoration: none;
         white-space: nowrap;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
     }
 
     .btn-modern--primary {
-        background: var(--color-primary);
-        color: var(--surface-0);
-        border-color: var(--color-primary);
+        background: var(--pharaoh-gold);
+        color: #FFFFFF;
     }
 
     .btn-modern--primary:hover {
-        background: var(--color-primary-dark);
-        border-color: var(--color-primary-dark);
+        background: var(--pharaoh-gold-dark);
         transform: translateY(-2px);
-        box-shadow: var(--shadow-lg);
+        box-shadow: 0 8px 24px rgba(193, 154, 73, 0.3);
+        color: #FFFFFF;
+    }
+
+    .btn-modern--secondary {
+        background: #FFFFFF;
+        color: var(--hieroglyph-dark);
+        border: 2px solid var(--pharaoh-gold);
+    }
+
+    .btn-modern--secondary:hover {
+        background: var(--pharaoh-gold);
+        color: #FFFFFF;
+        transform: translateY(-2px);
     }
 
     .btn-modern--sm {
-        padding: var(--space-2) var(--space-4);
+        padding: var(--space-3) var(--space-6);
         font-size: 0.875rem;
     }
 
-    /* Newsletter CTA */
+    .btn-modern--icon {
+        width: 44px;
+        height: 44px;
+        padding: 0;
+        border-radius: 50%;
+    }
+
+    /* Newsletter CTA - Egyptian Style */
     .newsletter-cta {
-        background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+        background: linear-gradient(135deg, var(--pharaoh-gold) 0%, var(--nile-blue) 100%);
         border-radius: var(--radius-xl);
-        padding: var(--space-12);
+        padding: var(--space-16) var(--space-8);
         text-align: center;
-        margin: var(--space-16) 0;
+        margin: var(--space-20) 0;
         position: relative;
         overflow: hidden;
     }
@@ -467,26 +589,28 @@
         left: 0;
         right: 0;
         bottom: 0;
-        background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-        opacity: 0.3;
+        background: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h80v80H0V0zm40 10L10 40l30 30 30-30-30-30z' fill='%23ffffff' fill-opacity='0.03'/%3E%3C/svg%3E");
+        opacity: 0.5;
     }
 
     .newsletter-cta__content {
         position: relative;
         z-index: 1;
-        max-width: 600px;
+        max-width: 700px;
         margin: 0 auto;
     }
 
     .newsletter-cta h3 {
-        font-size: clamp(1.75rem, 3vw, 2.25rem);
-        font-weight: 800;
-        color: var(--surface-0);
-        margin: 0 0 var(--space-3) 0;
+        font-size: clamp(2rem, 4vw, 3rem);
+        font-weight: 900;
+        color: #FFFFFF;
+        margin: 0 0 var(--space-4) 0;
+        text-transform: uppercase;
+        letter-spacing: -0.01em;
     }
 
     .newsletter-cta p {
-        font-size: 1.125rem;
+        font-size: 1.25rem;
         color: rgba(255, 255, 255, 0.95);
         margin: 0 0 var(--space-6) 0;
     }
@@ -494,53 +618,53 @@
     .newsletter-form {
         display: flex;
         gap: var(--space-3);
-        max-width: 500px;
+        max-width: 550px;
         margin: 0 auto;
     }
 
     .newsletter-form input {
         flex: 1;
-        padding: var(--space-4) var(--space-5);
-        font-size: 1rem;
-        border: 2px solid rgba(255, 255, 255, 0.3);
+        padding: var(--space-5) var(--space-6);
+        font-size: 1.0625rem;
+        border: none;
         border-radius: 999px;
-        background: rgba(255, 255, 255, 0.15);
-        color: var(--surface-0);
-        backdrop-filter: blur(10px);
+        background: #FFFFFF;
+        color: var(--hieroglyph-dark);
     }
 
     .newsletter-form input::placeholder {
-        color: rgba(255, 255, 255, 0.7);
+        color: #999;
     }
 
     .newsletter-form input:focus {
         outline: none;
-        border-color: var(--surface-0);
-        background: rgba(255, 255, 255, 0.25);
+        box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.3);
     }
 
     .newsletter-form button {
-        padding: var(--space-4) var(--space-8);
-        font-size: 1rem;
+        padding: var(--space-5) var(--space-10);
+        font-size: 1.0625rem;
         font-weight: 700;
-        color: var(--color-primary);
-        background: var(--surface-0);
-        border: 2px solid var(--surface-0);
+        color: var(--pharaoh-gold);
+        background: #FFFFFF;
+        border: none;
         border-radius: 999px;
         cursor: pointer;
-        transition: all 0.3s;
+        transition: all 0.3s ease;
         white-space: nowrap;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
     }
 
     .newsletter-form button:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        transform: translateY(-3px);
+        box-shadow: 0 12px 32px rgba(0, 0, 0, 0.25);
+        background: var(--papyrus);
     }
 
     /* RTL Support */
-    [dir="rtl"] .hero-section-modern h1,
-    [dir="rtl"] .hero-section-modern p {
-        text-align: center;
+    [dir="rtl"] .hero-section-modern__content {
+        direction: rtl;
     }
 
     [dir="rtl"] .newsletter-form {
@@ -550,52 +674,60 @@
     /* Responsive */
     @media (max-width: 1200px) {
         .products-grid-modern {
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: var(--space-6);
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--space-8);
         }
     }
 
     @media (max-width: 768px) {
         .hero-section-modern {
-            min-height: 400px;
-            padding: var(--space-12) var(--space-4);
+            min-height: 70vh;
+        }
+
+        .hero-section-modern__content {
+            grid-template-columns: 1fr;
+            gap: var(--space-8);
         }
 
         .features-grid-modern {
             grid-template-columns: 1fr;
-            gap: var(--space-4);
+            gap: var(--space-6);
         }
 
         .products-grid-modern {
-            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-            gap: var(--space-5);
+            grid-template-columns: 1fr;
+            gap: var(--space-6);
         }
 
         .product-card-modern__image {
-            height: 240px;
+            height: 300px;
         }
 
         .product-card-modern__content {
-            padding: var(--space-5);
+            padding: var(--space-6);
         }
 
         .product-card-modern__title {
-            font-size: 1rem;
+            font-size: 1.125rem;
         }
 
         .product-card-modern__price {
-            font-size: 1.25rem;
+            font-size: 1.5rem;
         }
 
         .product-card-modern__footer {
             flex-direction: column;
             align-items: stretch;
-            gap: var(--space-3);
+            gap: var(--space-4);
         }
 
         .product-card-modern__cart {
             width: 100%;
             justify-content: space-between;
+        }
+
+        .newsletter-cta {
+            padding: var(--space-12) var(--space-6);
         }
 
         .newsletter-form {
@@ -608,13 +740,8 @@
     }
 
     @media (max-width: 480px) {
-        .products-grid-modern {
-            grid-template-columns: 1fr;
-            gap: var(--space-5);
-        }
-
         .product-card-modern__image {
-            height: 220px;
+            height: 280px;
         }
     }
 
@@ -628,30 +755,34 @@
 {{-- Hero Section Modern --}}
 <section class="hero-section-modern">
     <div class="hero-section-modern__content">
-        <h1>
-            @if($data['direction'] === 'rtl')
-                اكتشف أفضل منتجات <span>السنس</span> في مصر
-            @else
-                Discover the Best <span>Snus</span> Products in Egypt
-            @endif
-        </h1>
-        <p>
-            @if($data['direction'] === 'rtl')
-                منتجات أصلية بأفضل الأسعار مع شحن سريع وآمن
-            @else
-                Authentic Products at Best Prices with Fast & Secure Shipping
-            @endif
-        </p>
-        <a href="/shop" class="btn-hero">
-            <i class="fas fa-shopping-bag"></i>
-            <span>
+        <div class="hero-section-modern__text">
+            <h1>
                 @if($data['direction'] === 'rtl')
-                    تسوق الآن
+                    <span>السنس المصري</span>
+                    تراث الفراعنة
                 @else
-                    Shop Now
+                    <span>Egyptian Snus</span>
+                    Legacy of Pharaohs
                 @endif
-            </span>
-        </a>
+            </h1>
+            <p>
+                @if($data['direction'] === 'rtl')
+                    منتجات أصلية مستوحاة من حضارة مصر العريقة - جودة عالمية بلمسة مصرية
+                @else
+                    Authentic products inspired by Egypt's ancient civilization - World quality with Egyptian touch
+                @endif
+            </p>
+            <a href="/shop" class="btn-hero">
+                @if($data['direction'] === 'rtl')
+                    اكتشف المنتجات
+                @else
+                    Discover Products
+                @endif
+            </a>
+        </div>
+        <div class="hero-section-modern__image">
+            <img src="{{ asset('images/hero-product.png') }}" alt="Snus Egypt" onerror="this.src='data:image/svg+xml,%3Csvg width=\'400\' height=\'400\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Crect width=\'400\' height=\'400\' fill=\'%23C19A49\' opacity=\'0.1\'/%3E%3Ctext x=\'50%25\' y=\'50%25\' text-anchor=\'middle\' dy=\'.3em\' fill=\'%23C19A49\' font-size=\'20\' font-weight=\'bold\'%3ESNUS EGYPT%3C/text%3E%3C/svg%3E'">
+        </div>
     </div>
 </section>
 
@@ -743,7 +874,7 @@
 </section>
 
 {{-- Categories Section --}}
-<section class="section-modern" style="background: var(--surface-1); padding: var(--space-16) 0;">
+<section class="section-modern" style="background: #F8F9FA; padding: var(--space-16) 0;">
     <div class="container">
         <div class="section-header-modern">
             <h2>
@@ -755,9 +886,9 @@
             </h2>
             <p>
                 @if($data['direction'] === 'rtl')
-                    اكتشف مجموعة واسعة من المنتجات
+                    اكتشف مجموعة واسعة من المنتجات المصرية الأصيلة
                 @else
-                    Discover a wide range of products
+                    Discover a wide range of authentic Egyptian products
                 @endif
             </p>
         </div>
@@ -766,7 +897,7 @@
 </section>
 
 {{-- New Arrivals Section --}}
-<section class="section-modern">
+<section class="section-modern" style="padding: var(--space-16) 0;">
     <div class="container">
         <div class="section-header-modern">
             <h2>
@@ -778,9 +909,9 @@
             </h2>
             <p>
                 @if($data['direction'] === 'rtl')
-                    أحدث المنتجات المضافة
+                    أحدث المنتجات المضافة إلى مجموعتنا
                 @else
-                    Latest products added to our store
+                    Latest products added to our collection
                 @endif
             </p>
         </div>
@@ -789,7 +920,7 @@
 </section>
 
 {{-- Featured Products Section --}}
-<section class="section-modern" style="background: var(--surface-1); padding: var(--space-16) 0;">
+<section class="section-modern" style="background: #F8F9FA; padding: var(--space-16) 0;">
     <div class="container">
         <div class="section-header-modern">
             <h2>
@@ -801,9 +932,9 @@
             </h2>
             <p>
                 @if($data['direction'] === 'rtl')
-                    منتجات مختارة بعناية من أجلك
+                    منتجات مختارة بعناية خصيصاً لك
                 @else
-                    Carefully selected products for you
+                    Carefully selected products specially for you
                 @endif
             </p>
         </div>
@@ -812,22 +943,22 @@
 </section>
 
 {{-- Newsletter CTA --}}
-<section class="section-modern">
+<section class="section-modern" style="padding: var(--space-16) 0;">
     <div class="container">
         <div class="newsletter-cta">
             <div class="newsletter-cta__content">
                 <h3>
                     @if($data['direction'] === 'rtl')
-                        اشترك في نشرتنا الإخبارية
+                        انضم إلى عائلة السنس المصري
                     @else
-                        Subscribe to Our Newsletter
+                        Join the Snus Egypt Family
                     @endif
                 </h3>
                 <p>
                     @if($data['direction'] === 'rtl')
-                        احصل على أحدث العروض والمنتجات الجديدة
+                        احصل على عروض حصرية ومنتجات جديدة مباشرة إلى بريدك
                     @else
-                        Get latest offers and new products
+                        Get exclusive offers and new products directly to your inbox
                     @endif
                 </p>
                 <form class="newsletter-form" onsubmit="return false;">
@@ -837,9 +968,9 @@
                         required>
                     <button type="submit">
                         @if($data['direction'] === 'rtl')
-                            اشترك
+                            اشترك الآن
                         @else
-                            Subscribe
+                            Subscribe Now
                         @endif
                     </button>
                 </form>
@@ -876,39 +1007,25 @@
             <div class="product-card-modern__rating display-rating"></div>
 
             <div class="product-card-modern__footer">
-                <div class="product-card-modern__price product-card-price"></div>
-                <div class="product-card-modern__cart">
-                    <div class="quantity-controls item-quantity" style="display: flex; align-items: center; gap: var(--space-2);">
-                        <button class="quantity-left-minus" style="width: 32px; height: 32px; border-radius: 50%; background: var(--surface-2); border: none; cursor: pointer; display: flex; align-items: center; justify-content: center;">
-                            <i class="fas fa-minus" style="font-size: 0.75rem; color: var(--text-primary);"></i>
-                        </button>
-                        <input type="number" class="qty-input" value="1" min="1" style="width: 50px; text-align: center; border: 2px solid var(--surface-2); border-radius: var(--radius-md); padding: var(--space-2); font-weight: 600;">
-                        <button class="quantity-right-plus" style="width: 32px; height: 32px; border-radius: 50%; background: var(--surface-2); border: none; cursor: pointer; display: flex; align-items: center; justify-content: center;">
-                            <i class="fas fa-plus" style="font-size: 0.75rem; color: var(--text-primary);"></i>
-                        </button>
+                <div>
+                    <div class="product-card-modern__price product-card-price"></div>
+                    <div class="product-card-modern__price-subscription" style="display: none;">
+                        @if($data['direction'] === 'rtl')
+                            اشترك من
+                        @else
+                            Subscribe from
+                        @endif
+                        <span class="subscription-price"></span>
                     </div>
-                    <button class="btn-modern btn-modern--primary btn-modern--sm add-to-card-bag" style="border-radius: 999px; padding: var(--space-3) var(--space-5);">
+                </div>
+                <div class="product-card-modern__cart">
+                    <button class="btn-modern btn-modern--primary btn-modern--sm add-to-card-bag" style="border-radius: 999px;">
                         <i class="fas fa-shopping-bag"></i>
                     </button>
                 </div>
             </div>
         </div>
-
-        <div class="product-card-modern__hover">
-            <div class="product-card-modern__hover-content">
-                <h5 class="product-card-name" style="font-size: 1.125rem; font-weight: 700; color: var(--surface-0); margin: 0 0 var(--space-2) 0;"></h5>
-                <div class="display-rating1" style="margin-bottom: var(--space-3);"></div>
-                <div class="product-card-price" style="font-size: 1.5rem; font-weight: 800; color: var(--surface-0); margin-bottom: var(--space-4);"></div>
-                <div style="display: flex; gap: var(--space-2); justify-content: center;">
-                    <button class="wishlist-icon-2" style="width: 44px; height: 44px; border-radius: 50%; background: rgba(255,255,255,0.2); backdrop-filter: blur(10px); border: 2px solid rgba(255,255,255,0.3); cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.3s;">
-                        <i class="far fa-heart" style="color: var(--surface-0); font-size: 1.125rem;"></i>
-                    </button>
-                    <a href="#" class="product-card-link" style="flex: 1; display: flex; align-items: center; justify-content: center; gap: var(--space-2); padding: var(--space-3) var(--space-6); background: var(--surface-0); color: var(--color-primary); border: none; border-radius: 999px; font-weight: 700; text-decoration: none; cursor: pointer; transition: all 0.3s;">
-                        <i class="fas fa-shopping-cart"></i>
-                        <span>@if($data['direction'] === 'rtl')أضف للسلة@else Add to Cart @endif</span>
-                    </a>
-                </div>
-            </div>
+    </div>
         </div>
     </div>
 </template>
