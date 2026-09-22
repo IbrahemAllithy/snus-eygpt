@@ -11,11 +11,10 @@
             </div>
           </div>
         </div>
-        @include(isset(getSetting()['card_style']) ?
-              'includes.cart.product_card_'.getSetting()['card_style'] : "includes.cart.product_card_style1")
+        @include('includes.cart.product_card_modern')
         <div class="new-arrival row">                          
 
         </div>
       </div>
     </div>  
-</section> 
+</section>

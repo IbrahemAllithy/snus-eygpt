@@ -54,8 +54,7 @@
     'includes.productdetail.product-'.getSetting()['product_detail']."-template" :
     'includes.productdetail.product-style1-template')
 
-    @include(isset(getSetting()['card_style']) ?
-    'includes.cart.product_card_'.getSetting()['card_style'] : "includes.cart.product_card_style1")
+    @include('includes.cart.product_card_modern')
 
     <input type="hidden" id="product_id" value="{{ $product }}" />
 
@@ -433,7 +432,8 @@
                 success: function(data) {
                     if (data.status == 'Success' && Array.isArray(data.data)) {
 
-                        const templ = document.getElementById("product-card-template");
+                        const templ = document.getElementById("product-card-template-modern") ||
+                            document.getElementById("product-card-template");
                         if (!templ) return;
                         for (i = 0; i < data.data.length; i++) {
                             const clone = templ.content.cloneNode(true);

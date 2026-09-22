@@ -1,4 +1,4 @@
-languageId = $.trim(localStorage.getItem("languageId"));@extends('layouts.master')
+@extends('layouts.master')
 @section('content')
 
     <div class="container-fuild">

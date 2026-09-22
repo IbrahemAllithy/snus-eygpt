@@ -100,7 +100,8 @@
                         pagination += '</div>';
 
                         $('.pagination').html(pagination);
-                        const templ = document.getElementById("product-card-template");
+                        const templ = document.getElementById("product-card-template-modern") ||
+                            document.getElementById("product-card-template");
                         if (!templ) return;
                         for (i = 0; i < data.data.length; i++) {
                             const clone = templ.content.cloneNode(true);

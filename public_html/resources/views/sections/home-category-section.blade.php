@@ -1,4 +1,4 @@
-<section class="categories-content pro-content">
+<section id="categories" class="categories-content pro-content">
     <div class="container">
       <div class="products-area">
          <div class="row justify-content-center">

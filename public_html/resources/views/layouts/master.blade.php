@@ -33,8 +33,6 @@
     <!-- Modern Design System - Load First -->
     <link rel="stylesheet" type="text/css" href="{{ asset('css/modern-design-system.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/modern-components.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/front/css/modern-overrides.css') }}">
-
     <!-- Core CSS Files -->
     {{-- <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}"> --}}
     <link rel="stylesheet" type="text/css"

@@ -149,8 +149,7 @@
     <section id="swap" class="shop-content shop-topbar shop-one">
         <div class="container">
             <div class="products-area">
-                @include(isset(getSetting()['card_style']) ?
-                    'includes.cart.product_card_'.getSetting()['card_style'] : "includes.cart.product_card_style1")
+                @include('includes.cart.product_card_modern')
                 <div class="row shop_page_product_card">
                     
                 </div>

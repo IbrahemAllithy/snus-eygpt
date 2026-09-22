@@ -20,7 +20,7 @@
             <div class="col-lg-6" data-aos="fade-left" data-aos-delay="200">
                 <div class="hero-image-wrapper">
                     <div class="hero-glow"></div>
-                    <img src="https://via.placeholder.com/600x400/C19A49/ffffff?text=Snus+Egypt" alt="Snus Products" loading="lazy">
+                    <img src="{{ asset('assets/images/products/202608283440snusegy_pablo_exclusive_ice_cold.jpeg') }}" alt="Snus Products" loading="lazy">
                 </div>
             </div>
         </div>
@@ -147,7 +147,8 @@
                 beforeSend: function() {},
                 success: function(data) {
                     if (data.status == 'Success' && Array.isArray(data.data) && data.data.length) {
-                        const templ = document.getElementById("product-card-template");
+                        const templ = document.getElementById("product-card-template-modern") ||
+                            document.getElementById("product-card-template");
                         if (!templ) return;
 
                         for (i = 0; i < data.data.length; i++) {

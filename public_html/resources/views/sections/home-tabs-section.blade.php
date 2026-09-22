@@ -31,8 +31,7 @@
              <!-- Tab panes -->
              <div class="tab-content">
 
-              @include(isset(getSetting()['card_style']) ?
-              'includes.cart.product_card_'.getSetting()['card_style'] : "includes.cart.product_card_style1")
+              @include('includes.cart.product_card_modern')
                <div role="tabpanel" class="tab-pane fade active show" id="featured">
                    <div class="tab_top_sales">
                    </div>

@@ -10,8 +10,7 @@
                 </div>
             </div>
             <div class="row weekly-sale">
-                @include(isset(getSetting()['card_style']) ?
-              'includes.cart.product_card_'.getSetting()['card_style'] : "includes.cart.product_card_style1")
+                @include('includes.cart.product_card_modern')
 
                 
 

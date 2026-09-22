@@ -25,7 +25,11 @@
                             <i class="fas fa-eye"></i>
                         </div>
 
-                        <span class="compare-icon"></span>
+                        <a href="javascript:void(0)" class="btn btn-light action-btn mx-2 compare-icon"
+                           data-toggle="tooltip" data-placement="bottom" title="Compare"
+                           style="width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: transform 0.3s ease;">
+                            <i class="fas fa-align-right" data-fa-transform="rotate-90"></i>
+                        </a>
                     </div>
                 </div>
 
@@ -43,13 +47,13 @@
                     </p>
 
                     <div class="price product-card-price d-flex align-items-center gap-2 mb-3"
-                         style="font-size: 1.25rem; font-weight: 700; color: var(--color-primary, #ae69f5);">
+                         style="font-size: 1.25rem; font-weight: 700; color: var(--color-primary, #C19A49);">
                     </div>
 
                     <div class="product-action">
                         <a class="btn btn-primary w-100 rounded-pill product-card-link"
                            href="javascript:void(0)"
-                           style="background: var(--color-primary, #ae69f5); border: none; padding: 12px 24px; font-weight: 600; box-shadow: 0 4px 12px rgba(174,105,245,0.3); transition: all 0.3s ease;">
+                           style="background: var(--color-primary, #C19A49); border: none; padding: 12px 24px; font-weight: 600; box-shadow: 0 4px 12px rgba(193,154,73,0.3); transition: all 0.3s ease;">
                             <i class="fas fa-shopping-cart me-2"></i> Add to Cart
                         </a>
                     </div>
@@ -58,7 +62,7 @@
                 <div class="d-none display-rating"></div>
                 <div class="d-none display-rating1"></div>
                 <div class="d-none add-to-card-bag"></div>
-                <div class="d-none wishlist-icon-2"></div>
+                <a href="javascript:void(0)" class="d-none wishlist-icon-2" aria-hidden="true"></a>
                 <div class="input-group item-quantity d-none">
                     <input type="text" id="" name="quantity" class="form-control qty-input" value="1">
                     <span class="input-group-btn">
@@ -98,11 +102,11 @@
 
     .product-card-modern .product-card-link:hover {
         transform: translateY(-2px);
-        box-shadow: 0 6px 16px rgba(174,105,245,0.4) !important;
+        box-shadow: 0 6px 16px rgba(193,154,73,0.4) !important;
     }
 
     .product-card-modern .product-card-name:hover {
-        color: var(--color-primary, #ae69f5) !important;
+        color: var(--color-primary, #C19A49) !important;
     }
 
     .product-card-modern .badges .badge {
