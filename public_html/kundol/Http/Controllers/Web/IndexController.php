@@ -67,7 +67,7 @@ class IndexController extends Controller
         $data = $homeService->homeIndex();
         $setting = getSetting();
 
-        return view('home-modern-bilingual', compact('data', 'setting'));
+        return view('home-modern', compact('data', 'setting'));
     }
 
     public function contactUs()

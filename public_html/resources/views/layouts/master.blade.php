@@ -41,7 +41,7 @@
         href="{{ isset(getSetting()['color']) ? asset('assets/front/css/' . getSetting()['color'] . '.css') : asset('assets/front/css/style.css') }}">
 
     <!-- Modern Overrides - Load Last to Override Everything -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/front/css/modern-overrides.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/front/css/modern-overrides.css') }}?v={{ filemtime(public_path('assets/front/css/modern-overrides.css')) }}">
 
     <!-- Toastr Notifications -->
     <link rel="stylesheet" type="text/css"

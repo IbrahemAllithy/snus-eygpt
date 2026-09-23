@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.master-modern')
 @section('content')
 
 {{-- Hero Section Modern --}}
@@ -7,7 +7,7 @@
 
     <div class="container-modern" style="position: relative; z-index: 2;">
         <div class="row align-items-center">
-            <div class="col-lg-6 mb-5 mb-lg-0" data-aos="fade-right">
+            <div class="col-lg-6 mb-5 mb-lg-0 hero-copy-modern" data-aos="fade-right">
                 <h1 style="font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 900; color: white; margin-bottom: 24px; line-height: 1.2;">
                     اكتشف أفضل منتجات <span style="color: rgba(255,255,255,0.9);">السنس</span> في مصر
                 </h1>
@@ -15,7 +15,7 @@
                     منتجات أصلية، أسعار منافسة، وتوصيل سريع لجميع المحافظات
                 </p>
                 <div style="display: flex; gap: 16px; flex-wrap: wrap;">
-                    <a href="/shop" class="btn-modern btn-modern--primary" style="background: white; color: var(--color-primary); box-shadow: 0 10px 30px rgba(0,0,0,0.2);">
+                    <a href="/shop" class="btn-modern btn-modern--primary" style="background: linear-gradient(135deg, #C19A49 0%, #9d7a35 100%); color: #FFFFFF; box-shadow: 0 10px 30px rgba(193, 154, 73, 0.4); border: none;">
                         <i class="fas fa-shopping-bag"></i> تسوق الآن
                     </a>
                     <a href="#categories" class="btn-modern btn-modern--outline" style="border-color: white; color: white;">
@@ -23,10 +23,11 @@
                     </a>
                 </div>
             </div>
-            <div class="col-lg-6" data-aos="fade-left" data-aos-delay="200">
+            <div class="col-lg-6 hero-image-modern" data-aos="fade-left" data-aos-delay="200">
                 <div style="position: relative;">
                     <div style="position: absolute; top: -20px; right: -20px; width: 100px; height: 100px; background: rgba(255,255,255,0.1); border-radius: 50%; filter: blur(40px);"></div>
-                    <img src="{{ asset('assets/images/hero-snus.png') }}" alt="Snus Products" style="width: 100%; height: auto; border-radius: 24px; box-shadow: 0 20px 60px rgba(0,0,0,0.3); position: relative; z-index: 2;" onerror="this.src='https://via.placeholder.com/600x400/C19A49/ffffff?text=Snus+Egypt'">
+                    <img src="{{ asset('gallary/202609061300snusegy_ai_generated_design.png') }}" alt="منتجات سنس من متجر سنس إيجيبت" fetchpriority="high" decoding="async"
+                        onerror="this.onerror=null;this.src='{{ asset('assets/images/snuslogo1.png') }}';" style="width: 100%; height: auto; border-radius: 24px; box-shadow: 0 20px 60px rgba(0,0,0,0.3); position: relative; z-index: 2;">
                 </div>
             </div>
         </div>
@@ -152,7 +153,8 @@
 <template id="product-card-template">
     <div class="product-card-modern">
         <div class="product-card-modern__image-wrapper">
-            <img class="product-card-modern__image product-card-image" src="" alt="">
+            <img class="product-card-modern__image product-card-image" src="{{ asset('assets/images/snuslogo1.png') }}" alt="" loading="lazy" decoding="async"
+                onerror="this.onerror=null;this.src='{{ asset('assets/images/snuslogo1.png') }}';">
             <div class="product-card-modern__badges badges"></div>
             <div class="product-card-modern__overlay"></div>
             <div class="product-card-modern__actions">
@@ -201,7 +203,7 @@
         <a href="#" class="category-slider-url" style="display: block; text-decoration: none;">
             <div style="background: var(--bg-panel); border-radius: var(--radius-xl); padding: 32px; text-align: center; box-shadow: var(--shadow-md); transition: all 0.3s ease;" class="hover-lift">
                 <div style="width: 80px; height: 80px; border-radius: 50%; background: var(--bg-page); display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; overflow: hidden;">
-                    <img class="category-slider-image" src="" alt="" style="width: 100%; height: 100%; object-fit: cover;">
+                    <img class="category-slider-image" src="" alt="" loading="lazy" decoding="async" style="width: 100%; height: 100%; object-fit: cover;">
                 </div>
                 <h5 class="category-slider-title" style="font-size: 1.125rem; font-weight: 600; color: var(--text-primary); margin: 0;"></h5>
             </div>
