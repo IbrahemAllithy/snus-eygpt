@@ -4,6 +4,10 @@
     {
       "name": "laravel-server",
       "url": "http://localhost:8000"
+    },
+    {
+      "name": "herd-site",
+      "url": "http://public_html.test"
     }
   ]
 }
