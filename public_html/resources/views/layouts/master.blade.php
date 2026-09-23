@@ -34,13 +34,14 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('css/modern-design-system.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/modern-components.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/modern-components-enhanced.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/front/css/modern-overrides.css') }}">
 
     <!-- Core CSS Files -->
     {{-- <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}"> --}}
     <link rel="stylesheet" type="text/css"
         href="{{ isset(getSetting()['color']) ? asset('assets/front/css/' . getSetting()['color'] . '.css') : asset('assets/front/css/style.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/front/css/modern-overrides.css') }}">
+
+    <!-- Modern Overrides - Load Last to Override Everything -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/front/css/modern-overrides.css') }}?v={{ time() }}">
 
     <!-- Toastr Notifications -->
     <link rel="stylesheet" type="text/css"

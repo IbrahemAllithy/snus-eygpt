@@ -54,8 +54,6 @@ Route::get('/hyperpay', [Web\IndexController::class, 'getcall']);
 
 Route::middleware([GeneralMiddlwware::class, Installer::class])->group(function () {
 
-    Route::get('/', [Web\IndexController::class, 'index']);
-
     Route::get('/product/{id}/{slug}', [Web\IndexController::class, 'productDetail']);
     Route::get('/shop', [Web\IndexController::class, 'shop']);
     Route::get('/cart', [Web\IndexController::class, 'cartPage']);
