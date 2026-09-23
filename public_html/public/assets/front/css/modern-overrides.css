@@ -660,3 +660,63 @@ footer a:hover {
         transition-duration: 0.01ms !important;
     }
 }
+
+/* Keep the homepage hero compact and legible on touch-sized screens. */
+.hero-section-modern .hero-image-modern > div {
+    max-width: 620px;
+    margin-inline: auto;
+}
+
+.hero-section-modern .hero-image-modern img {
+    display: block;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+}
+
+@media (max-width: 991.98px) {
+    .hero-section-modern {
+        padding-top: 64px !important;
+        padding-bottom: 64px !important;
+    }
+
+    .hero-section-modern .hero-copy-modern {
+        text-align: center;
+    }
+
+    .hero-section-modern .hero-copy-modern > div {
+        justify-content: center;
+    }
+
+    .hero-section-modern .hero-image-modern {
+        margin-top: 8px;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .hero-section-modern {
+        padding-top: 44px !important;
+        padding-bottom: 44px !important;
+    }
+
+    .hero-section-modern .hero-copy-modern h1 {
+        margin-bottom: 16px !important;
+        font-size: 2rem !important;
+    }
+
+    .hero-section-modern .hero-copy-modern p {
+        margin-bottom: 24px !important;
+    }
+
+    .hero-section-modern .hero-copy-modern > div {
+        gap: 10px !important;
+    }
+
+    .hero-section-modern .hero-copy-modern .btn-modern {
+        flex: 1 1 145px;
+        justify-content: center;
+    }
+
+    .hero-section-modern .hero-image-modern img {
+        border-radius: 14px !important;
+    }
+}
