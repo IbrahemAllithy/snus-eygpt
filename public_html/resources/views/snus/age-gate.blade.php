@@ -249,20 +249,20 @@
         </div>
 
         <h2>
-            WELCOME TO
-            <span>SNUS EGYPT</span>
+            {{ site_content('global.age_title', 'WELCOME TO') }}
+            <span>{{ site_content('global.age_brand', 'SNUS EGYPT') }}</span>
         </h2>
 
         <p>
-            This website contains nicotine products intended for adults aged 18 years or older.
+            {{ site_content('global.age_text', 'This website contains nicotine products intended for adults aged 18 years or older.') }}
         </p>
 
         <button id="enterSite" class="enter-btn">
-            Enter Website
+            {{ site_content('global.age_enter', 'Enter Website') }}
         </button>
 
-        <a href="https://google.com" class="exit-btn">
-            Leave Website
+        <a href="{{ site_href(site_content('global.age_leave_url', 'https://google.com'), 'https://google.com') }}" class="exit-btn">
+            {{ site_content('global.age_leave', 'Leave Website') }}
         </a>
 
     </div>

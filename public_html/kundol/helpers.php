@@ -7,6 +7,7 @@ use App\Models\Admin\PaymentMethodSetting;
 use App\Models\Admin\ProductCombination;
 use App\Models\Admin\Setting;
 use App\Models\DemoSettings;
+use App\Services\Web\SiteContentService;
 
 if (! function_exists('getSetting')) {
 
@@ -176,5 +177,78 @@ if (! function_exists('averagePriceProductIdBased')) {
         } else {
             return '0';
         }
+    }
+}
+
+if (! function_exists('site_content')) {
+    function site_content(string $key, mixed $default = null): mixed
+    {
+        return app(SiteContentService::class)->get($key, $default);
+    }
+}
+
+if (! function_exists('site_image')) {
+    function site_image(?string $path): string
+    {
+        $fallback = asset('assets/images/snuslogo1.png');
+        if ($path === null || trim($path) === '') {
+            return $fallback;
+        }
+        if (preg_match('#^https?://#i', $path)) {
+            return $path;
+        }
+
+        return asset(ltrim($path, '/'));
+    }
+}
+
+if (! function_exists('site_link')) {
+    function site_link(array $item): string
+    {
+        $url = trim((string) ($item['url'] ?? ''));
+        if ($url !== '') {
+            if (preg_match('#^https?://#i', $url) || str_starts_with($url, '/')) {
+                return $url;
+            }
+
+            return url($url);
+        }
+
+        $brand = trim((string) ($item['brand'] ?? ''));
+        if ($brand !== '') {
+            return route('brand.show', $brand);
+        }
+
+        return url('/shop');
+    }
+}
+
+if (! function_exists('site_href')) {
+    function site_href(?string $url, string $fallback = '#'): string
+    {
+        $url = trim((string) $url);
+        if (preg_match('#^https?://#i', $url) || str_starts_with($url, '/')) {
+            return $url;
+        }
+
+        return $fallback;
+    }
+}
+
+if (! function_exists('site_color')) {
+    function site_color(?string $color, string $fallback): string
+    {
+        return is_string($color) && preg_match('/^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$/', $color)
+            ? $color
+            : $fallback;
+    }
+}
+
+if (! function_exists('site_icon')) {
+    function site_icon(?string $icon): string
+    {
+        return is_string($icon) && preg_match('/^(fas|far|fab|fal|fad) fa-[a-z0-9-]+$/', $icon)
+            ? $icon
+            : 'fas fa-star';
     }
 }

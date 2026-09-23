@@ -179,12 +179,12 @@ box-shadow:0 0 0 0 rgba(37,211,102,0);
 <a
 id="whatsappFloat"
 class="whatsapp-float"
-href="https://wa.me/201055562743?text=Hello%20SNUS%20Egypt,%20I%20would%20like%20to%20know%20more%20about%20your%20products."
+href="https://wa.me/{{ preg_replace('/\D+/', '', (string) site_content('global.whatsapp_phone', '201055562743')) }}?text={{ rawurlencode((string) site_content('global.whatsapp_message', 'Hello SNUS Egypt, I would like to know more about your products.')) }}"
 target="_blank"
 rel="noopener noreferrer">
 
     <span class="whatsapp-tooltip">
-        Chat with SNUS Egypt
+        {{ site_content('global.whatsapp_tooltip', 'Chat with SNUS Egypt') }}
     </span>
 
     <span class="whatsapp-notification"></span>

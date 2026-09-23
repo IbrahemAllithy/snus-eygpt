@@ -31,6 +31,7 @@ use App\Http\Controllers\API\Admin\WarehouseController;
 use App\Http\Controllers\API\Admin\ShippingMethodController;
 use App\Http\Controllers\API\Admin\BrandController;
 use App\Http\Controllers\API\Admin\SettingController;
+use App\Http\Controllers\API\Admin\SiteContentController;
 use App\Http\Controllers\API\Admin\CouponSettingController;
 use App\Http\Controllers\API\Admin\TaxController;
 use App\Http\Controllers\API\Admin\TaxRateController;
@@ -320,6 +321,10 @@ Route::prefix('admin')
                 'index' => 'admin.setting.index',
                 'update' => 'admin.setting.update',
             ]);
+
+        Route::get('site-content', [SiteContentController::class, 'index'])->name('admin.site-content.index');
+        Route::put('site-content', [SiteContentController::class, 'update'])->name('admin.site-content.update');
+        Route::post('site-content/upload', [SiteContentController::class, 'upload'])->name('admin.site-content.upload');
 
         Route::resource('coupon_setting', CouponSettingController::class)
             ->except(['edit', 'create'])

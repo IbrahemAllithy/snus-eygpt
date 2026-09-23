@@ -40,6 +40,10 @@ Route::get('clear', function () {
 
 });
 
+Route::get('site-content', function () {
+    return view('site-content');
+})->name('site-content');
+
 Route::any('admin/{all}', function () {
     return view('layouts.admin-master');
 })
@@ -54,9 +58,8 @@ Route::get('/hyperpay', [Web\IndexController::class, 'getcall']);
 
 Route::middleware([GeneralMiddlwware::class, Installer::class])->group(function () {
 
-    Route::get('/', [Web\IndexController::class, 'index']);
-
     Route::get('/product/{id}/{slug}', [Web\IndexController::class, 'productDetail']);
+    Route::get('/brand/{slug}', [Web\IndexController::class, 'brand'])->name('brand.show');
     Route::get('/shop', [Web\IndexController::class, 'shop']);
     Route::get('/cart', [Web\IndexController::class, 'cartPage']);
     Route::get('/blog-detail/{slug}', [Web\IndexController::class, 'blogDetail']);
