@@ -23,7 +23,7 @@ class SiteContentService
             }
         }
 
-        if (! $this->useEnglishCopy()) {
+        if (! $this->useEnglishCopy() || $this->isCustomized($key, $value)) {
             return $value;
         }
 
@@ -173,6 +173,16 @@ class SiteContentService
         }
 
         return $clean;
+    }
+
+    private function isCustomized(string $key, mixed $value): bool
+    {
+        $definition = SiteContentCatalog::find($key);
+        if (! $definition) {
+            return false;
+        }
+
+        return json_encode($value) !== json_encode($definition['value']);
     }
 
     private function useEnglishCopy(): bool

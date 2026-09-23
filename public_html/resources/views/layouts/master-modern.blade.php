@@ -12,7 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="theme-color" content="#C19A49">
 
-    <link rel="icon" type="image/png" href="{{ isset(getSetting()['favicon']) ? getSetting()['favicon'] : '01-fav.png' }}">
+    <link rel="icon" href="{{ asset(getSetting()['favicon'] ?? 'favicon.ico') }}">
 
     <!-- Preconnect for Performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -657,9 +657,103 @@
             });
         }
 
-        // Menu cart (simplified - full version in original)
         function menuCart(cartSession) {
-            // Implementation from original file
+            if (loggedIn != '1' && (cartSession == null || cartSession === '' || cartSession === 'null')) {
+                $(".top-cart-product-show").html('{{ trans('lables.header-emptycart') }}');
+                $(".total-menu-cart-product-count").html('0');
+                return;
+            }
+
+            if (loggedIn == '1') {
+                url = "{{ url('') }}" + '/api/client/cart?session_id=' + cartSession + '&currency=' + localStorage.getItem("currency");
+            } else {
+                url = "{{ url('') }}" + '/api/client/cart/guest/get?session_id=' + cartSession + '&currency=' + localStorage.getItem("currency");
+            }
+            $.ajax({
+                type: 'get',
+                url: url,
+                headers: {
+                    'Authorization': 'Bearer ' + customerToken,
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+                    clientid: "{{ isset(getSetting()['client_id']) ? getSetting()['client_id'] : '' }}",
+                    clientsecret: "{{ isset(getSetting()['client_secret']) ? getSetting()['client_secret'] : '' }}",
+                },
+                success: function(data) {
+                    if (data.status != 'Success' || !Array.isArray(data.data)) {
+                        return;
+                    }
+                    $(".top-cart-product-show").html('');
+                    const templ = document.getElementById("top-cart-product-template");
+                    var totalPrice = 0;
+                    var currency = '';
+                    for (var i = 0; i < data.data.length; i++) {
+                        const clone = templ.content.cloneNode(true);
+                        var item = data.data[i];
+                        var gallery = item.product_gallary && Array.isArray(item.product_gallary.detail) ? item.product_gallary.detail : [];
+                        var image = gallery[2] || gallery[1] || gallery[0];
+                        if (image && image.gallary_path) {
+                            clone.querySelector(".top-cart-product-image").setAttribute('src', image.gallary_path);
+                        }
+                        if (item.product_detail && item.product_detail[0]) {
+                            clone.querySelector(".top-cart-product-image").setAttribute('alt', item.product_detail[0].title);
+                            clone.querySelector(".top-cart-product-name").innerHTML = item.product_detail[0].title;
+                        }
+                        var discountPrice = item.discount_price > 0 ? item.discount_price : item.price;
+                        var amount = item.qty + ' x ' + discountPrice;
+                        if (item.currency && item.currency.code) {
+                            amount = item.currency.symbol_position == 'left'
+                                ? item.qty + ' x ' + item.currency.code + ' ' + discountPrice
+                                : item.qty + ' x ' + discountPrice + ' ' + item.currency.code;
+                        }
+                        clone.querySelector(".top-cart-product-qty-amount").innerHTML = amount +
+                            ' <i class="fas fa-trash" data-id="' + item.product_id + '" data-combination-id="' + (item.product_combination_id || '') + '" onclick="removeCartItem(this)"></i>';
+                        totalPrice += discountPrice * item.qty;
+                        $(".top-cart-product-show").append(clone);
+                        currency = item.currency;
+                    }
+                    if (data.data.length > 0) {
+                        if (currency && currency.code) {
+                            totalPrice = currency.symbol_position == 'left'
+                                ? currency.code + ' ' + totalPrice
+                                : totalPrice + ' ' + currency.code;
+                        }
+                        const totalTemplate = document.getElementById("top-cart-product-total-template");
+                        const totalClone = totalTemplate.content.cloneNode(true);
+                        totalClone.querySelector(".top-cart-product-total").innerHTML = totalPrice;
+                        $(".top-cart-product-show").append(totalClone);
+                        $(".total-menu-cart-product-count").html(data.data.length);
+                    } else {
+                        $(".top-cart-product-show").html('{{ trans('lables.header-emptycart') }}');
+                        $(".total-menu-cart-product-count").html('0');
+                    }
+                },
+            });
+        }
+
+        function removeCartItem(input) {
+            var productId = $.trim($(input).attr('data-id'));
+            var combinationId = $.trim($(input).attr('data-combination-id'));
+            if (combinationId == null || combinationId == 'null') {
+                combinationId = '';
+            }
+            var url = loggedIn == '1'
+                ? "{{ url('') }}" + '/api/client/cart/delete?session_id=' + cartSession + '&product_id=' + productId + '&product_combination_id=' + combinationId
+                : "{{ url('') }}" + '/api/client/cart/guest/delete?session_id=' + cartSession + '&product_id=' + productId + '&product_combination_id=' + combinationId;
+            $.ajax({
+                type: 'DELETE',
+                url: url,
+                headers: {
+                    'Authorization': 'Bearer ' + customerToken,
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+                    clientid: "{{ isset(getSetting()['client_id']) ? getSetting()['client_id'] : '' }}",
+                    clientsecret: "{{ isset(getSetting()['client_secret']) ? getSetting()['client_secret'] : '' }}",
+                },
+                success: function(data) {
+                    if (data.status == 'Success') {
+                        menuCart(cartSession);
+                    }
+                },
+            });
         }
 
         // Quantity controls
