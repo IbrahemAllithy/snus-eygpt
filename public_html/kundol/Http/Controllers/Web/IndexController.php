@@ -96,6 +96,49 @@ class IndexController extends Controller
 
     public function shop()
     {
+        $data = $this->shopPageData();
+
+        return view('shop', compact('data'));
+    }
+
+    public function brand($slug)
+    {
+        $brands = Brand::where('brand_slug', $slug)
+            ->where('status', 'active')
+            ->get();
+
+        abort_if($brands->isEmpty(), 404);
+
+        $data = $this->shopPageData();
+        $brandIds = $brands->pluck('id');
+        $brand = [
+            'name' => $brands->first()->name,
+            'slug' => $slug,
+            'ids' => $brandIds->implode(','),
+            'product_count' => Product::active()->whereIn('brand_id', $brandIds)->count(),
+        ];
+
+        return view('shop', compact('data', 'brand'));
+    }
+
+    /**
+     * Legacy /category/{slug} links (older homepage markup, bookmarks, external
+     * links) used to 404. Brands live at /brand/{slug}; send them there, and
+     * fall back to the shop listing when no brand matches the slug.
+     */
+    public function categoryRedirect($slug)
+    {
+        $exists = Brand::where('brand_slug', $slug)
+            ->where('status', 'active')
+            ->exists();
+
+        return $exists
+            ? redirect()->route('brand.show', $slug, 301)
+            : redirect('/shop', 301);
+    }
+
+    private function shopPageData()
+    {
         $homeService = new HomeService;
         $data = $homeService->homeIndex();
         $attribute = new Attribute;
@@ -108,7 +151,7 @@ class IndexController extends Controller
         $data['price_range'] = ['0-500', '500-1000', '1000-2000'];
         $data['brand'] = $brand;
 
-        return view('shop-bilingual', compact('data'));
+        return $data;
     }
 
     public function cartPage()

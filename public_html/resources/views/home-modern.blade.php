@@ -9,6 +9,7 @@
     $mosaicSmall = $mosaic['items'] ?? [];
     $shopCta = site_content('home.shop_cta', 'تسوق الآن');
     $brandImages = collect(site_content('home.brand_images', []))->keyBy('slug');
+    $productSlots = app(\App\Services\Web\SiteContentService::class)->productSlots();
 @endphp
 
 {{-- Hero slider: same carousel role as snusegypt.com --}}
@@ -139,6 +140,46 @@
     </div>
 </section>
 
+{{-- Reserved product spaces: filled from the dashboard, empty ones stay ready for new products --}}
+<section class="section-modern section-modern--alt" style="padding: 80px 0;">
+    <div class="container-modern">
+        <div class="section-modern__header" data-aos="fade-up">
+            <h2 class="section-modern__title">{{ site_content('home.slots_title', 'مساحات للمنتجات الجديدة') }}</h2>
+            <p class="section-modern__subtitle">{{ site_content('home.slots_subtitle', 'اختَر منتجًا من لوحة التحكم لملء المساحة بصورته وسعره، أو اتركها فارغة لمنتج لاحق') }}</p>
+        </div>
+
+        <div class="grid-modern grid-modern--4">
+            @foreach ($productSlots as $slot)
+                @if (! empty($slot['empty']))
+                    <article class="product-slot product-slot--empty" aria-label="{{ $isArabic ? 'مساحة لمنتج جديد' : 'Space for a new product' }}">
+                        <div class="product-slot__media">
+                            <i class="fas fa-image" aria-hidden="true"></i>
+                            <span>{{ $isArabic ? 'مساحة للصورة' : 'Image space' }}</span>
+                        </div>
+                        <div class="product-slot__body">
+                            <strong>{{ $isArabic ? 'مساحة لمنتج جديد' : 'Space for a new product' }}</strong>
+                            <p>{{ $isArabic ? 'أضف المنتج من لوحة التحكم' : 'Add the product from the dashboard' }}</p>
+                        </div>
+                    </article>
+                @else
+                    <a class="product-slot" href="{{ $slot['url'] }}">
+                        <div class="product-slot__media">
+                            <img src="{{ site_image($slot['image'] ?? '') }}" alt="{{ $slot['title'] }}" loading="lazy" decoding="async"
+                                onerror="this.onerror=null;this.src='{{ asset('assets/images/snuslogo1.png') }}';">
+                        </div>
+                        <div class="product-slot__body">
+                            <strong>{{ $slot['title'] }}</strong>
+                            @if (! empty($slot['price']))
+                                <span>{{ $slot['price'] }}</span>
+                            @endif
+                        </div>
+                    </a>
+                @endif
+            @endforeach
+        </div>
+    </div>
+</section>
+
 {{-- CTA Section --}}
 <section style="background: linear-gradient(135deg, var(--color-secondary) 0%, #0f2238 100%); padding: 80px 0; position: relative; overflow: hidden;">
     <div class="hero-pattern" style="position: absolute; inset: 0; opacity: 0.05; background-image: url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23ffffff\' fill-opacity=\'1\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');"></div>
@@ -260,6 +301,19 @@
             pauseOnHover: true,
             rtl: {{ $isArabic ? 'true' : 'false' }}
         });
+    }
+
+    function reservedSlotCard() {
+        return '<article class="product-card-modern product-card-modern--reserved">' +
+            '<div class="product-card-modern__image-wrapper"><div class="reserved-slot"><i class="fas fa-image" aria-hidden="true"></i><span>{{ $isArabic ? 'مساحة للصورة' : 'Image space' }}</span></div></div>' +
+            '<div class="product-card-modern__content"><div class="product-card-modern__category">{{ $isArabic ? 'لوحة التحكم' : 'Dashboard' }}</div><div class="product-card-modern__title">{{ $isArabic ? 'مساحة لمنتج جديد' : 'Space for a new product' }}</div></div>' +
+            '</article>';
+    }
+
+    function appendReservedSlots(appendTo) {
+        var slots = '';
+        for (var n = 0; n < 4; n++) slots += reservedSlotCard();
+        $('.' + appendTo).append(slots);
     }
 
     function fetchProduct(url, appendTo) {
@@ -389,15 +443,22 @@
 
                         $("." + appendTo).append(clone);
                     }
+                } else {
+                    $('.' + appendTo).html('');
+                }
 
-                    // Initialize slick slider if needed
-                    if (appendTo != 'new-arrival') {
-                        getSliderSettings(appendTo);
-                    }
+                if (appendTo === 'new-arrival') {
+                    appendReservedSlots(appendTo);
+                } else {
+                    getSliderSettings(appendTo);
                 }
             },
             error: function(data) {
                 console.error('Error loading products:', data);
+                if (appendTo === 'new-arrival') {
+                    $('.' + appendTo).html('');
+                    appendReservedSlots(appendTo);
+                }
             },
         });
     }

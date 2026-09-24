@@ -58,7 +58,8 @@
               <a href="javascript:void(0)" class="navigation-mobile-toggler">
                 <span class="fas fa-bars"></span>
               </a>
-              <nav id="navigation-mobile">
+              <nav id="navigation-mobile" aria-label="Mobile menu">
+                <button type="button" class="mobile-nav-close" aria-label="Close menu">&times;</button>
                 <div class="logout-main without-auth-login">
                   <div class="welcome">
                     <span class="welcomeUsername">{{  trans("lables.header-welcome-user") }}</span>
@@ -127,6 +128,27 @@
                   @endif
                 @endif
                 @endforeach
+
+                <div class="mobile-nav-links">
+                  <a class="main-manu" href="{{ url('/') }}"><i class="fas fa-home"></i> {{ ($data['direction'] ?? '') === 'rtl' ? 'الرئيسية' : 'Home' }}</a>
+                  <a class="main-manu" href="{{ url('/shop') }}"><i class="fas fa-store"></i> {{ ($data['direction'] ?? '') === 'rtl' ? 'كل المنتجات' : 'All products' }}</a>
+                  <a class="main-manu" href="{{ url('/cart') }}"><i class="fas fa-shopping-bag"></i> {{ trans('lables.header-cart') }}</a>
+                  <a class="main-manu" href="{{ url('/wishlist') }}"><i class="far fa-heart"></i> {{ trans('lables.header-wishlist') }}</a>
+                </div>
+
+                @if (count($data['brands'] ?? []))
+                  <div class="mobile-nav-section-title">{{ ($data['direction'] ?? '') === 'rtl' ? 'البراندات' : 'Brands' }}</div>
+                  <div class="mobile-nav-links mobile-nav-brands">
+                    @foreach ($data['brands'] as $brand)
+                      <a class="main-manu" href="{{ route('brand.show', $brand->brand_slug) }}">{{ $brand->name }}</a>
+                    @endforeach
+                  </div>
+                @endif
+
+                <div class="mobile-nav-links">
+                  <a class="main-manu" href="{{ url('/about-us') }}"><i class="fas fa-info-circle"></i> {{ ($data['direction'] ?? '') === 'rtl' ? 'من نحن' : 'About us' }}</a>
+                  <a class="main-manu" href="{{ url('/contact-us') }}"><i class="fas fa-phone-alt"></i> {{ ($data['direction'] ?? '') === 'rtl' ? 'تواصل معنا' : 'Contact us' }}</a>
+                </div>
 
                         <a class="main-manu btn btn-primary auth-login" href="{{ url('/profile') }}" title="{{  trans("lables.header-profile") }}">{{  trans("lables.header-profile") }}</a>
                         <a class="main-manu btn btn-primary auth-login" href="{{ url('/wishlist') }}" title="{{  trans("lables.header-wishlist") }}">{{  trans("lables.header-wishlist") }}</a>
@@ -202,9 +224,12 @@
         <form class="form-inline">
           <div class="search">
             <div class="select-control">
-              <select class="form-control">
-                @foreach($data['category'] as $categories)
-                <option value="{{isset($categories->detail[0]->category_id)}}">{{isset($categories->detail[0]->category_name) ? $categories->detail[0]->category_name : ''}}&nbsp;&nbsp;</option>      
+              <select class="form-control mobile-brand-select" aria-label="Choose brand"
+                onchange="if (this.value) window.location.href = this.value;">
+                <option value="{{ url('/shop') }}">All Brands</option>
+                @foreach($data['brands'] as $brand)
+                <option value="{{ route('brand.show', $brand->brand_slug) }}"
+                  {{ request()->is('brand/'.$brand->brand_slug) ? 'selected' : '' }}>{{ $brand->name }}</option>
                 @endforeach
               </select>
             </div>

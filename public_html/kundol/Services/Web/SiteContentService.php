@@ -2,7 +2,9 @@
 
 namespace App\Services\Web;
 
+use App\Models\Admin\Currency;
 use App\Models\Admin\Language;
+use App\Models\Admin\Product;
 use App\Models\Admin\SiteContent;
 use App\Models\Localization;
 use Illuminate\Support\Facades\Cache;
@@ -83,6 +85,79 @@ class SiteContentService
         Cache::forget('site_contents');
 
         return $this->grouped();
+    }
+
+    public function catalogProducts(): array
+    {
+        return Product::query()
+            ->active()
+            ->with(['detail', 'gallary.detail'])
+            ->orderByDesc('id')
+            ->get()
+            ->map(function (Product $product) {
+                return [
+                    'slug' => $product->product_slug,
+                    'title' => $this->productTitle($product) ?: $product->product_slug,
+                    'image' => $this->productImagePath($product),
+                ];
+            })
+            ->values()
+            ->all();
+    }
+
+    public function productSlots(): array
+    {
+        $slots = $this->get('home.product_slots', []);
+        if (! is_array($slots)) {
+            return [];
+        }
+
+        $slugs = collect($slots)
+            ->map(fn ($slot) => is_array($slot) ? trim((string) ($slot['product_slug'] ?? '')) : '')
+            ->filter()
+            ->unique()
+            ->values();
+
+        $products = $slugs->isEmpty()
+            ? collect()
+            : Product::query()
+                ->active()
+                ->with(['detail', 'gallary.detail'])
+                ->whereIn('product_slug', $slugs)
+                ->get()
+                ->keyBy('product_slug');
+
+        $symbol = (string) (Currency::query()->where('is_default', 1)->value('code') ?: 'EGP');
+
+        return array_map(function ($slot) use ($products, $symbol) {
+            $slot = is_array($slot) ? $slot : [];
+            $slug = trim((string) ($slot['product_slug'] ?? ''));
+            $product = $slug !== '' ? $products->get($slug) : null;
+            $customImage = trim((string) ($slot['image'] ?? ''));
+            $customTitle = trim((string) ($slot['title'] ?? ''));
+            $image = $customImage !== '' ? $customImage : ($product ? $this->productImagePath($product) : '');
+            $title = $customTitle !== '' ? $customTitle : ($product ? $this->productTitle($product) : '');
+
+            if ($image === '' && $title === '') {
+                return ['empty' => true];
+            }
+
+            $price = null;
+            if ($product) {
+                $amount = (float) ($product->discount_price ?: $product->price);
+                if ($amount > 0) {
+                    $price = number_format($amount, 0).' '.$symbol;
+                }
+            }
+
+            return [
+                'empty' => false,
+                'title' => $title !== '' ? $title : 'منتج',
+                'image' => $image,
+                'price' => $price,
+                'url' => $product ? url('/product/'.$product->id.'/'.$product->product_slug) : url('/shop'),
+            ];
+        }, $slots);
     }
 
     public function storeUpload($file): array
@@ -239,6 +314,8 @@ class SiteContentService
             'home.new_subtitle' => 'The latest products added to the store',
             'home.featured_title' => 'Featured products',
             'home.featured_subtitle' => 'Our best-selling products',
+            'home.slots_title' => 'Spaces for new products',
+            'home.slots_subtitle' => 'Choose a product from the dashboard to fill a space with its image and price, or leave it empty for a later product',
             'home.newsletter_title' => 'Subscribe to our newsletter',
             'home.newsletter_text' => 'Get the latest offers and discounts in your inbox',
             'home.newsletter_placeholder' => 'Your email',
@@ -310,5 +387,34 @@ class SiteContentService
         }
 
         return $path;
+    }
+
+    private function productTitle(Product $product): string
+    {
+        $languageId = $this->languageId();
+        $detail = $product->detail->firstWhere('language_id', $languageId) ?? $product->detail->first();
+
+        return trim((string) ($detail->title ?? ''));
+    }
+
+    private function productImagePath(Product $product): string
+    {
+        $details = $product->gallary?->detail;
+        if ($details === null || $details->isEmpty()) {
+            return '';
+        }
+
+        $detail = $details->firstWhere('gallary_type', 'large') ?? $details->first();
+
+        return trim((string) ($detail->path ?? ''));
+    }
+
+    private function languageId(): ?int
+    {
+        try {
+            return (int) app(HomeService::class)->selectedLenguage();
+        } catch (Throwable) {
+            return null;
+        }
     }
 }

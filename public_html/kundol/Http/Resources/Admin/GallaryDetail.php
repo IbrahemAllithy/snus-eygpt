@@ -13,11 +13,16 @@ class GallaryDetail extends JsonResource
      */
     public function toArray($request): array
     {
+        $galleryPath = $this->path;
+        if ($galleryPath && ! preg_match('#^(https?:)?//#i', $galleryPath)) {
+            $galleryPath = asset(ltrim($galleryPath, '/'));
+        }
+
         if (\Request::route()->getName() == 'products.index' || \Request::route()->getName() == 'products.show') {
             return [
                 'id' => $this->id,
                 'gallary_type' => $this->gallary_type,
-                'gallary_path' => $this->path,
+                'gallary_path' => $galleryPath,
             ];
         }
 
@@ -26,7 +31,7 @@ class GallaryDetail extends JsonResource
             'gallary_type' => $this->gallary_type,
             'gallary_height' => $this->height,
             'gallary_width' => $this->width,
-            'gallary_path' => $this->path,
+            'gallary_path' => $galleryPath,
         ];
     }
 }

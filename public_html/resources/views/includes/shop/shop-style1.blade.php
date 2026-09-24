@@ -5,7 +5,9 @@
         <div class="container">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="./">{{ trans('lables.bread-crumb-home') }}</a></li>
-                <li class="breadcrumb-item active" aria-current="page">{{ trans('lables.bread-crumb-shop') }}</li>
+                <li class="breadcrumb-item active" aria-current="page">
+                    {{ isset($brand) ? $brand['name'] : trans('lables.bread-crumb-shop') }}
+                </li>
             </ol>
         </div>
     </nav>
@@ -14,8 +16,15 @@
 <section class="pro-content">
     <div class="container">
         <div class="page-heading-title">
-            <h2> {{ trans('lables.shop-shop') }}
-            </h2>
+            @if (isset($brand))
+                <div class="brand-page-heading">
+                    <span class="brand-page-heading__eyebrow">SNUS EGYPT BRANDS</span>
+                    <h1>{{ $brand['name'] }}</h1>
+                    <p>{{ ($data['direction'] ?? '') === 'rtl' ? 'تسوق جميع منتجات '.$brand['name'].' الأصلية — '.$brand['product_count'].' منتج' : 'Shop all genuine '.$brand['name'].' products — '.$brand['product_count'].' items' }}</p>
+                </div>
+            @else
+                <h2>{{ trans('lables.shop-shop') }}</h2>
+            @endif
 
         </div>
     </div>

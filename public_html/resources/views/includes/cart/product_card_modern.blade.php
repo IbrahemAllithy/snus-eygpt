@@ -1,13 +1,15 @@
 <template id="product-card-template-modern">
     <div class="div-class">
-        <div class="product-card-modern" data-aos="fade-up">
+        <div class="product-card-modern">
             <article class="card border-0 h-100" style="border-radius: var(--radius-lg, 12px); box-shadow: 0 4px 12px rgba(0,0,0,0.08); transition: all var(--transition-base, 0.3s ease); background: var(--bg-panel, white); overflow: hidden;">
                 <div class="thumb position-relative" style="overflow: hidden;">
                     <div class="badges position-absolute top-0 start-0 p-3 d-flex flex-wrap gap-2" style="z-index: 2;">
                     </div>
 
-                    <img class="img-fluid product-card-image w-100" src="" alt="Product Image"
-                         style="transition: transform 0.5s ease; object-fit: cover; aspect-ratio: 4/3;">
+                    <a href="javascript:void(0)" class="product-card-image-link d-block">
+                        <img class="img-fluid product-card-image w-100" src="" alt="Product Image"
+                             style="transition: transform 0.5s ease; object-fit: contain; aspect-ratio: 4/3; background: #fff;">
+                    </a>
 
                     <div class="product-overlay position-absolute w-100 h-100 top-0 start-0 d-flex align-items-center justify-content-center"
                          style="background: rgba(0,0,0,0.4); opacity: 0; transition: opacity var(--transition-base, 0.3s ease); z-index: 1;">

@@ -1,18 +1,18 @@
 <!DOCTYPE html>
-<html class="no-js" lang="ar" dir="rtl">
+<html class="no-js" lang="{{ ($data['direction'] ?? 'rtl') === 'rtl' ? 'ar' : 'en' }}" dir="{{ ($data['direction'] ?? 'rtl') === 'rtl' ? 'rtl' : 'ltr' }}">
 
 <head>
     <meta charset="UTF-8">
-    <title>{{ isset(getSetting()['seo_title']) ? getSetting()['seo_title'] : 'Snus Egypt - متجر السنس الإلكتروني' }}</title>
-    <meta name="description" content="{{ isset(getSetting()['seo_description']) ? getSetting()['seo_description'] : 'أفضل منتجات السنس في مصر' }}" id="meta-description">
-    <meta name="keywords" content="{{ isset(getSetting()['seo_keywords']) ? getSetting()['seo_keywords'] : 'سنس, snus, مصر, منتجات سنس' }}" id="meta-keyword">
+    <title>{{ isset(getSetting()['seo_title']) ? getSetting()['seo_title'] : (($data['direction'] ?? 'rtl') === 'rtl' ? 'Snus Egypt - متجر السنس الإلكتروني' : 'Snus Egypt - Online Snus Store') }}</title>
+    <meta name="description" content="{{ isset(getSetting()['seo_description']) ? getSetting()['seo_description'] : (($data['direction'] ?? 'rtl') === 'rtl' ? 'أفضل منتجات السنس في مصر' : 'Premium snus products in Egypt') }}" id="meta-description">
+    <meta name="keywords" content="{{ isset(getSetting()['seo_keywords']) ? getSetting()['seo_keywords'] : 'snus, egypt' }}" id="meta-keyword">
     <meta name="author" content="Snus Egypt">
     <meta name="title" content="{{ isset(getSetting()['seo_title']) ? getSetting()['seo_title'] : 'Snus Egypt' }}" id="meta-title">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="theme-color" content="#C19A49">
 
-    <link rel="icon" href="{{ asset(getSetting()['favicon'] ?? 'favicon.ico') }}">
+    <link rel="icon" type="image/png" href="{{ isset(getSetting()['favicon']) ? getSetting()['favicon'] : '01-fav.png' }}">
 
     <!-- Preconnect for Performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -126,7 +126,7 @@
         }
 
         /* Back to Top Button - Modern */
-        .swipe-to-top {
+        #back-to-top {
             position: fixed;
             right: 20px;
             bottom: 20px;
@@ -146,7 +146,7 @@
             border: none;
         }
 
-        .swipe-to-top:hover {
+        #back-to-top:hover {
             transform: translateY(-4px);
             box-shadow: 0 12px 30px rgba(193, 154, 73, 0.4);
         }
@@ -215,7 +215,7 @@
         }
 
         /* RTL Support */
-        [dir="rtl"] .swipe-to-top {
+        [dir="rtl"] #back-to-top {
             right: auto;
             left: 20px;
         }
@@ -296,6 +296,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
     <!-- Core Scripts -->
+    @include('includes.headers.mobile-menu-script')
     <script src="{{ asset('assets/front/js/scripts.js') }}"></script>
 
     <!-- Toastr -->
@@ -303,6 +304,9 @@
 
     <!-- AOS Animation -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <!-- Modern Enhancements -->
+    <script src="{{ asset('assets/front/js/modern-enhancements.js') }}"></script>
 
     <script>
         // Initialize AOS
@@ -404,19 +408,13 @@
 
         customerToken = $.trim(localStorage.getItem("customerToken"));
 
-        // Language management
-        languageId = localStorage.getItem("languageId");
-        languageName = localStorage.getItem("languageName");
-
-        if (languageName == null || languageName == 'null') {
-            localStorage.setItem("languageId", $.trim("{{ $data['selectedLenguage'] }}"));
-            localStorage.setItem("languageName", $.trim("{{ $data['selectedLenguageName'] }}"));
-            $(".language-default-name").html($.trim("{{ $data['selectedLenguageName'] }}"));
-            languageId = $.trim("{{ $data['selectedLenguage'] }}");
-        } else {
-            $(".language-default-name").html(localStorage.getItem("languageName"));
-            $('.mobile-language option[value="' + localStorage.getItem("languageId") + '"]').attr('selected', 'selected');
-        }
+        // Language follows the server selection, so English does not keep Arabic content.
+        languageId = $.trim("{{ $data['selectedLenguage'] }}");
+        languageName = $.trim("{{ $data['selectedLenguageName'] }}");
+        localStorage.setItem("languageId", languageId);
+        localStorage.setItem("languageName", languageName);
+        $(".language-default-name").html(languageName);
+        $('.mobile-language option[value="' + languageId + '"]').attr('selected', 'selected');
 
         // Currency management
         currency = localStorage.getItem("currency");
@@ -612,9 +610,99 @@
             });
         }
 
-        // Quick view (placeholder - full function in master.blade.php)
         function quiclViewData(input) {
-            // Implementation from original file
+            var productId = $.trim($(input).attr('data-id'));
+            $(".quick-view-modal-show").html('');
+
+            $.ajax({
+                type: 'get',
+                url: "{{ url('') }}" + '/api/client/products/' + productId +
+                    '?getCategory=1&getDetail=1&language_id=' + languageId + '&currency=' +
+                    localStorage.getItem("currency"),
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+                    clientid: "{{ isset(getSetting()['client_id']) ? getSetting()['client_id'] : '' }}",
+                    clientsecret: "{{ isset(getSetting()['client_secret']) ? getSetting()['client_secret'] : '' }}",
+                },
+                success: function(response) {
+                    if (response.status !== 'Success' || !response.data) return;
+
+                    var product = response.data;
+                    var details = Array.isArray(product.detail) && product.detail.length ? product.detail[0] : null;
+                    var template = document.getElementById("quick-view-template");
+                    if (!template) return;
+
+                    var clone = template.content.cloneNode(true);
+                    var images = [];
+
+                    if (Array.isArray(product.product_gallary_detail)) {
+                        images = product.product_gallary_detail.map(function(image) {
+                            return '/gallary/' + image.gallary_name;
+                        });
+                    }
+
+                    if (!images.length && product.product_gallary && Array.isArray(product.product_gallary.detail)) {
+                        images = product.product_gallary.detail.map(function(image) {
+                            var path = image.gallary_path || '';
+                            return /^https?:\/\//.test(path) || path.charAt(0) === '/' ? path : '/' + path;
+                        }).filter(Boolean);
+                    }
+
+                    if (!images.length) {
+                        images = ["{{ asset('assets/images/snuslogo1.png') }}"];
+                    }
+
+                    clone.querySelector(".carasol-images").innerHTML = images.map(function(image, index) {
+                        return '<div class="carousel-item ' + (index === 0 ? 'active' : '') +
+                            '"><img class="img-fluid quick-view-image" src="' + image +
+                            '" alt="' + (details ? details.title : 'Product') + '"></div>';
+                    }).join('');
+
+                    clone.querySelector(".quick-view-product-name").textContent = details ? details.title : 'Product';
+                    clone.querySelector(".quick-view-desc").textContent = details
+                        ? $('<div>').html(details.desc || '').text().substring(0, 250) : '';
+                    clone.querySelector(".quick-view-product-id").textContent = product.product_id;
+
+                    var categories = Array.isArray(product.category) ? product.category : [];
+                    clone.querySelector(".quick-view-categories").innerHTML = categories.map(function(category) {
+                        var detail = category.category_detail && Array.isArray(category.category_detail.detail)
+                            ? category.category_detail.detail[0] : null;
+                        return detail
+                            ? '<li><a href="/shop?category=' + detail.category_id + '">' + detail.name + '</a></li>'
+                            : '';
+                    }).join('');
+
+                    var badges = '';
+                    if (product.discount_percentage > 0)
+                        badges += '<span class="badge badge-danger">' + product.discount_percentage + '%</span>';
+                    if (product.is_featured != "0")
+                        badges += '<span class="badge badge-success">Featured</span>';
+                    if (product.new != "0")
+                        badges += '<span class="badge badge-info">New</span>';
+                    clone.querySelector(".badges").innerHTML = badges;
+
+                    var action = clone.querySelector(".quick-view-add-to-cart");
+                    if (product.product_type === 'simple') {
+                        clone.querySelector(".quick-view-price").innerHTML = product.product_discount_price
+                            ? '<ins>' + product.product_discount_price_symbol + '</ins> <del>' +
+                                product.product_price_symbol + '</del>'
+                            : '<ins>' + product.product_price_symbol + '</ins>';
+                        action.setAttribute('onclick', 'addToCart(this)');
+                        action.setAttribute('data-id', product.product_id);
+                        action.setAttribute('data-type', product.product_type);
+                    } else {
+                        var combination = Array.isArray(product.product_combination)
+                            ? product.product_combination[0] : null;
+                        clone.querySelector(".quick-view-price").innerHTML = combination
+                            ? '<ins>' + combination.product_price_symbol + '</ins>' : '';
+                        clone.querySelector(".quick-view-qty").classList.add('d-none');
+                        action.setAttribute('href', '/product/' + product.product_id + '/' + product.product_slug);
+                        action.textContent = 'View Detail';
+                    }
+
+                    $(".quick-view-modal-show").append(clone);
+                },
+            });
         }
 
         // Add to cart
@@ -801,23 +889,27 @@
             localStorage.setItem("languageId", languageId);
             localStorage.setItem("languageName", languageName);
             $(".language-default-name").html(languageName);
-            var href = $(this).attr('href');
+            var href = $.trim($(this).attr('href'));
             window.location.href = href;
         });
 
-        // Search functionality
+        $('.cat-dropdown').click(function() {
+            var categoryId = $(this).attr('data-id') || '';
+            var categoryName = $(this).attr('data-name');
+            $('.selected_category').attr('data-id', categoryId).html(categoryName);
+        });
+
+        // Search and category navigation
         $('#search_button').click(function(e) {
             e.preventDefault();
-            var searchInput = $('#search-input').val();
-            if (searchInput == "") {
-                toastr.error("يرجى إدخال كلمة البحث")
-            } else {
-                var url = "{{ url('/shop') }}" + '?search=' + searchInput;
-                var catgory_id = $('.selected_category').attr('data-id');
-                if (catgory_id != '' && catgory_id !== undefined)
-                    url += "&category=" + catgory_id;
-                window.location.href = url;
-            }
+            var searchInput = $.trim($('#search-input').val());
+            var categoryId = $('.selected_category').attr('data-id') || '';
+            var params = [];
+
+            if (searchInput) params.push('search=' + encodeURIComponent(searchInput));
+            if (categoryId) params.push('category=' + encodeURIComponent(categoryId));
+
+            window.location.href = "{{ url('/shop') }}" + (params.length ? '?' + params.join('&') : '');
         })
 
         // Currency switcher

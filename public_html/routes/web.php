@@ -60,6 +60,7 @@ Route::middleware([GeneralMiddlwware::class, Installer::class])->group(function 
 
     Route::get('/product/{id}/{slug}', [Web\IndexController::class, 'productDetail']);
     Route::get('/brand/{slug}', [Web\IndexController::class, 'brand'])->name('brand.show');
+    Route::get('/category/{slug}', [Web\IndexController::class, 'categoryRedirect']);
     Route::get('/shop', [Web\IndexController::class, 'shop']);
     Route::get('/cart', [Web\IndexController::class, 'cartPage']);
     Route::get('/blog-detail/{slug}', [Web\IndexController::class, 'blogDetail']);

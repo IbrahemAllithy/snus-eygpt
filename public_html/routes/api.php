@@ -322,6 +322,7 @@ Route::prefix('admin')
                 'update' => 'admin.setting.update',
             ]);
 
+        Route::get('site-content/products', [SiteContentController::class, 'products'])->name('admin.site-content.products');
         Route::get('site-content', [SiteContentController::class, 'index'])->name('admin.site-content.index');
         Route::put('site-content', [SiteContentController::class, 'update'])->name('admin.site-content.update');
         Route::post('site-content/upload', [SiteContentController::class, 'upload'])->name('admin.site-content.upload');

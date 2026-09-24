@@ -49,6 +49,15 @@ class SiteContentController extends Controller
         ]);
     }
 
+    public function products()
+    {
+        return response()->json([
+            'status' => 'Success',
+            'message' => 'Products',
+            'data' => $this->content->catalogProducts(),
+        ]);
+    }
+
     public function upload(Request $request)
     {
         $request->validate([

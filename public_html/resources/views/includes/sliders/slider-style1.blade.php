@@ -36,9 +36,9 @@
         <div class="carousel-caption d-flex">
           <div class="text-deco1">
             <span class="fallback-kicker">SNUS EGYPT</span>
-            <h2>اختار نكهتك المفضلة</h2>
-            <p>منتجات أصلية، اختيارات واضحة، وتوصيل سريع داخل مصر.</p>
-            <a href="{{ url('/shop') }}" class="btn btn-secondary swipe-to-top">تسوق الآن</a>
+            <h2>{{ ($data['direction'] ?? '') === 'rtl' ? 'اختار نكهتك المفضلة' : 'Choose your favourite flavour' }}</h2>
+            <p>{{ ($data['direction'] ?? '') === 'rtl' ? 'منتجات أصلية، اختيارات واضحة، وتوصيل سريع داخل مصر.' : 'Genuine products, clear choices, and fast delivery across Egypt.' }}</p>
+            <a href="{{ url('/shop') }}" class="btn btn-secondary swipe-to-top">{{ ($data['direction'] ?? '') === 'rtl' ? 'تسوق الآن' : 'Shop now' }}</a>
           </div>
         </div>
       </div>

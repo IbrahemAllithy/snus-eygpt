@@ -11,6 +11,36 @@
             border: 1px solid;
         }
 
+        .brand-page-heading {
+            padding: 32px;
+            border-radius: 20px;
+            color: #fff;
+            text-align: center;
+            background: linear-gradient(135deg, #1a3353 0%, #0f1f35 65%, #c19a49 100%);
+            box-shadow: 0 16px 40px rgba(15, 31, 53, 0.18);
+        }
+
+        .brand-page-heading__eyebrow {
+            display: block;
+            margin-bottom: 8px;
+            color: #e5c66f;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+        }
+
+        .brand-page-heading h1 {
+            margin: 0 0 8px;
+            color: #fff;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 800;
+        }
+
+        .brand-page-heading p {
+            margin: 0;
+            color: rgba(255, 255, 255, 0.85);
+        }
+
     </style>
 @endsection
 @section('script')
@@ -49,10 +79,13 @@
             var category = "{{ isset($_GET['category']) ? $_GET['category'] : '' }}";
             var varations = "{{ isset($_GET['variation_id']) ? $_GET['variation_id'] : '' }}";
             var price_range = "{{ isset($_GET['price']) ? $_GET['price'] : '' }}";
+            var brandIds = @json(isset($brand) ? $brand['ids'] : '');
 
             var url = "{{ url('') }}" + '/api/client/products?page=' + page + '&limit=' + limit +
                 '&getDetail=1&language_id=' + language_id + '&currency=' + localStorage.getItem("currency");
 
+            if (brandIds != "")
+                url += "&brandId=" + encodeURIComponent(brandIds);
             if (category != "")
                 url += "&productCategories=" + category;
             if (varations != "")
@@ -159,11 +192,11 @@
                                 clone.querySelector(".product-card-category").innerHTML = categoryDetails[0].name;
                             }
                             if (details) {
+                                var productUrl = '/product/' + data.data[i].product_id + '/' + data.data[i].product_slug;
                                 clone.querySelector(".product-card-name").innerHTML = details.title || 'Product';
-                                clone.querySelector(".product-card-name").setAttribute('href', '/product/' +
-                                    data
-                                    .data[i].product_id + '/' + data
-                                    .data[i].product_slug);
+                                clone.querySelector(".product-card-name").setAttribute('href', productUrl);
+                                clone.querySelector(".product-card-image-link").setAttribute('href', productUrl);
+                                clone.querySelector(".product-card-image-link").setAttribute('aria-label', details.title || 'View product');
                                 var desc = typeof details.desc === 'string' ? details.desc : '';
                                 clone.querySelector(".product-card-desc").innerHTML = desc.substring(0, 80);
                             }
@@ -176,9 +209,9 @@
                                         .product_price_symbol;
                                 } else {
 
-                                    clone.querySelector(".product-card-price").innerHTML = data.data[i]
-                                        .product_discount_price_symbol + '<span>' + data.data[i]
-                                        .product_price_symbol + '</span>';
+                                    clone.querySelector(".product-card-price").innerHTML =
+                                        '<span class="sale-price">' + data.data[i].product_discount_price_symbol + '</span>' +
+                                        '<span class="price-old">' + data.data[i].product_price_symbol + '</span>';
                                 }
                             }  else {
                                 //console.log(data.data[i].product_variable_price_symbol,"variable price");
@@ -234,7 +267,7 @@
 
 
         var limit = "{{ isset($_GET['limit']) ? $_GET['limit'] : '12' }}";
-        var shopRedirecturl = "{{ url('/shop') }}" + '?limit=' + limit;
+        var shopRedirecturl = "{{ isset($brand) ? url('/brand/'.$brand['slug']) : url('/shop') }}" + '?limit=' + limit;
         $('.category-filter').change(function() {
             $(this).attr('selected', true);
         })

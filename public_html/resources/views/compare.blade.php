@@ -125,9 +125,8 @@
                                         .product_price_symbol;
                                 } else {
                                     clone.querySelector(".product-card-price").innerHTML =
-                                        data.data[i].products
-                                        .product_discount_price_symbol + '<span class="discount-price"> ' + data.data[i].products
-                                        .product_price_symbol + '</span>';
+                                        '<span class="sale-price">' + data.data[i].products.product_discount_price_symbol + '</span>' +
+                                        '<span class="price-old">' + data.data[i].products.product_price_symbol + '</span>';
                                 }
                             } else {
                                 if (data.data[i].products.product_combination != null && data.data[i].products

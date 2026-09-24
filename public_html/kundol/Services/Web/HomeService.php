@@ -3,6 +3,7 @@
 namespace App\Services\Web;
 
 use App\Models\Admin\Category;
+use App\Models\Admin\Brand;
 use App\Models\Admin\Currency;
 use App\Models\Admin\HomeBanner;
 use App\Models\Admin\Language;
@@ -19,6 +20,7 @@ class HomeService
         $data['language'] = $this->getLanguage();
         $data['currency'] = $this->getCurrency();
         $data['category'] = $this->getCategory();
+        $data['brands'] = $this->getBrands();
 
         $data['selectedLenguage'] = $this->selectedLenguage();
         $data['selectedLenguageName'] = $this->selectedLenguageName();
@@ -53,34 +55,54 @@ class HomeService
         return $category->get();
     }
 
+    public function getBrands()
+    {
+        return Brand::with('gallary')
+            ->where('status', 'active')
+            ->whereHas('products', function ($query) {
+                $query->active();
+            })
+            ->orderBy('name')
+            ->get()
+            ->unique('brand_slug')
+            ->values();
+    }
+
     public function selectedLenguage()
     {
-        $current_language_code = Localization::where('ip', \Request::ip())->first();
-        if ($current_language_code) {
-            return Language::where('code', $current_language_code->current_language)->first()->id;
-        } else {
-            return Language::where('is_default', 1)->first()->id;
-        }
+        return $this->currentLanguage()->id;
     }
 
     public function selectedLenguageName()
     {
-        $current_language_code = Localization::where('ip', \Request::ip())->first();
-        if ($current_language_code) {
-            return Language::where('code', $current_language_code->current_language)->first()->name;
-        } else {
-            return Language::where('is_default', 1)->first()->name;
-        }
+        return $this->currentLanguage()->name;
     }
 
     public function selectedLenguagePosition()
     {
-        $current_language_code = Localization::where('ip', \Request::ip())->first();
-        if ($current_language_code) {
-            return Language::where('code', $current_language_code->current_language)->first()->direction;
-        } else {
-            return Language::where('is_default', 1)->first()->direction;
+        return $this->currentLanguage()->direction;
+    }
+
+    private function currentLanguage()
+    {
+        $code = session('locale');
+        if (is_string($code) && $code !== '') {
+            $language = Language::where('code', $code)->where('status', 'active')->first();
+            if ($language) {
+                return $language;
+            }
         }
+
+        $saved = Localization::where('ip', \Request::ip())->first();
+        if ($saved) {
+            $language = Language::where('code', $saved->current_language)->where('status', 'active')->first();
+            if ($language) {
+                return $language;
+            }
+        }
+
+        return Language::where('is_default', 1)->first()
+            ?? Language::where('status', 'active')->first();
     }
 
     public function selectedCurrency()

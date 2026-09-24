@@ -2651,9 +2651,9 @@
                         class="nav-item"
                         v-if="$parent.permissions.includes('website-setting')"
                       >
-                        <router-link
+                        <a
                           class="nav-link sub-nav-link"
-                          to="/admin/site-content"
+                          href="/site-content"
                         >
                           <span
                             class="svg-icon nav-icon d-flex justify-content-center"
@@ -2672,8 +2672,8 @@
                               />
                             </svg>
                           </span>
-                          <span class="nav-text">Site Content</span>
-                        </router-link>
+                          <span class="nav-text">صور المنتجات والمساحات</span>
+                        </a>
                       </li>
                       <li
                         class="nav-item"

@@ -132,14 +132,15 @@
                             <button class="btn btn-secondary swipe-to-top dropdown-toggle selected_category"
                                 type="button" id="headerCategoryButton" data-toggle="dropdown" aria-haspopup="true"
                                 aria-expanded="false" data-toggle="tooltip" data-placement="bottom"
-                                title="{{ trans('lables.header-all-categories') }}">
-                                {{ trans('lables.header-all-categories') }}
+                                title="ALL BRANDS">
+                                ALL BRANDS
                             </button>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="headerCategoryButton">
-                                @foreach ($data['category'] as $categories)
-                                    <a class="dropdown-item cat-dropdown" href="javascript:void(0)"
-                                        data-id="{{ $categories->id }}"
-                                        data-name="{{ isset($categories->detail[0]->category_name) ? $categories->detail[0]->category_name : '' }}">{{ isset($categories->detail[0]->category_name) ? $categories->detail[0]->category_name : '' }}</a>
+                                <a class="dropdown-item" href="{{ url('/shop') }}">ALL BRANDS</a>
+                                @foreach ($data['brands'] as $brand)
+                                    <a class="dropdown-item" href="{{ route('brand.show', $brand->brand_slug) }}">
+                                        {{ $brand->name }}
+                                    </a>
                                 @endforeach
 
                             </div>

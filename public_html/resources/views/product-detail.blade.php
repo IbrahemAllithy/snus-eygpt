@@ -107,6 +107,8 @@
                         const clone = templ.content.cloneNode(true);
                         const details = Array.isArray(data.data.detail) && data.data.detail.length ? data.data.detail[0] : null;
                         const galleryDetails = Array.isArray(data.data.product_gallary_detail) ? data.data.product_gallary_detail : [];
+                        const primaryGalleryDetails = data.data.product_gallary && Array.isArray(data.data.product_gallary.detail)
+                            ? data.data.product_gallary.detail : [];
                         const fallbackImage = '{{ asset('assets/images/snuslogo1.png') }}';
                         // clone.querySelector(".single-text-chat-li").classList.add("bg-blue-100");
                         clone.querySelector(".wishlist-icon").setAttribute('data-id', data.data.product_id);
@@ -173,6 +175,28 @@
                             }
 
                         }
+                        if (!image_list_link && primaryGalleryDetails.length) {
+                            const largeImage = primaryGalleryDetails.find(function(image) {
+                                return image.gallary_type === 'large';
+                            }) || primaryGalleryDetails[0];
+                            const thumbnailImage = primaryGalleryDetails.find(function(image) {
+                                return image.gallary_type === 'thumbnail';
+                            }) || largeImage;
+                            const imageUrl = function(path) {
+                                if (!path) return fallbackImage;
+                                return /^https?:\/\//.test(path) || path.charAt(0) === '/' ? path : '/' + path;
+                            };
+                            const largeUrl = imageUrl(largeImage.gallary_path);
+                            const thumbnailUrl = imageUrl(thumbnailImage.gallary_path);
+                            const productTitle = details ? details.title : 'Product';
+
+                            image_list_link = '<a class="slider-for__item ex1 fancybox-button" href="' + largeUrl +
+                                '" data-fancybox-group="fancybox-button" title="' + productTitle +
+                                '"><img class="product-detail-section-image" src="' + largeUrl +
+                                '" alt="' + productTitle + '" /></a>';
+                            image_list = '<div class="slider-nav__item"><img class="product-detail-section-image" src="' +
+                                thumbnailUrl + '" alt="' + productTitle + ' preview"/></div>';
+                        }
                         if (!image_list_link) {
                             image_list_link = '<div class="slider-for__item"><img class="product-detail-section-image" src="' + fallbackImage + '" alt="' + (details ? details.title : 'Product') + '"></div>';
                             image_list = '<div class="slider-nav__item"><img class="product-detail-section-image" src="' + fallbackImage + '" alt="Product preview"></div>';
@@ -216,9 +240,9 @@
                                     .product_price_symbol;
                             } else {
 
-                                clone.querySelector(".product-card-price").innerHTML = data.data
-                                    .product_discount_price_symbol + '<span>' + data.data
-                                    .product_price_symbol + '</span>';
+                                clone.querySelector(".product-card-price").innerHTML =
+                                    '<span class="sale-price">' + data.data.product_discount_price_symbol + '</span>' +
+                                    '<span class="price-old">' + data.data.product_price_symbol + '</span>';
                             }
                         } else {
                             if (data.data.product_combination != null) {
@@ -475,11 +499,11 @@
                                 }
                             }
                             if (details) {
+                                var productUrl = '/product/' + data.data[i].product_id + '/' + data.data[i].product_slug;
                                 clone.querySelector(".product-card-name").innerHTML = details.title || 'Product';
-                                clone.querySelector(".product-card-name").setAttribute('href', '/product/' +
-                                    data
-                                    .data[i].product_id + '/' + data
-                                    .data[i].product_slug);
+                                clone.querySelector(".product-card-name").setAttribute('href', productUrl);
+                                clone.querySelector(".product-card-image-link").setAttribute('href', productUrl);
+                                clone.querySelector(".product-card-image-link").setAttribute('aria-label', details.title || 'View product');
                                 var desc = typeof details.desc === 'string' ? details.desc : '';
                                 clone.querySelector(".product-card-desc").innerHTML = desc.substring(0, 80);
                             }
@@ -491,9 +515,9 @@
                                     clone.querySelector(".product-card-price").innerHTML = data.data[i]
                                         .product_price_symbol;
                                 } else {
-                                    clone.querySelector(".product-card-price").innerHTML = data.data[i]
-                                        .product_price_symbol + '<span>' + data.data[i]
-                                        .product_discount_price_symbol + '</span>';
+                                    clone.querySelector(".product-card-price").innerHTML =
+                                        '<span class="sale-price">' + data.data[i].product_discount_price_symbol + '</span>' +
+                                        '<span class="price-old">' + data.data[i].product_price_symbol + '</span>';
                                 }
                             } else {
                                 if (Array.isArray(product.product_combination) && product.product_combination[0]) {

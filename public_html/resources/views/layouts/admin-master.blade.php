@@ -19,6 +19,22 @@
 	  <router-view></router-view>
 	  </div>
 	<script src="{{ mix('js/app.js') }}" type="text/javascript"></script>
+	<script>
+		(function () {
+			function addSiteContentLink() {
+				var menu = document.querySelector('#accordion > ul.nav');
+				if (!menu || document.getElementById('open-site-content')) return;
+				var item = document.createElement('li');
+				item.className = 'nav-item';
+				item.innerHTML = '<a id="open-site-content" class="nav-link" href="/site-content"><span class="nav-text">صور المنتجات والمساحات</span></a>';
+				menu.appendChild(item);
+			}
+			var siteContentTimer = setInterval(function () {
+				addSiteContentLink();
+				if (document.getElementById('open-site-content')) clearInterval(siteContentTimer);
+			}, 1000);
+		})();
+	</script>
 	<script src="{{asset('assets/js/plugin.bundle.min.js')}}"></script>
 	<script src="{{asset('assets/js/bootstrap.bundle.min.js')}}"></script>
 

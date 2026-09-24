@@ -37,7 +37,7 @@
     <header>
         <div>
             <h1>محتوى الموقع</h1>
-            <p>نفس البيانات التي يقرأها المتجر، ويمكن لأي داشبورد حفظها من واجهة الإدارة.</p>
+            <p>الصور والبانرات ومساحات المنتجات مربوطة بالمتجر. اختر منتجًا من الداشبورد لتظهر صورته، أو اترك المساحة فارغة وأضف منتجًا لاحقًا.</p>
         </div>
         <button id="logout" class="ghost hidden" type="button">خروج</button>
     </header>
@@ -63,6 +63,7 @@
         const editor = document.getElementById('editor');
         const groupsEl = document.getElementById('groups');
         let content = [];
+        let catalogProducts = [];
 
         function token() {
             return localStorage.getItem(tokenKey) || '';
@@ -85,6 +86,12 @@
 
         function fieldInput(field, value, key, scope, index) {
             const attrs = `data-key="${escapeAttr(key)}" data-scope="${scope}" data-index="${index}" data-field="${field.key}"`;
+            if (field.type === 'product') {
+                const options = [`<option value="">مساحة فاضية — أضف منتجًا لاحقًا</option>`]
+                    .concat(catalogProducts.map((product) => `<option value="${escapeAttr(product.slug)}"${product.slug === value ? ' selected' : ''}>${escapeHtml(product.title)}</option>`))
+                    .join('');
+                return `<label>${field.label}</label><select ${attrs}>${options}</select>`;
+            }
             const input = field.type === 'textarea'
                 ? `<textarea ${attrs}>${escapeHtml(value || '')}</textarea>`
                 : `<input ${attrs} value="${escapeAttr(value || '')}">`;
@@ -161,6 +168,9 @@
                 return;
             }
             const json = await response.json();
+            const productsResponse = await fetch('/api/admin/site-content/products', { headers: authHeaders() });
+            const productsJson = await productsResponse.json();
+            catalogProducts = productsJson.data || [];
             content = json.data.groups;
             loginForm.classList.add('hidden');
             editor.classList.remove('hidden');
@@ -232,6 +242,9 @@
 
         groupsEl.addEventListener('change', async (event) => {
             const input = event.target;
+            if (input.dataset.field && !input.dataset.upload) {
+                writeField(input.dataset.key, input.dataset.scope, input.dataset.index, input.dataset.field, input.value);
+            }
             if (!input.dataset.upload || !input.files || !input.files[0]) return;
             const body = new FormData();
             body.append('file', input.files[0]);

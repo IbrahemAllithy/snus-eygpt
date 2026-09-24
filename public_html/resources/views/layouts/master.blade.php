@@ -1,7 +1,7 @@
 {{-- {{ dd(getSetting()['card_style']) }} --}}
 {{-- dd ($data['currency']); --}}
 <!DOCTYPE html>
-<html class="no-js" lang="zxx">
+<html class="no-js" lang="{{ ($data['direction'] ?? 'ltr') === 'rtl' ? 'ar' : 'en' }}" dir="{{ ($data['direction'] ?? 'ltr') === 'rtl' ? 'rtl' : 'ltr' }}">
 
 <head>
     <meta charset="UTF-8">
@@ -15,8 +15,8 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link rel="icon" type="image/png"
-        href="{{ isset(getSetting()['favicon']) ? getSetting()['favicon'] : '01-fav.png' }}">
+    {{-- asset() so the icon resolves from nested URLs like /brand/{slug} too --}}
+    <link rel="icon" href="{{ asset(getSetting()['favicon'] ?? 'favicon.ico') }}">
 
     <!-- Preconnect for Performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -41,7 +41,7 @@
         href="{{ isset(getSetting()['color']) ? asset('assets/front/css/' . getSetting()['color'] . '.css') : asset('assets/front/css/style.css') }}">
 
     <!-- Modern Overrides - Load Last to Override Everything -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/front/css/modern-overrides.css') }}?v={{ time() }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/front/css/modern-overrides.css') }}?v={{ filemtime(public_path('assets/front/css/modern-overrides.css')) }}">
 
     <!-- Toastr Notifications -->
     <link rel="stylesheet" type="text/css"
@@ -166,6 +166,7 @@
     <!-- All custom scripts here -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    @include('includes.headers.mobile-menu-script')
     <script src="{{ asset('assets/front/js/scripts.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 
@@ -248,18 +249,12 @@
         customerToken = $.trim(localStorage.getItem("customerToken"));
 
 
-        languageId = localStorage.getItem("languageId");
-        languageName = localStorage.getItem("languageName");
-
-        if (languageName == null || languageName == 'null') {
-            localStorage.setItem("languageId", $.trim("{{ $data['selectedLenguage'] }}"));
-            localStorage.setItem("languageName", $.trim("{{ $data['selectedLenguageName'] }}"));
-            $(".language-default-name").html($.trim("{{ $data['selectedLenguageName'] }}"));
-            languageId = $.trim("{{ $data['selectedLenguage'] }}");
-        } else {
-            $(".language-default-name").html(localStorage.getItem("languageName"));
-            $('.mobile-language option[value="' + localStorage.getItem("languageId") + '"]').attr('selected', 'selected');
-        }
+        languageId = $.trim("{{ $data['selectedLenguage'] }}");
+        languageName = $.trim("{{ $data['selectedLenguageName'] }}");
+        localStorage.setItem("languageId", languageId);
+        localStorage.setItem("languageName", languageName);
+        $(".language-default-name").html(languageName);
+        $('.mobile-language option[value="' + languageId + '"]').attr('selected', 'selected');
 
         
 
@@ -816,7 +811,7 @@
             localStorage.setItem("languageId", languageId);
             localStorage.setItem("languageName", languageName);
             $(".language-default-name").html(languageName);
-            var href = $(this).attr('href');
+            var href = $.trim($(this).attr('href'));
             window.location.href = href;
         });
 
@@ -840,16 +835,14 @@
 
         $('#search_button').click(function(e) {
             e.preventDefault();
-            var searchInput = $('#search-input').val();
-            if (searchInput == "") {
-                toastr.error("{{ trans('search-input-empty') }}")
-            } else {
-                var url = "{{ url('/shop') }}" + '?search=' + searchInput;
-                var catgory_id = $('.selected_category').attr('data-id');
-                if (catgory_id != '' && catgory_id !== undefined)
-                    url += "&category=" + catgory_id;
-                window.location.href = url;
-            }
+            var searchInput = $.trim($('#search-input').val());
+            var categoryId = $('.selected_category').attr('data-id') || '';
+            var params = [];
+
+            if (searchInput) params.push('search=' + encodeURIComponent(searchInput));
+            if (categoryId) params.push('category=' + encodeURIComponent(categoryId));
+
+            window.location.href = "{{ url('/shop') }}" + (params.length ? '?' + params.join('&') : '');
         })
 
 

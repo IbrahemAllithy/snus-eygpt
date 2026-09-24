@@ -19,6 +19,13 @@ class Localization
     {
         $query = 'SHOW TABLES LIKE "localizations"';
 
+        $sessionLocale = session('locale');
+        if (is_string($sessionLocale) && $sessionLocale !== '') {
+            App::setLocale($sessionLocale);
+
+            return $next($request);
+        }
+
         if (file_exists(storage_path('installed'))) {
             $sql = DB::select($query);
             if ($sql) {
