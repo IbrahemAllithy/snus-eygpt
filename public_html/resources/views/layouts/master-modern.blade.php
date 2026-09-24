@@ -151,17 +151,24 @@
             box-shadow: 0 12px 30px rgba(193, 154, 73, 0.4);
         }
 
-        /* Notification Toast - Modern */
+        /* Notification Toast - hidden until .show, then auto-dismissed */
         .notifications {
             position: fixed;
             bottom: 30px;
             right: 30px;
+            left: auto;
+            width: max-content;
+            max-width: calc(100vw - 48px);
+            margin: 0;
             background: white;
             padding: 16px 24px;
             border-radius: var(--radius-lg);
             box-shadow: var(--shadow-xl);
-            transform: translateX(400px);
-            transition: transform var(--transition-base);
+            transform: translateY(12px);
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            transition: transform var(--transition-base), opacity var(--transition-base), visibility var(--transition-base);
             z-index: 10000;
             color: var(--text-primary);
             font-weight: 600;
@@ -171,7 +178,10 @@
         }
 
         .notifications.show {
-            transform: translateX(0);
+            transform: translateY(0);
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
         }
 
         .notifications::before {
@@ -213,11 +223,12 @@
         [dir="rtl"] .notifications {
             right: auto;
             left: 30px;
-            transform: translateX(-400px);
+            margin: 0;
+            transform: translateY(12px);
         }
 
         [dir="rtl"] .notifications.show {
-            transform: translateX(0);
+            transform: translateY(0);
         }
 
         /* Responsive */
@@ -232,6 +243,8 @@
             .notifications {
                 bottom: 20px;
                 right: 20px;
+                left: auto;
+                margin: 0;
                 font-size: 14px;
             }
 
@@ -274,7 +287,7 @@
 
     <div class="mobile-overlay"></div>
 
-    <div class="notifications" id="notificationWishlist">Product Added To Wishlist</div>
+    <div class="notifications" id="notificationWishlist" role="status" aria-live="polite" aria-hidden="true">{{ trans('lables.wishlist-add-success') }}</div>
 
     @include('extras.settings')
     @include('modals.product-quick-view')
@@ -340,6 +353,18 @@
             e.preventDefault();
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
+
+        function notificationWishlist() {
+            var toast = document.getElementById('notificationWishlist');
+            if (!toast) return;
+            toast.classList.add('show');
+            toast.setAttribute('aria-hidden', 'false');
+            clearTimeout(toast._hideTimer);
+            toast._hideTimer = setTimeout(function () {
+                toast.classList.remove('show');
+                toast.setAttribute('aria-hidden', 'true');
+            }, 2500);
+        }
     </script>
 
     <script>
