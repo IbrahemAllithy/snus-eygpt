@@ -33,11 +33,15 @@
     <!-- Modern Design System - Load First -->
     <link rel="stylesheet" type="text/css" href="{{ asset('css/modern-design-system.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/modern-components.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/modern-components-enhanced.css') }}">
+
     <!-- Core CSS Files -->
     {{-- <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}"> --}}
     <link rel="stylesheet" type="text/css"
         href="{{ isset(getSetting()['color']) ? asset('assets/front/css/' . getSetting()['color'] . '.css') : asset('assets/front/css/style.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/front/css/modern-overrides.css') }}">
+
+    <!-- Modern Overrides - Load Last to Override Everything -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/front/css/modern-overrides.css') }}?v={{ time() }}">
 
     <!-- Toastr Notifications -->
     <link rel="stylesheet" type="text/css"
@@ -57,6 +61,20 @@
 
     body {
         font-family: var(--font-primary) !important;
+        background: var(--bg-page);
+    }
+
+    /* Smooth Transitions */
+    * {
+        transition-property: background-color, border-color, color;
+        transition-duration: 200ms;
+        transition-timing-function: ease-in-out;
+    }
+
+    /* RTL Support */
+    [dir="rtl"] {
+        direction: rtl;
+        text-align: right;
     }
 
     /* Install App Button - Modern Style */
@@ -89,12 +107,27 @@
         margin-left: 8px;
     }
 
+    [dir="rtl"] #installAppButton {
+        left: auto;
+        right: 20px;
+    }
+
+    [dir="rtl"] #installAppButton i {
+        margin-left: 0;
+        margin-right: 8px;
+    }
+
     @media(max-width:768px) {
         #installAppButton {
             left: 15px;
             bottom: 90px;
             padding: 12px 18px;
             font-size: 14px;
+        }
+
+        [dir="rtl"] #installAppButton {
+            left: auto;
+            right: 15px;
         }
     }
 </style>

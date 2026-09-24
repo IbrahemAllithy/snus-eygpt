@@ -67,7 +67,7 @@ class IndexController extends Controller
         $data = $homeService->homeIndex();
         $setting = getSetting();
 
-        return view('home', compact('data', 'setting'));
+        return view('home-modern', compact('data', 'setting'));
     }
 
     public function contactUs()
@@ -75,7 +75,7 @@ class IndexController extends Controller
         $homeService = new HomeService;
         $data = $homeService->homeIndex();
 
-        return view('contactus', compact('data'));
+        return view('contact-us-bilingual', compact('data'));
     }
 
     public function aboutUs()
@@ -83,7 +83,7 @@ class IndexController extends Controller
         $homeService = new HomeService;
         $data = $homeService->homeIndex();
 
-        return view('aboutus', compact('data'));
+        return view('about-us-bilingual', compact('data'));
     }
 
     public function productDetail($product, $slug)
@@ -91,7 +91,7 @@ class IndexController extends Controller
         $homeService = new HomeService;
         $data = $homeService->homeIndex();
 
-        return view('product-detail', compact('data', 'product'));
+        return view('product-detail-bilingual', compact('data', 'product'));
     }
 
     public function shop()
@@ -108,7 +108,7 @@ class IndexController extends Controller
         $data['price_range'] = ['0-500', '500-1000', '1000-2000'];
         $data['brand'] = $brand;
 
-        return view('shop', compact('data'));
+        return view('shop-bilingual', compact('data'));
     }
 
     public function cartPage()
@@ -117,7 +117,7 @@ class IndexController extends Controller
         $data = $homeService->homeIndex();
         $setting = getSetting();
 
-        return view('cartpage', compact('data', 'setting'));
+        return view('cart-bilingual', compact('data', 'setting'));
     }
 
     public function login()
@@ -126,7 +126,7 @@ class IndexController extends Controller
         $data = $homeService->homeIndex();
         $setting = getSetting();
 
-        return view('login', compact('data', 'setting'));
+        return view('login-bilingual', compact('data', 'setting'));
     }
 
     public function loginwithsocial()
@@ -135,7 +135,7 @@ class IndexController extends Controller
         $data = $homeService->homeIndex();
         $setting = getSetting();
 
-        return view('loginwithsocial', compact('data', 'setting'));
+        return view('loginwithsocial-bilingual', compact('data', 'setting'));
     }
 
     public function blogDetail($slug)
@@ -145,7 +145,7 @@ class IndexController extends Controller
         $data = $homeService->homeIndex();
         $setting = getSetting();
 
-        return view('blog.blog-detail', compact('data', 'setting', 'slug'));
+        return view('blog-detail-bilingual', compact('data', 'setting', 'slug'));
     }
 
     public function blog()
@@ -155,7 +155,7 @@ class IndexController extends Controller
         $data = $homeService->homeIndex();
         $setting = getSetting();
 
-        return view('blog.blog', compact('data', 'setting'));
+        return view('blog-bilingual', compact('data', 'setting'));
     }
 
     public function checkout()
@@ -167,7 +167,7 @@ class IndexController extends Controller
         $payment_method = PaymentMethod::where('status', '1')->get();
         $payment_method_default = PaymentMethod::whereNotIn('id', ['3', '4'])->where('default', '1')->get();
 
-        return view('checkout', compact('data', 'setting', 'payment_method', 'payment_method_default', 'payment_method_setting'));
+        return view('checkout-bilingual', compact('data', 'setting', 'payment_method', 'payment_method_default', 'payment_method_setting'));
     }
 
     public function wishlist()
@@ -176,7 +176,7 @@ class IndexController extends Controller
         $data = $homeService->homeIndex();
         $setting = getSetting();
 
-        return view('wishlist', compact('data', 'setting'));
+        return view('wishlist-bilingual', compact('data', 'setting'));
     }
 
     public function compare()
@@ -185,7 +185,7 @@ class IndexController extends Controller
         $data = $homeService->homeIndex();
         $setting = getSetting();
 
-        return view('compare', compact('data', 'setting'));
+        return view('compare-bilingual', compact('data', 'setting'));
     }
 
     public function profile()
@@ -194,7 +194,7 @@ class IndexController extends Controller
         $data = $homeService->homeIndex();
         $setting = getSetting();
 
-        return view('profile', compact('data', 'setting'));
+        return view('profile-bilingual', compact('data', 'setting'));
     }
 
     public function points()
@@ -203,7 +203,7 @@ class IndexController extends Controller
         $data = $homeService->homeIndex();
         $setting = getSetting();
 
-        return view('points', compact('data', 'setting'));
+        return view('points-bilingual', compact('data', 'setting'));
     }
 
     public function wallet()
@@ -212,7 +212,7 @@ class IndexController extends Controller
         $data = $homeService->homeIndex();
         $setting = getSetting();
 
-        return view('wallet', compact('data', 'setting'));
+        return view('wallet-bilingual', compact('data', 'setting'));
     }
 
     public function thankyou()
@@ -221,7 +221,7 @@ class IndexController extends Controller
         $data = $homeService->homeIndex();
         $setting = getSetting();
 
-        return view('thankyou', compact('data', 'setting'));
+        return view('thankyou-bilingual', compact('data', 'setting'));
     }
 
     public function changePassword()
@@ -230,7 +230,7 @@ class IndexController extends Controller
         $data = $homeService->homeIndex();
         $setting = getSetting();
 
-        return view('change-password', compact('data', 'setting'));
+        return view('change-password-bilingual', compact('data', 'setting'));
     }
 
     public function forgetPassword()
@@ -239,7 +239,7 @@ class IndexController extends Controller
         $data = $homeService->homeIndex();
         $setting = getSetting();
 
-        return view('forget-password', compact('data', 'setting'));
+        return view('forget-password-bilingual', compact('data', 'setting'));
     }
 
     public function resetPassword()
@@ -248,7 +248,7 @@ class IndexController extends Controller
         $data = $homeService->homeIndex();
         $setting = getSetting();
 
-        return view('reset-password', compact('data', 'setting'));
+        return view('reset-password-bilingual', compact('data', 'setting'));
     }
 
     public function shippingAddress()
@@ -257,7 +257,7 @@ class IndexController extends Controller
         $data = $homeService->homeIndex();
         $setting = getSetting();
 
-        return view('shipping-address', compact('data', 'setting'));
+        return view('shipping-address-bilingual', compact('data', 'setting'));
     }
 
     public function orders()
@@ -266,7 +266,7 @@ class IndexController extends Controller
         $data = $homeService->homeIndex();
         $setting = getSetting();
 
-        return view('orders', compact('data', 'setting'));
+        return view('orders-bilingual', compact('data', 'setting'));
     }
 
     public function ordersDetail($id)
@@ -275,7 +275,7 @@ class IndexController extends Controller
         $data = $homeService->homeIndex();
         $setting = getSetting();
 
-        return view('order-detail', compact('data', 'setting', 'id'));
+        return view('order-detail-bilingual', compact('data', 'setting', 'id'));
     }
 
     public function term()
@@ -284,7 +284,7 @@ class IndexController extends Controller
         $data = $homeService->homeIndex();
         $setting = getSetting();
 
-        return view('term', compact('data', 'setting'));
+        return view('terms-bilingual', compact('data', 'setting'));
     }
 
     public function refund()
@@ -293,7 +293,7 @@ class IndexController extends Controller
         $data = $homeService->homeIndex();
         $setting = getSetting();
 
-        return view('refund', compact('data', 'setting'));
+        return view('refund-bilingual', compact('data', 'setting'));
     }
 
     public function privacy()
@@ -302,7 +302,7 @@ class IndexController extends Controller
         $data = $homeService->homeIndex();
         $setting = getSetting();
 
-        return view('privacy', compact('data', 'setting'));
+        return view('privacy-bilingual', compact('data', 'setting'));
     }
 
     public function printInvoice($id)
@@ -312,7 +312,7 @@ class IndexController extends Controller
         $data = $homeService->homeIndex();
         $setting = getSetting();
 
-        return view('invoice', compact('data', 'order'));
+        return view('invoice-bilingual', compact('data', 'order'));
     }
 
     public function page($slug)
@@ -329,7 +329,7 @@ class IndexController extends Controller
         $page = $page->first();
 
         // return $page;
-        return view('page', compact('data', 'setting', 'page'));
+        return view('page-bilingual', compact('data', 'setting', 'page'));
     }
 
     public function orderStats()
@@ -452,7 +452,7 @@ class IndexController extends Controller
         $payment_method = PaymentMethod::where('status', '1')->get();
         $payment_method_default = PaymentMethod::whereNotIn('id', ['3', '4'])->where('default', '1')->get();
 
-        return view('order-web-view-checkout', compact('data', 'setting', 'payment_method', 'payment_method_default', 'payment_method_setting'));
+        return view('order-web-view-checkout-bilingual', compact('data', 'setting', 'payment_method', 'payment_method_default', 'payment_method_setting'));
     }
 
     public function molliePayment($order_id)

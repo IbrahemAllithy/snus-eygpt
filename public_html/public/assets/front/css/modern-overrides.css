@@ -20,6 +20,80 @@ h1, h2, h3, h4, h5, h6 {
     font-family: 'Cairo', sans-serif !important;
 }
 
+/* ===== Navbar Login/Logout Fix ===== */
+.header-mini .pro-header-options li a,
+.header-mini .pro-header-options li .nav-link,
+.header-mini .pro-header-options li.link-item a,
+.header-mini .link-list.pro-header-options li.link-item a,
+.header-mini .link-list.pro-header-options li.link-item .nav-link {
+    color: #FFFFFF !important;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.header-mini .pro-header-options li a:hover,
+.header-mini .pro-header-options li .nav-link:hover,
+.header-mini .pro-header-options li.link-item a:hover,
+.header-mini .link-list.pro-header-options li.link-item a:hover,
+.header-mini .link-list.pro-header-options li.link-item .nav-link:hover {
+    color: #FFD700 !important;
+    text-shadow: 0 0 8px rgba(255, 215, 0, 0.4);
+}
+
+.header-mini .pro-header-options li a span,
+.header-mini .pro-header-options li .nav-link span,
+.header-mini .link-list.pro-header-options li.link-item a span {
+    color: #FFFFFF !important;
+}
+
+.header-mini .pro-header-options li a:hover span,
+.header-mini .pro-header-options li .nav-link:hover span,
+.header-mini .link-list.pro-header-options li.link-item a:hover span {
+    color: #FFD700 !important;
+}
+
+.header-mini .pro-header-options li .dropdown-toggle,
+.header-mini .pro-header-options li button {
+    color: #FFFFFF !important;
+    background: transparent !important;
+    border: none;
+    font-weight: 600;
+}
+
+.header-mini .pro-header-options li .dropdown-toggle:hover,
+.header-mini .pro-header-options li button:hover {
+    color: #FFD700 !important;
+}
+
+.header-mini .pro-header-options li .dropdown-menu {
+    background: #FFFFFF;
+    border: 2px solid #E8E8E8;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    border-radius: 8px;
+}
+
+.header-mini .pro-header-options li .dropdown-menu .dropdown-item {
+    color: #1A1A1A !important;
+    padding: 10px 20px;
+    transition: all 0.3s ease;
+}
+
+.header-mini .pro-header-options li .dropdown-menu .dropdown-item:hover {
+    background: #FFD700 !important;
+    color: #1A1A1A !important;
+    transform: translateX(5px);
+}
+
+.header-mini .link-list li .link-item,
+.header-mini .link-list li.link-item .link-item {
+    color: #FFFFFF !important;
+}
+
+.header-mini .pro-header-options li p,
+.header-mini .pro-header-options li p span {
+    color: #FFFFFF !important;
+}
+
 .btn,
 button {
     transition: all 0.3s ease;
@@ -27,16 +101,27 @@ button {
     font-weight: 600;
 }
 
-.btn-primary {
-    background: linear-gradient(135deg, #C19A49 0%, #9d7a35 100%);
-    border: none;
-    box-shadow: 0 4px 12px rgba(193, 154, 73, 0.3);
+.btn-primary,
+.btn-modern.btn-modern--primary,
+a.btn-modern.btn-modern--primary,
+a[href="/shop"].btn-modern,
+a[href="/shop"].hero-btn,
+.hero-btn {
+    background: linear-gradient(135deg, #C19A49 0%, #9d7a35 100%) !important;
+    border: none !important;
+    box-shadow: 0 4px 12px rgba(193, 154, 73, 0.3) !important;
+    color: #FFFFFF !important;
 }
 
-.btn-primary:hover {
-    background: linear-gradient(135deg, #9d7a35 0%, #7d6129 100%);
+.btn-primary:hover,
+.btn-modern.btn-modern--primary:hover,
+a.btn-modern.btn-modern--primary:hover,
+a[href="/shop"].btn-modern:hover,
+a[href="/shop"].hero-btn:hover,
+.hero-btn:hover {
+    background: linear-gradient(135deg, #9d7a35 0%, #7d6129 100%) !important;
     transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(193, 154, 73, 0.4);
+    box-shadow: 0 6px 16px rgba(193, 154, 73, 0.4) !important;
 }
 
 .btn-secondary {

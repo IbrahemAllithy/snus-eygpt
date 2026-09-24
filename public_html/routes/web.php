@@ -133,7 +133,9 @@ Route::middleware([GeneralMiddlwware::class, Installer::class])->group(function 
 
     Route::get('/payment-paystck/callback', [Web\IndexController::class, 'handleGatewayCallback'])->name('payment');
     Route::get('/payment-desgin', function () {
-        return view('paymentdesign');
+        $homeService = new \kundol\Services\Home\HomeService;
+        $data = $homeService->homeIndex();
+        return view('paymentdesign-bilingual', compact('data'));
     });
     Route::get('update-settings-by-user', [Web\IndexController::class, 'updateSettingsByUser']);
     Route::get('reset-demo-settings', [Web\IndexController::class, 'ResetDemoSettings']);
