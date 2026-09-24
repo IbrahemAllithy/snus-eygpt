@@ -1,65 +1,36 @@
-const CACHE_NAME = "snus-egypt-v1";
+const CACHE_NAME = "snus-egypt-v2";
 
-const FILES_TO_CACHE = [
-    "/",
-    "/manifest.json"
-];
-
-
-self.addEventListener("install", function(event){
-
-    event.waitUntil(
-
-        caches.open(CACHE_NAME)
-        .then(function(cache){
-
-            return cache.addAll(FILES_TO_CACHE);
-
-        })
-
-    );
-
+self.addEventListener("install", function (event) {
+    self.skipWaiting();
+    event.waitUntil(caches.open(CACHE_NAME));
 });
 
-
-self.addEventListener("activate", function(event){
-
+self.addEventListener("activate", function (event) {
     event.waitUntil(
-
-        caches.keys().then(function(keys){
-
+        caches.keys().then(function (keys) {
             return Promise.all(
-
-                keys.map(function(key){
-
-                    if(key !== CACHE_NAME){
-
+                keys.map(function (key) {
+                    if (key !== CACHE_NAME) {
                         return caches.delete(key);
-
                     }
-
                 })
-
             );
-
+        }).then(function () {
+            return self.clients.claim();
         })
-
     );
-
 });
 
-
-self.addEventListener("fetch", function(event){
+self.addEventListener("fetch", function (event) {
+    if (event.request.method !== "GET") {
+        return;
+    }
 
     event.respondWith(
-
-        caches.match(event.request)
-        .then(function(response){
-
-            return response || fetch(event.request);
-
+        fetch(event.request).then(function (response) {
+            return response;
+        }).catch(function () {
+            return caches.match(event.request);
         })
-
     );
-
 });
